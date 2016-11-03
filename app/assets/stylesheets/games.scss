@@ -2,6 +2,36 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@keyframes clouds {
+  0% {right:-136px}
+  100% {left:-136px}
+}
+
+cloud-A{
+  animation-iteration-count: infinite;
+  animation-delay: 3s;
+  top: 200px
+  animation-name: clouds;
+  animation-duration: 3s;
+}
+
+cloud-B{
+  animation-iteration-count: infinite;
+  animation-delay: 3s;
+  top: 350px
+  animation-name: clouds;
+  animation-duration: 5s;
+}
+
+cloud-C{
+  animation-iteration-count: infinite;
+  animation-delay: 3s;
+  top: 275px
+  animation-name: clouds;
+  animation-duration: 5s;
+}
+
+
 .games-main {
   background-image: '~/public/images/background/background_back.png';
   /* Set rules to fill background */
