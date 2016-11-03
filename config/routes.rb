@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+  get 'results/show'
+
   get 'leaders/index'
 
-  get 'games/index'
+  root 'games#index'
 
   get 'games/show'
 
