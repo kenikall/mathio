@@ -1,0 +1,56 @@
+// Place all the styles related to the games controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@keyframes clouds {
+  0% {right:-136px}
+  100% {left:-136px}
+}
+
+cloud-A{
+  animation-iteration-count: infinite;
+  animation-delay: 3s;
+  top: 200px
+  animation-name: clouds;
+  animation-duration: 3s;
+}
+
+cloud-B{
+  animation-iteration-count: infinite;
+  animation-delay: 3s;
+  top: 350px
+  animation-name: clouds;
+  animation-duration: 5s;
+}
+
+cloud-C{
+  animation-iteration-count: infinite;
+  animation-delay: 3s;
+  top: 275px
+  animation-name: clouds;
+  animation-duration: 5s;
+}
+
+
+.games-main {
+  background-image: '~/public/images/background/background_back.png';
+  /* Set rules to fill background */
+  min-height: 100%;
+  min-width: 1024px;
+
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+
+  /* Set up positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+@media screen and (max-width: 1024px) { /* Specific to this particular image */
+  img.bg {
+    left: 50%;
+    margin-left: -512px;   /* 50% */
+  }
+}
