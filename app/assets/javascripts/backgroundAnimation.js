@@ -1,17 +1,21 @@
 $(document).ready(function(){
   $(function(){
-    var aPos = {left: $('#cloud-A').offset().left, top: $('#cloud-A').offset().left};
-    var bPos = {left: $('#cloud-B').offset().left, top: $('#cloud-B').offset().left};
-    var cPos = {left: $('#cloud-C').offset().left, top: $('#cloud-C').offset().left};
+    var titleCenter = {left: 100, top: 20};
+
+    var aCloudPos = {left: $('#cloud-A').offset().left, top: $('#cloud-A').offset().top};
+    var bCloudPos = {left: $('#cloud-B').offset().left, top: $('#cloud-B').offset().top};
+    var cCloudPos = {left: $('#cloud-C').offset().left, top: $('#cloud-C').offset().top};
 
     setInterval(function(){
-      aPos.left >= -136 ? aPos.left-- : aPos.left = 936;
-      bPos.left >= -136 ? bPos.left-- : bPos.left = 936;
-      cPos.left >= -136 ? cPos.left-- : cPos.left = 936;
+      aCloudPos.left >= -136 ? aCloudPos.left-- : aCloudPos.left = screen.width+136;
+      bCloudPos.left >= -136 ? bCloudPos.left-- : bCloudPos.left = screen.width+136;
+      cCloudPos.left >= -136 ? cCloudPos.left-- : cCloudPos.left = screen.width+136;
 
-      $('#cloud-A').offset(aPos);
-      $('#cloud-B').offset(bPos);
-      $('#cloud-C').offset(cPos);
+      $('#cloud-A').offset(aCloudPos);
+      $('#cloud-B').offset(bCloudPos);
+      $('#cloud-C').offset(cCloudPos);
     }, 50);
+
+    $('#title').offset(titleCenter)
   })
 });
