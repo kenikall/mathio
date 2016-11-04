@@ -105,11 +105,32 @@
   position:absolute;
   left:480px;
   top:50px;
+  z-index:5;
 }
 
-.demo{
-  z-index:5;
+.icon{
+  width: 100%;
+  height: auto;
+}
+
+#hunt{
   position:absolute;
-  left:40px;
+  left:75px;
   top:250px;
+  z-index:5;
+}
+
+
+#leaders{
+  position:absolute;
+  left:300px;
+  top:250px;
+  z-index:5;
+}
+
+#flappy{
+  position:absolute;
+  left:500px;
+  top:250px;
+  z-index:5;
 }
