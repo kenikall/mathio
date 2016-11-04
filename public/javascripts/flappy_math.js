@@ -1,3 +1,4 @@
+
 var p1correct = [];
 var p2correct = [];
 var p1incorrect =[];
@@ -12,6 +13,11 @@ var mainState= {
     game.load.audio('hit', '/sounds/flappy_math/panHit.wav');
     game.load.audio('coin', '/sounds/flappy_math/coin1.wav');
     game.load.audio('coin2', '/sounds/flappy_math/coin2.wav');
+
+    for ( var i=0 ; i<=50 ; i++ ){
+      game.load.image(i, '/images/math_hunt/'+i+'.png');
+      game.load.image('g'+i, '/images/math_hunt/g'+i+'.png');
+    }
 
     game.load.image('bird', '/images/flappy_math/bird.png');
     game.load.image('blueBird', '/images/flappy_math/blueBird.png');
@@ -432,8 +438,10 @@ var mainState= {
     },
 
   spawnAnswer: function (x, y, num, correct1, correct2){
-      var answer = game.add.text(x,y, num, { font: '30px Arial', fill: '#ffffff#' });
-      answer.anchor.setTo(.5,.5)
+      var answer = game.add.sprite(x,y, num);
+
+      answer.sendToBack();
+
       game.physics.arcade.enable(answer);
       answer.body.velocity.x = -200;
 
@@ -524,26 +532,26 @@ var flappyButtonClick = function(){
   })
 }
 
-var load3 = function(){
-  $('#flappy-bird').css('background', 'black').html('<h1>3</h1>')
-  setTimeout(function(){
-      load2()
-    }, 1000)
-}
+// var load3 = function(){
+//   $('#flappy-bird').css('background', 'black').html('<h1>3</h1>')
+//   setTimeout(function(){
+//       load2()
+//     }, 1000)
+// }
 
-var load2 = function(){
-  $('#flappy-bird').html('<h1>2</h1>')
-  setTimeout(function(){
-      load1()
-    }, 1000)
-}
+// var load2 = function(){
+//   $('#flappy-bird').html('<h1>2</h1>')
+//   setTimeout(function(){
+//       load1()
+//     }, 1000)
+// }
 
-var load1 = function(){
-  $('#flappy-bird').html('<h1>1</h1>')
-  setTimeout(function(){
-      loadGame()
-    }, 1000)
-}
+// var load1 = function(){
+//   $('#flappy-bird').html('<h1>1</h1>')
+//   setTimeout(function(){
+//       loadGame()
+//     }, 1000)
+// }
 
 var loadGame = function(){
   $('#flappy-bird').html('')
@@ -552,5 +560,5 @@ var loadGame = function(){
   game.state.start('main');
 }
 
-
+loadGame();
 
