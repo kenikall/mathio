@@ -2,55 +2,84 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-@keyframes clouds {
-  0% {right:-136px}
-  100% {left:-136px}
+#cloud-A{
+  position:absolute;
+  bottom:420px;
+  left:400px;
+  z-index: 3;
 }
 
-cloud-A{
-  animation-iteration-count: infinite;
-  animation-delay: 3s;
-  top: 200px
-  animation-name: clouds;
-  animation-duration: 3s;
+#cloud-B{
+  position:absolute;
+  bottom:300px;
+  left:600px;
+  z-index: 3;
 }
 
-cloud-B{
-  animation-iteration-count: infinite;
-  animation-delay: 3s;
-  top: 350px
-  animation-name: clouds;
-  animation-duration: 5s;
+#cloud-C{
+  position:absolute;
+  bottom:350px;
+  left:50px;
+  z-index: 3;
 }
 
-cloud-C{
-  animation-iteration-count: infinite;
-  animation-delay: 3s;
-  top: 275px
-  animation-name: clouds;
-  animation-duration: 5s;
+.bg-container{
+  position: relative;
+  bottom:0px;
+  left:0px;
+}
+.games-bg {
+  // background: url(img_flwr.gif);
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  z-index: 1;
 }
 
+.games-fg{
+  background-size: 100% auto;
+  background-repeat: no-repeat;
 
-.games-main {
-  background-image: '~/public/images/background/background_back.png';
-  /* Set rules to fill background */
-  min-height: 100%;
-  min-width: 1024px;
-
-  /* Set up proportionate scaling */
-  width: 100%;
-  height: auto;
-
-  /* Set up positioning */
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  z-index: 2;
 }
 
-@media screen and (max-width: 1024px) { /* Specific to this particular image */
-  img.bg {
-    left: 50%;
-    margin-left: -512px;   /* 50% */
-  }
+#title{
+ position:absolute;
+  z-index:4;
+}
+#M{
+  position:relative;
+  top:10px;
+  left:20px;
+}
+#A{
+  position:absolute;
+  left:180px;
+  top:50px;
+}
+#T{
+  position:absolute;
+  left:290px;
+  top:50px;
+}
+#H{
+  position:absolute;
+  left:360px;
+  top:50px;
+}
+#I{
+  position:absolute;
+  left:450px;
+  top:48px;
+}
+#O{
+  position:absolute;
+  left:480px;
+  top:50px;
 }

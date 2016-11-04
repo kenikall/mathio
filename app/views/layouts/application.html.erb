@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
+  <link rel="icon" type="image/png" href="./favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="./favicon-16x16.png" sizes="16x16" />
+
     <title>Mathio</title>
     <%= csrf_meta_tags %>
 
@@ -8,10 +11,8 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body background="mathio/public/background/background_back.png">
-  <div id="cloud-A" class="/public/images/background/cloud.png"></div>
-  <div id="cloud-B" class="/public/images/background/cloud.png"></div>
-  <div id="cloud-C" class="/public/images/background/cloud.png"></div>
+  <body>
+
     <%= yield %>
   </body>
 </html>
