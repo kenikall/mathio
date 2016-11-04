@@ -1,10 +1,6 @@
-
 var p1correct = [];
-var p2correct = [];
 var p1incorrect =[];
-var p2incorrect =[];
 var p1skill;
-var p2skill;
 
 var mainState= {
   preload: function(){
@@ -21,13 +17,11 @@ var mainState= {
     game.load.image('redX', '/images/math_hunt/redX.png');
 
     game.load.image('bird', '/images/flappy_math/bird.png');
-    game.load.image('blueBird', '/images/flappy_math/blueBird.png');
     game.load.image('pipe', '/images/flappy_math/pipe.png');
     game.load.image('cloud', '/images/flappy_math/cloud.png');
   },
   create: function(){
     this.problem1 = game.add.text(20,60, "", { font: '30px Arial', fill: '#ffffff#' });
-    this.problem2 = game.add.text(20,130, "", { font: '30px Arial', fill: '#ffffff#' });
 
     this.jumpSound = game.add.audio('jump');
     this.clang = game.add.audio('clang');
@@ -36,17 +30,14 @@ var mainState= {
     this.coin2 = game.add.audio('coin2');
 
     this.p1score = 0;
-    this.p2score = 0;
     this.gameOver = false;
 
-    this.player1score = game.add.text(20,20,"Player 1: "+this.p1score, { font: '30px Arial', fill: '#ff5733' });
-    this.player2score = game.add.text(20,100,"Player 2: "+this.p2score, { font: '30px Arial', fill: '#4933ff' });
+    this.player1score = game.add.text(20,20,"Score: "+this.p1score, { font: '30px Arial', fill: '#ff5733' });
 
     this.pipes = game.add.group();
     this.correct1 = game.add.group();
-    this.correct2 = game.add.group();
     this.inCorrect1 = game.add.group();
-    this.inCorrect2 = game.add.group();
+
     game.stage.backgroundColor = '#37edf8';
     game.physics.startSystem(Phaser.Physics.ARCADE);
     this.speed = 0;
@@ -58,56 +49,42 @@ var mainState= {
     var spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
     spaceKey.onDown.add(this.jump, this);
 
-    this.blueBird = game.add.sprite(100, 300, 'blueBird');
-    game.physics.arcade.enable(this.blueBird);
-    this.blueBird.body.gravity.y = 1000;
-
-    key1 = game.input.keyboard.addKey(Phaser.Keyboard.ONE);
-    key1.onDown.add(this.leap, this);
-
     this.bird.canScore = true;
-    this.blueBird.canScore = true;
 
-    this.timer = game.time.events.loop(4500, this.addRowOfPipes, this);
+    // this.interval = 4500;
+    this.timer = game.time.events.loop(3000, this.addRowOfPipes, this);
+    // setTimeout(function(){this.addRowOfPipes}, 3000;
+    // game.add.text(20,20,"Player 1: "+this.p1score, { font: '30px Arial', fill: '#ff5733' });
+
+    // var that = this;
+    // setInterval(function(){that.addRowOfPipes; console.log(that.interval)},this.interval);
     this.timer = game.time.events.loop(3000, this.spawnCloud, this);
-    this.time = 3000;
 
     this.timer = game.add.text(800,20, this.time, { font: "64px Arial", fill: "#ffffff", align: "center" });
 
     game.time.events.loop(1, this.updateCounter, this);
 
+    this.time = 3000;
 
     this.bird.anchor.setTo(-0.2, 0.5);
-    this.blueBird.anchor.setTo(-0.2, 0.5);
   },
 
   update: function(){
-
     if (this.bird.angle < 20){
        this.bird.angle += 1;
-    }
-    if (this.blueBird.angle < 20){
-       this.blueBird.angle += 1;
     }
 
     if (this.bird.y < 0 || this.bird.y > 910){
       // this.bird.alive = false;
       this.takeDamage(1)
     }
-    if (this.blueBird.y < 0 || this.blueBird.y > 910){
-      // this.blueBird.alive = false;
-      this.takeDamage(2);
-    }
+
     //score on correct answer
 
       // game.physics.arcade.overlap(this.bird, this.correct1, console.log("correct"), null,this);
       game.physics.arcade.overlap(this.bird, this.correct1, this.p1Score, null,this);
       game.physics.arcade.overlap(this.bird, this.inCorrect1, this.p1noScore, null,this);
       game.physics.arcade.overlap(this.bird, this.pipes, this.hitPipe1, null, this);
-
-      game.physics.arcade.overlap(this.blueBird, this.correct2, this.p2Score, null, this);
-      game.physics.arcade.overlap(this.blueBird, this.inCorrect2, this.p2noScore, null, this);
-      game.physics.arcade.overlap(this.blueBird, this.pipes, this.hitPipe2, null, this);
   },
 
   updateCounter: function() {
@@ -122,14 +99,7 @@ var mainState= {
   endGame: function(){
     gotext = game.add.text(game.world.centerX, game.world.centerY, "", { font: "64px Arial", fill: "#ffffff", align: "center" });
     gotext.anchor.setTo(0.5, 0.5);
-    if (this.p1score > this.p2score){
-      gotext.text = "Player 1 Wins!"
-    } else if (this.p1score < this.p2score){
-      gotext.text = "Player 2 Wins!"
-    } else {
-      gotext.text = "Tie Game!"
-    }
-    this.blueBird.destroy()
+      gotext.text = "Good Game!"
     this.bird.destroy()
     this.time = 1
 
@@ -142,15 +112,12 @@ var mainState= {
   flappyAjaxCall: function(){
 
     player1wrong = $(p1incorrect).not(p1correct).get()
-    player2wrong = $(p2incorrect).not(p2correct).get()
 
     this.formatQuestions()
 
     data = {
       player1correct: p1correct,
-      player2correct: p2correct,
       player1wrong: player1wrong,
-      player2wrong: player2wrong,
       game_id: 2
     }
 
@@ -178,13 +145,7 @@ var mainState= {
     player1wrong = player1wrong.map(function(p){
         return mainState.parseEquation(p)
     })
-     player2wrong = player2wrong.map(function(p){
-        return mainState.parseEquation(p)
-    })
-      p1correct = p1correct.map(function(p){
-        return mainState.parseEquation(p)
-    })
-      p2correct = p2correct.map(function(p){
+    p1correct = p1correct.map(function(p){
         return mainState.parseEquation(p)
     })
   },
@@ -210,14 +171,6 @@ var mainState= {
       this.takeDamage(1);
   },
 
-  hitPipe2: function(){
-      if (this.blueBird.alive === false){
-        return;
-      }
-      this.clang.play();
-      this.takeDamage(2);
-  },
-
   takeDamage: function(player){
     if (player === 1 && this.bird.alive){
       that = this;
@@ -230,20 +183,6 @@ var mainState= {
         that.bird.alive = true;
         that.bird.alpha = 1;
       }, 2000);
-
-    } else if (player === 2 && this.blueBird.alive){
-      that = this;
-      this.blueBird.alpha = 0.5;
-
-      this.blueBird.alive = false;
-
-      setTimeout(function(){
-        that.blueBird.y = 500;
-        that.blueBird.body.velocity.y = -350;
-        that.blueBird.alive = true;
-        that.blueBird.alpha = 1;
-      }, 2000);
-
     }
   },
 
@@ -258,17 +197,6 @@ var mainState= {
     this.bird.body.velocity.y = -350;
   },
 
-  leap: function(){
-    if (this.blueBird.alive === false){
-      return;
-    }
-    var bbanimation = game.add.tween(this.blueBird);
-    bbanimation.to({angle: -20}, 100);
-    bbanimation.start();
-    this.jumpSound.play();
-    this.blueBird.body.velocity.y = -350;
-  },
-
   spawnCloud:function(){
     var cloud = game.add.sprite(1000,Math.floor(Math.random()*900), 'cloud');
     var multiplier = Math.floor(Math.random()*3)
@@ -279,9 +207,9 @@ var mainState= {
   },
 
   p1Score: function(){
-    console.log("score called")
     if ( this.bird.canScore ){
-      var answer = game.add.sprite(arguments[1].x,arguments[1].y, 'g'+arguments[1].key);
+      this.time += 250;
+      var answer = game.add.sprite(arguments[1].x-2,arguments[1].y, 'g'+arguments[1].key);
       answer.sendToBack();
       game.physics.arcade.enable(answer);
       answer.body.velocity.x = -200;
@@ -298,22 +226,9 @@ var mainState= {
   },
 
   p1noScore: function(){
-    console.log("called")
     var wrongAnswer = game.add.sprite(arguments[1].x-12,arguments[1].y-8, 'redX');
       game.physics.arcade.enable(wrongAnswer);
       wrongAnswer.body.velocity.x = -200;
-  },
-
-  p2Score: function(){
-    if ( this.blueBird.canScore ){
-      this.coin2.play();
-      this.blueBird.canScore = false;
-      this.p2score  += 1;
-      this.player2score.text = "Player 2: "+this.p2score;
-      var that = this;
-      setTimeout(function(){that.blueBird.canScore = true}, 1000);
-      p2correct.push(this.problem2.text);
-    }
   },
 
   spawnQuestion1: function (){
@@ -325,26 +240,22 @@ var mainState= {
       switch(p1skill){
         case "Addition":
           this.problem1.text = param1.toString() + " + " + param2.toString()
-          var that = this;
           return (param1 + param2);
           break;
 
         case "Subtraction":
           param2 = param1 + Math.floor(Math.random()*10);
           this.problem1.text = param2.toString() + " - " + param1.toString()
-          var that = this;
           return (param2 - param1);
           break;
 
         case "Multiplication":
           this.problem1.text = param1.toString() + " * " + param2.toString()
-          var that = this;
           return (param1 * param2);
           break;
 
         case "Division":
           this.problem1.text = (param1*param2).toString() + " / " + param2.toString()
-          var that = this;
           return (param1);
           break;
 
@@ -352,96 +263,25 @@ var mainState= {
         var select = Math.random();
         if (select < .25){
           this.problem1.text = param1.toString() + " + " + param2.toString()
-          var that = this;
           return (param1 + param2);
 
         } else if (select < .5) {
           param2 = param1 + Math.floor(Math.random()*10);
           this.problem1.text = param2.toString() + " - " + param1.toString()
-          var that = this;
           return (param2 - param1);
 
         } else if (select < .75) {
           this.problem1.text = param1.toString() + " * " + param2.toString()
-          var that = this;
           return (param1 * param2);
 
         } else {
           this.problem1.text = (param1*param2).toString() + " / " + param2.toString()
-          var that = this;
           return (param1);
         }
         break;
 
         default:
           this.problem1.text = param1.toString() + " + " + param2.toString()
-          var that = this;
-          return (param1 + param2);
-        }
-      }
-  },
-
-  spawnQuestion2: function (){
-    if (!this.gameOver){
-      param1 = Math.floor(Math.random()*10);
-      param2 = Math.floor(Math.random()*10);
-
-      switch(p2skill){
-
-        case "Addition":
-        p2text = param1.toString() + " + " + param2.toString()
-          this.problem2.text = p2text
-          var that = this;
-          return (param1 + param2);
-          break;
-
-        case "Subtraction":
-          param2 = param1 + param2;
-          this.problem2.text = param2.toString() + " - " + param1.toString()
-          var that = this;
-          return (param2 - param1);
-          break;
-
-        case "Multiplication":
-          this.problem2.text = param1.toString() + " * " + param2.toString()
-          var that = this;
-          return (param1 * param2);
-          break;
-
-        case "Division":
-          this.problem2.text = (param1*param2).toString() + " / " + param1.toString()
-          var that = this;
-          return (param2);
-          break;
-
-        case "All":
-          var select = Math.random();
-          if (select < .25){
-            this.problem2.text = param1.toString() + " + " + param2.toString()
-            var that = this;
-            return (param1 + param2);
-
-          } else if (select < .5) {
-            param2 = param1 + Math.floor(Math.random()*10);
-            this.problem2.text = param2.toString() + " - " + param1.toString()
-            var that = this;
-            return (param2 - param1);
-
-          } else if (select < .75) {
-            this.problem2.text = param1.toString() + " * " + param2.toString()
-            var that = this;
-            return (param1 * param2);
-
-          } else {
-            this.problem2.text = (param1*param2).toString() + " / " + param2.toString()
-            var that = this;
-            return (param1);
-          }
-        break;
-
-        default:
-          this.problem2.text = param1.toString() + " + " + param2.toString()
-          var that = this;
           return (param1 + param2);
         }
       }
@@ -458,28 +298,17 @@ var mainState= {
       pipe.outOfBoundsKill = true;
     },
 
-  spawnAnswer: function (x, y, num, correct1, correct2){
+  spawnAnswer: function (x, y, num, correct){
       var answer = game.add.sprite(x,y, num);
       answer.sendToBack();
       game.physics.arcade.enable(answer);
       answer.body.velocity.x = -200;
 
-      if (correct1){
-        console.log(num+" is correct");
+      if (correct){
         this.correct1.add(answer);
       } else {
-        console.log(num+" is incorrect");
         this.inCorrect1.add(answer);
       }
-
-      if (correct2){
-        console.log(num+" is correct");
-        this.correct2.add(answer);
-      } else {
-        console.log(num+" is incorrect");
-        this.inCorrect2.add(answer);
-      }
-
   },
 
   currentConfig: function(){
@@ -494,10 +323,10 @@ var mainState= {
   },
 
   addRowOfPipes: function() {
+    this.interval -= 10;
     a1 = this.spawnQuestion1();
-    a2 = this.spawnQuestion2();
+
     p1incorrect.push(this.problem1.text)
-    p2incorrect.push(this.problem2.text)
 
     var config = this.currentConfig();
 
@@ -506,19 +335,14 @@ var mainState= {
       if(config[i] == 2) count++;
     }
 
-    while( loc1 === loc2){
-      var loc1 =  Math.floor(Math.random()*count)
-      var loc2 =  Math.floor(Math.random()*count)
-    }
+    var loc1 =  Math.floor(Math.random()*count)
     var answers = [];
 
     for (var i=0 ; i < count ; i++){
       if (i === loc1){
         answers.push(a1)
-      } else if (i === loc2){
-        answers.push(a2)
       } else {
-        answers.push(2)
+        answers.push(Math.floor(Math.random()*30));
       }
     }
 
@@ -528,9 +352,11 @@ var mainState= {
       }
       else if(config[i] !== 0){
         config[i] = answers.pop()
-        this.spawnAnswer(1000, i*60+15, config[i], config[i]===a1, config[i]===a2 );
+        this.spawnAnswer(1000, i*60+15, config[i], config[i]===a1 );
       }
     }
+    var that = this;
+    setTimeout(function(){that.addRowOfPipes},this.interval)
   }
 };
 
@@ -561,26 +387,6 @@ var flappyButtonClick = function(){
   })
 }
 
-// var load3 = function(){
-//   $('#flappy-bird').css('background', 'black').html('<h1>3</h1>')
-//   setTimeout(function(){
-//       load2()
-//     }, 1000)
-// }
-
-// var load2 = function(){
-//   $('#flappy-bird').html('<h1>2</h1>')
-//   setTimeout(function(){
-//       load1()
-//     }, 1000)
-// }
-
-// var load1 = function(){
-//   $('#flappy-bird').html('<h1>1</h1>')
-//   setTimeout(function(){
-//       loadGame()
-//     }, 1000)
-// }
 
 var loadGame = function(){
   $('#flappy-bird').html('')
