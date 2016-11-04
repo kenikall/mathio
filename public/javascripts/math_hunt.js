@@ -5,37 +5,36 @@ var p2incorrect =[];
 var p1skill;
 var p2skill;
 
-$(document).ready(function(){
-  huntButtonClick()
-})
+// $(document).ready(function(){
+//   huntButtonClick()
+// })
 
-var huntButtonClick = function(){
-  $('#hunt-button').on('click', function(){
-    $(this).remove()
-    load3()
-  })
-}
+// var huntButtonClick = function(){
+//   $('#hunt-button').on('click', function(){
+//     $(this).remove()
+//     load3()
+//   })
+// }
 
-var load3 = function(){
-  $('#math-hunt').css('background', 'black').html('<h1>3</h1>')
-  setTimeout(function(){
-      load2()
-    }, 1000)
-}
+// var load3 = function(){
+//   $('#math-hunt').css('background', 'black').html('<h1>3</h1>')
+//   setTimeout(function(){
+//       load2()
+//     }, 1000)
+// }
 
-var load2 = function(){
-  $('#math-hunt').html('<h1>2</h1>')
-  setTimeout(function(){
-      load1()
-    }, 1000)
-}
+// var load2 = function(){
+//   $('#math-hunt').html('<h1>2</h1>')
+//   setTimeout(function(){
+//       load1()
+//     }, 1000)
+// }
 
-var load1 = function(){
-  $('#math-hunt').html('<h1>1</h1>')
-  setTimeout(function(){
-      loadGame()
-    }, 1000)
-}
+// var load1 = function(){
+//   $('#math-hunt').html('<h1>1</h1>')
+//   setTimeout(function(){
+//     }, 1000)
+// }
 
 var loadGame = function(){
   $('#math-hunt').html('')
@@ -43,6 +42,7 @@ var loadGame = function(){
   game.state.add('main', mainState);
   game.state.start('main');
 }
+
 
 
 
@@ -89,41 +89,41 @@ function Duck(val, round) {
 
 var mainState= {
   preload: function(){
-    game.load.image('stage', '/images/duck_hunt/duck_background.png');
+    game.load.image('stage', '/images/math_hunt/duck_background.png');
     //crosshairs
-    game.load.image('inner1', '/images/duck_hunt/p1_inner.png');
-    game.load.image('inner2', '/images/duck_hunt/p2_inner.png');
-    game.load.image('p1', '/images/duck_hunt/p1crosshairs.png');
-    game.load.image('p2', '/images/duck_hunt/p2crosshairs.png');
-    game.load.image('shot', '/images/duck_hunt/shotCrosshairs.png');
-    game.load.image('redX', '/images/duck_hunt/redX.png');
+    game.load.image('inner1', '/images/math_hunt/p1_inner.png');
+    game.load.image('inner2', '/images/math_hunt/p2_inner.png');
+    game.load.image('p1', '/images/math_hunt/p1crosshairs.png');
+    game.load.image('p2', '/images/math_hunt/p2crosshairs.png');
+    game.load.image('shot', '/images/math_hunt/shotCrosshairs.png');
+    game.load.image('redX', '/images/math_hunt/redX.png');
 
     //numbers
     for ( var i=0 ; i<=50 ; i++ ){
-    game.load.image(i, '/images/duck_hunt/'+i+'.png');
+    game.load.image(i, '/images/math_hunt/'+i+'.png');
     }
 
     //score
-    game.load.image('redScore', '/images/duck_hunt/red_score.png');
-    game.load.image('blueScore', '/images/duck_hunt/blue_score.png');
-    game.load.image('noScore', '/images/duck_hunt/no_score.png');
+    game.load.image('redScore', '/images/math_hunt/red_score.png');
+    game.load.image('blueScore', '/images/math_hunt/blue_score.png');
+    game.load.image('noScore', '/images/math_hunt/no_score.png');
 
     //dog
-    game.load.image('laugh1', '/images/duck_hunt/dog_laugh1.png');
-    game.load.image('laugh2', '/images/duck_hunt/dog_laugh2.png');
+    game.load.image('laugh1', '/images/math_hunt/dog_laugh1.png');
+    game.load.image('laugh2', '/images/math_hunt/dog_laugh2.png');
 
     //bullets
-    game.load.image('bullet', '/images/duck_hunt/bullet.png');
+    game.load.image('bullet', '/images/math_hunt/bullet.png');
     //ducks
-    game.load.image('dedDuck', '/images/duck_hunt/blue_shot.png');
-    game.load.image('downDuck', '/images/duck_hunt/blue_down.png');
+    game.load.image('dedDuck', '/images/math_hunt/blue_shot.png');
+    game.load.image('downDuck', '/images/math_hunt/blue_down.png');
     //sounds
-    game.load.audio('shotSound', '/sounds/duck_hunt/shot.wav')
-    game.load.audio('quacks', '/sounds/duck_hunt/quacks.wav')
-    game.load.audio('hit', '/sounds/duck_hunt/hit.wav')
-    game.load.audio('fall', '/sounds/duck_hunt/fall.wav')
-    game.load.audio('click', '/sounds/duck_hunt/click.wav')
-    game.load.audio('honk', '/sounds/duck_hunt/honk.wav')
+    game.load.audio('shotSound', '/sounds/math_hunt/shot.wav')
+    game.load.audio('quacks', '/sounds/math_hunt/quacks.wav')
+    game.load.audio('hit', '/sounds/math_hunt/hit.wav')
+    game.load.audio('fall', '/sounds/math_hunt/fall.wav')
+    game.load.audio('click', '/sounds/math_hunt/click.wav')
+    game.load.audio('honk', '/sounds/math_hunt/honk.wav')
   },
   create: function(){
     //set stage
@@ -274,10 +274,10 @@ var mainState= {
 
   // player movement
   move: function(){
-    if (this.p1up.isDown) { this.p1.y -= 5; }
-    else if (this.p1down.isDown) { this.p1.y += 5; }
-    if (this.p1right.isDown) { this.p1.x += 5; }
-    else if (this.p1left.isDown) { this.p1.x -= 5; }
+    if (this.p1up.isDown && this.inner1.y >= 0) { this.p1.y -= 5;}
+    else if (this.p1down.isDown && this.inner1.y <= 705) { this.p1.y += 5; }
+    if (this.p1right.isDown && this.inner1.x <= 1000) { this.p1.x += 5;}
+    else if (this.p1left.isDown && this.inner1.x >= 0) { this.p1.x -= 5;}
 
     if (this.p2up.isDown) { this.p2.y -= 5; }
     else if (this.p2down.isDown) { this.p2.y += 5; }
@@ -660,3 +660,5 @@ var mainState= {
     }
   }
 };
+
+loadGame()
