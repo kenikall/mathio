@@ -1,3 +1,4 @@
+
 var p1correct = [];
 var p2correct = [];
 var p1incorrect =[];
@@ -12,6 +13,12 @@ var mainState= {
     game.load.audio('hit', '/sounds/flappy_math/panHit.wav');
     game.load.audio('coin', '/sounds/flappy_math/coin1.wav');
     game.load.audio('coin2', '/sounds/flappy_math/coin2.wav');
+
+    for ( var i=0 ; i<=50 ; i++ ){
+      game.load.image(i, '/images/math_hunt/'+i+'.png');
+      game.load.image('g'+i, '/images/math_hunt/g'+i+'.png');
+    }
+    game.load.image('redX', '/images/math_hunt/redX.png');
 
     game.load.image('bird', '/images/flappy_math/bird.png');
     game.load.image('blueBird', '/images/flappy_math/blueBird.png');
@@ -38,6 +45,8 @@ var mainState= {
     this.pipes = game.add.group();
     this.correct1 = game.add.group();
     this.correct2 = game.add.group();
+    this.inCorrect1 = game.add.group();
+    this.inCorrect2 = game.add.group();
     game.stage.backgroundColor = '#37edf8';
     game.physics.startSystem(Phaser.Physics.ARCADE);
     this.speed = 0;
@@ -45,7 +54,6 @@ var mainState= {
     this.bird = game.add.sprite(100, 245, 'bird');
     game.physics.arcade.enable(this.bird);
     this.bird.body.gravity.y = 1000;
-
 
     var spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
     spaceKey.onDown.add(this.jump, this);
@@ -92,10 +100,13 @@ var mainState= {
     }
     //score on correct answer
 
+      // game.physics.arcade.overlap(this.bird, this.correct1, console.log("correct"), null,this);
       game.physics.arcade.overlap(this.bird, this.correct1, this.p1Score, null,this);
+      game.physics.arcade.overlap(this.bird, this.inCorrect1, this.p1noScore, null,this);
       game.physics.arcade.overlap(this.bird, this.pipes, this.hitPipe1, null, this);
 
       game.physics.arcade.overlap(this.blueBird, this.correct2, this.p2Score, null, this);
+      game.physics.arcade.overlap(this.blueBird, this.inCorrect2, this.p2noScore, null, this);
       game.physics.arcade.overlap(this.blueBird, this.pipes, this.hitPipe2, null, this);
   },
 
@@ -268,14 +279,29 @@ var mainState= {
   },
 
   p1Score: function(){
+    console.log("score called")
     if ( this.bird.canScore ){
+      var answer = game.add.sprite(arguments[1].x,arguments[1].y, 'g'+arguments[1].key);
+      answer.sendToBack();
+      game.physics.arcade.enable(answer);
+      answer.body.velocity.x = -200;
+      arguments[1].kill();
+
       this.coin.play();
       this.bird.canScore = false;
       this.p1score  += 1;
       this.player1score.text = "Player 1: "+this.p1score;
-      that = this;
+      var that = this;
+      setTimeout(function(){that.bird.canScore = true}, 1000);
       p1correct.push(this.problem1.text);
     }
+  },
+
+  p1noScore: function(){
+    console.log("called")
+    var wrongAnswer = game.add.sprite(arguments[1].x-12,arguments[1].y-8, 'redX');
+      game.physics.arcade.enable(wrongAnswer);
+      wrongAnswer.body.velocity.x = -200;
   },
 
   p2Score: function(){
@@ -284,7 +310,8 @@ var mainState= {
       this.blueBird.canScore = false;
       this.p2score  += 1;
       this.player2score.text = "Player 2: "+this.p2score;
-      that = this;
+      var that = this;
+      setTimeout(function(){that.blueBird.canScore = true}, 1000);
       p2correct.push(this.problem2.text);
     }
   },
@@ -432,17 +459,28 @@ var mainState= {
     },
 
   spawnAnswer: function (x, y, num, correct1, correct2){
-      var answer = game.add.text(x,y, num, { font: '30px Arial', fill: '#ffffff#' });
-      answer.anchor.setTo(.5,.5)
+      var answer = game.add.sprite(x,y, num);
+      answer.sendToBack();
       game.physics.arcade.enable(answer);
       answer.body.velocity.x = -200;
 
       if (correct1){
-        this.correct1.add(answer)
-      } else if (correct2) {
-        this.correct2.add(answer)
+        console.log(num+" is correct");
+        this.correct1.add(answer);
+      } else {
+        console.log(num+" is incorrect");
+        this.inCorrect1.add(answer);
       }
-    },
+
+      if (correct2){
+        console.log(num+" is correct");
+        this.correct2.add(answer);
+      } else {
+        console.log(num+" is incorrect");
+        this.inCorrect2.add(answer);
+      }
+
+  },
 
   currentConfig: function(){
     var configs = [[1,0,2,0,1,1,0,2,0,1,1,0,2,0,1],
@@ -516,7 +554,6 @@ var flappyMode2Listener = function(){
   })
 }
 
-
 var flappyButtonClick = function(){
   $('#flappy-button').on('click', function(){
     $(this).remove()
@@ -524,26 +561,26 @@ var flappyButtonClick = function(){
   })
 }
 
-var load3 = function(){
-  $('#flappy-bird').css('background', 'black').html('<h1>3</h1>')
-  setTimeout(function(){
-      load2()
-    }, 1000)
-}
+// var load3 = function(){
+//   $('#flappy-bird').css('background', 'black').html('<h1>3</h1>')
+//   setTimeout(function(){
+//       load2()
+//     }, 1000)
+// }
 
-var load2 = function(){
-  $('#flappy-bird').html('<h1>2</h1>')
-  setTimeout(function(){
-      load1()
-    }, 1000)
-}
+// var load2 = function(){
+//   $('#flappy-bird').html('<h1>2</h1>')
+//   setTimeout(function(){
+//       load1()
+//     }, 1000)
+// }
 
-var load1 = function(){
-  $('#flappy-bird').html('<h1>1</h1>')
-  setTimeout(function(){
-      loadGame()
-    }, 1000)
-}
+// var load1 = function(){
+//   $('#flappy-bird').html('<h1>1</h1>')
+//   setTimeout(function(){
+//       loadGame()
+//     }, 1000)
+// }
 
 var loadGame = function(){
   $('#flappy-bird').html('')
@@ -552,5 +589,5 @@ var loadGame = function(){
   game.state.start('main');
 }
 
-
+loadGame();
 
