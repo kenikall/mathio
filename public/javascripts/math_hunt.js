@@ -43,9 +43,6 @@ var loadGame = function(){
   game.state.start('main');
 }
 
-
-
-
 function Duck(val, round) {
   this.xMove = 0;
   this.yMove = 0;
@@ -109,8 +106,6 @@ var mainState= {
     game.load.image('noScore', '/images/math_hunt/no_score.png');
 
     //dog
-    // game.load.image('laugh1', '/images/math_hunt/dog_laugh1.png');
-    // game.load.image('laugh2', '/images/math_hunt/dog_laugh2.png');
     game.load.spritesheet('dogShow', '/images/math_hunt/dog_show_sprites.png',280,240, 4);
     game.load.spritesheet('dogWalk', '/images/math_hunt/dog_walk_sprites.png',250,195, 5);
 
@@ -133,19 +128,6 @@ var mainState= {
     game.stage.backgroundColor = '#40bdff';
     this.background = game.add.sprite( 0, 0, 'stage');
 
-    //create animations XXXXXXXXXXXXXXX
-    this.dogShow = game.add.sprite(500,500,'dogShow');
-    this.dogShow.anchor.setTo(.5,.5);
-    this.dogShow.frame = 0;
-    this.dogShow.animations.add ('laugh', [0,1], 10, true);
-    this.dogShow.animations.play('laugh');
-
-    this.dogWalk = game.add.sprite(-125,700,'dogWalk');
-    this.dogWalk.anchor.setTo(.5,.5);
-    this.dogWalk.frame = 0;
-    this.dogWalk.animations.add ('walk', [0,4], 5, true);
-    this.dogWalk.animations.play('walk');
-
     //enable physics
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
@@ -156,6 +138,12 @@ var mainState= {
     this.hit = game.add.audio('hit');
     this.fall = game.add.audio('fall');
     this.honk = game.add.audio('honk')
+
+    //set up animations
+    this.dogWalk = game.add.sprite(-125,700,'dogWalk');
+    this.dogWalk.anchor.setTo(.5,.5);
+    this.dogWalk.animations.add ('walk', [0,4], 5, true);
+    this.dogWalk.animations.play('walk');
 
     //set up ducks
     this.ducks = [];
@@ -221,7 +209,8 @@ var mainState= {
     this.startRound();
   },
   update: function(){
-    this.dogWalk.x++
+    if (this.dogWalk.x < 300) {this.dogWalk.x++};
+    if (this.dogWalk.x >= 300) {this.dogWalkAnimation()};
     this.centerTarget();
     this.move();
     this.shoot();
@@ -532,7 +521,8 @@ var mainState= {
   },
 
   startRound: function(){
-    this.spawnDucks();
+    this.dogWalkAnimation();
+    // this.spawnDucks();
   },
 
   oneDuck: function(val){
@@ -558,7 +548,6 @@ var mainState= {
     this.p2.bringToTop();
     this.p1Question.bringToTop();
     this.p2Question.bringToTop();
-    this.dogWalk.bringToTop();
     this.renderScore();
   },
 
@@ -673,7 +662,42 @@ var mainState= {
     } else {
       this.gameOver()
     }
+  },
+
+  dogWalkAnimation: function(){
+    this.dogWalk.frame =  = game.add.sprite(-125,700,'dogWalk');
+    this.dogWalk.anchor.setTo(.5,.5);
+    this.dogWalk.animations.add ('walk', [0,4], 5, true);
+    this.dogWalk.animations.play('walk');
+
+    var dogWalkTween = new Tween(this.dogWalk)
+    while (this.dogWalk.x <300){
+      this.dogWalk.bringToTop();
+      var that = this;
+      setTimeout(function(){ that.dogWalk.x++}, 10)
+      this.dogWalk.x++;
+      console.log(this.dogWalk.x);
+    }
+  },
+
+  dogShowAnimation: function(ducks){
+    this.dogShow = game.add.sprite(500,750,'dogShow');
+    this.dogShow.anchor.setTo(.5,.5);
+    this.dogShow.animations.add ('laugh', [0,1], 10, true);
+    if (ducks === 0){
+      this.dogShow.animations.play('laugh');
+    } else if (ducks === 1){
+      this.dogShow.frame = 2;
+    } else {
+      this.dogShow.frame = 3;
+    }
+    while (this.dogShow.y > 500){
+      this.dogWalk.bringToTop();
+      this.dogWalk.y--;
+      console.log(this.dogWalk.x);
+    }
   }
+
 };
 
 loadGame()
