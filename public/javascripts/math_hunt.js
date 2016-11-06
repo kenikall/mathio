@@ -109,8 +109,11 @@ var mainState= {
     game.load.image('noScore', '/images/math_hunt/no_score.png');
 
     //dog
-    game.load.image('laugh1', '/images/math_hunt/dog_laugh1.png');
-    game.load.image('laugh2', '/images/math_hunt/dog_laugh2.png');
+    // game.load.image('laugh1', '/images/math_hunt/dog_laugh1.png');
+    // game.load.image('laugh2', '/images/math_hunt/dog_laugh2.png');
+    game.load.spritesheet('dogShow', '/images/math_hunt/dog_show_sprites.png',280,240, 4);
+    game.load.spritesheet('dogWalk', '/images/math_hunt/dog_walk_sprites.png',250,195, 5);
+
 
     //bullets
     game.load.image('bullet', '/images/math_hunt/bullet.png');
@@ -129,8 +132,19 @@ var mainState= {
     //set stage
     game.stage.backgroundColor = '#40bdff';
     this.background = game.add.sprite( 0, 0, 'stage');
-    this.dog = game.add.sprite(475,700,'laugh1');
-    this.dog.anchor.setTo(.5,.5)
+
+    //create animations XXXXXXXXXXXXXXX
+    this.dogShow = game.add.sprite(500,500,'dogShow');
+    this.dogShow.anchor.setTo(.5,.5);
+    this.dogShow.frame = 0;
+    this.dogShow.animations.add ('laugh', [0,1], 10, true);
+    this.dogShow.animations.play('laugh');
+
+    this.dogWalk = game.add.sprite(-125,700,'dogWalk');
+    this.dogWalk.anchor.setTo(.5,.5);
+    this.dogWalk.frame = 0;
+    this.dogWalk.animations.add ('walk', [0,4], 5, true);
+    this.dogWalk.animations.play('walk');
 
     //enable physics
     game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -207,6 +221,7 @@ var mainState= {
     this.startRound();
   },
   update: function(){
+    this.dogWalk.x++
     this.centerTarget();
     this.move();
     this.shoot();
@@ -279,10 +294,10 @@ var mainState= {
     if (this.p1right.isDown && this.inner1.x <= 1000) { this.p1.x += 5;}
     else if (this.p1left.isDown && this.inner1.x >= 0) { this.p1.x -= 5;}
 
-    if (this.p2up.isDown) { this.p2.y -= 5; }
-    else if (this.p2down.isDown) { this.p2.y += 5; }
-    if (this.p2right.isDown) { this.p2.x += 5; }
-    else if (this.p2left.isDown) { this.p2.x -= 5; }
+    if (this.p2up.isDown && this.inner2.y >= 0) { this.p2.y -= 5;}
+    else if (this.p2down.isDown && this.inner2.y <= 705) { this.p2.y += 5; }
+    if (this.p2right.isDown && this.inner2.x <= 1000) { this.p2.x += 5;}
+    else if (this.p2left.isDown && this.inner2.x >= 0) { this.p2.x -= 5;}
   },
 
   shoot: function(){
@@ -543,7 +558,7 @@ var mainState= {
     this.p2.bringToTop();
     this.p1Question.bringToTop();
     this.p2Question.bringToTop();
-    this.dog.bringToTop();
+    this.dogWalk.bringToTop();
     this.renderScore();
   },
 
