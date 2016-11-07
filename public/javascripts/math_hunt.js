@@ -5,42 +5,13 @@ var p2incorrect =[];
 var p1skill;
 var p2skill;
 
-// $(document).ready(function(){
-//   huntButtonClick()
-// })
-
-// var huntButtonClick = function(){
-//   $('#hunt-button').on('click', function(){
-//     $(this).remove()
-//     load3()
-//   })
-// }
-
-// var load3 = function(){
-//   $('#math-hunt').css('background', 'black').html('<h1>3</h1>')
-//   setTimeout(function(){
-//       load2()
-//     }, 1000)
-// }
-
-// var load2 = function(){
-//   $('#math-hunt').html('<h1>2</h1>')
-//   setTimeout(function(){
-//       load1()
-//     }, 1000)
-// }
-
-// var load1 = function(){
-//   $('#math-hunt').html('<h1>1</h1>')
-//   setTimeout(function(){
-//     }, 1000)
-// }
-
 var loadGame = function(){
   $('#math-hunt').html('')
   game = new Phaser.Game(1000,910, Phaser.auto, 'math-hunt');
   game.state.add('main', mainState);
-  game.state.start('main');
+  game.state.add('menu', menuState);
+
+  game.state.start('menu');
 }
 
 function Duck(val, round) {
@@ -83,7 +54,9 @@ function Duck(val, round) {
     this.sprite.y -= this.yMove * this.speed;
   }.bind(this);
 };
+var menuState= {
 
+}
 var mainState= {
   preload: function(){
     game.load.image('stage', '/images/math_hunt/duck_background.png');
@@ -108,7 +81,7 @@ var mainState= {
     //dog
     game.load.spritesheet('dogShow', '/images/math_hunt/dog_show_sprites.png',280,240, 4);
     game.load.spritesheet('dogWalk', '/images/math_hunt/dog_walk_sprites.png',250,195, 5);
-
+    game.load.spritesheet('dogJump', '/images/math_hunt/dog_jump_sprites.png',250,218, 3);
 
     //bullets
     game.load.image('bullet', '/images/math_hunt/bullet.png');
@@ -144,6 +117,11 @@ var mainState= {
     this.dogWalk.anchor.setTo(.5,.5);
     this.dogWalk.animations.add ('walk', [0,4], 5, true);
     this.dogWalk.animations.play('walk');
+
+    this.dogShow = game.add.sprite(500,775,'dogShow');
+    this.dogShow.anchor.setTo(.5,.5);
+    this.dogShow.sendToBack()
+    this.dogShow.animations.add ('laugh', [0,1], 10, true);
 
     //set up ducks
     this.ducks = [];
@@ -206,11 +184,19 @@ var mainState= {
     this.reload();
 
     //timers
-    this.startRound();
+    var that = this;
+    walk = true;
+    setInterval(function(){
+      if(that.dogWalk.x<300){that.dogWalk.x++;
+      }else if (walk){
+        that.dogWalkAnimation();
+        walk = false
+      }
+    },1)
+
+
   },
   update: function(){
-    if (this.dogWalk.x < 300) {this.dogWalk.x++};
-    if (this.dogWalk.x >= 300) {this.dogWalkAnimation()};
     this.centerTarget();
     this.move();
     this.shoot();
@@ -301,8 +287,9 @@ var mainState= {
       if (this.ducks.length > 0){
         if (this.checkOverlap(this.inner1, this.ducks[0])){
           this.ducks[0].sprite.kill();
-          p1correct.push(this.p1Question.text)
-          this.hitBird1()
+          p1correct.push(this.p1Question.text);
+          this.hitBird1();
+          // this.spawnDucks();
         } else if (this.checkOverlap(this.inner1, this.ducks[1])){
           x = game.add.sprite(this.p1.x, this.p1.y, 'redX');
           x.anchor.setTo( 0.5, 0.5);
@@ -507,10 +494,10 @@ var mainState= {
   },
 
   endRound: function(){
-    hits = this.ducks.length;
+    var hits = 2;
 
-    if (this.score1.length < this.round){this.score1.push(0)}
-    if (this.score2.length < this.round){this.score2.push(0)}
+    if (this.score1.length < this.round){this.score1.push(0); hits--}
+    if (this.score2.length < this.round){this.score2.push(0); hits--}
 
     for ( var i=0 ; i < this.ducks.length ; i++ )
     {
@@ -518,11 +505,6 @@ var mainState= {
     }
     this.renderScore();
     this.callDog(hits);
-  },
-
-  startRound: function(){
-    this.dogWalkAnimation();
-    // this.spawnDucks();
   },
 
   oneDuck: function(val){
@@ -655,49 +637,75 @@ var mainState= {
   },
 
   callDog: function(hits){
-    // while(this.dog.y <)
-    var that = this;
+    console.log('dog called');
     if (this.round <= 4){
-      setTimeout(function(){that.spawnDucks() },3000);
+      this.dogShowAnimation(hits);
     } else {
-      this.gameOver()
+      this.gameOver();
     }
   },
 
   dogWalkAnimation: function(){
-    this.dogWalk.frame =  = game.add.sprite(-125,700,'dogWalk');
-    this.dogWalk.anchor.setTo(.5,.5);
-    this.dogWalk.animations.add ('walk', [0,4], 5, true);
-    this.dogWalk.animations.play('walk');
-
-    var dogWalkTween = new Tween(this.dogWalk)
-    while (this.dogWalk.x <300){
-      this.dogWalk.bringToTop();
-      var that = this;
-      setTimeout(function(){ that.dogWalk.x++}, 10)
-      this.dogWalk.x++;
-      console.log(this.dogWalk.x);
-    }
+    this.dogJump = game.add.sprite(this.dogWalk.x,this.dogWalk.y-23,'dogJump');
+    this.dogWalk.kill();
+    this.dogJump.anchor.setTo(.5,.5);
+    // this.dogJump.animations.add ('jump', [1,2], 100, false);
+    this.dogJump.frame = 0
+    var that = this;
+    setTimeout(function(){ that.dogJump.frame = 1; that.dogJumpAnimation(1) },500);
+    setTimeout(function(){ that.dogJump.sendToBack(); that.dogJumpAnimation(-2) },1000);
+    setTimeout(function(){ that.dogJump.frame = 2 },650);
+    setTimeout(function(){ that.dogJump.kill(); that.spawnDucks();},1500);
   },
 
-  dogShowAnimation: function(ducks){
-    this.dogShow = game.add.sprite(500,750,'dogShow');
-    this.dogShow.anchor.setTo(.5,.5);
-    this.dogShow.animations.add ('laugh', [0,1], 10, true);
-    if (ducks === 0){
+  dogJumpAnimation: function(up){
+    var that = this;
+    setInterval(function(){
+      that.dogJump.y -= 1.50*up
+      that.dogJump.x += 0.5
+    },1)
+  },
+
+  dogShowAnimation: function(hits){
+    var that = this;
+    console.log(hits);
+    this.dogShow.animations.stop(null, true);
+
+    if (hits === 0){
       this.dogShow.animations.play('laugh');
-    } else if (ducks === 1){
+    } else if (hits === 1){
       this.dogShow.frame = 2;
     } else {
       this.dogShow.frame = 3;
     }
-    while (this.dogShow.y > 500){
-      this.dogWalk.bringToTop();
-      this.dogWalk.y--;
-      console.log(this.dogWalk.x);
-    }
-  }
+    setTimeout(function(){ that.dogRaise() },750);
+  },
 
+  dogRaise: function(){
+    var that = this;
+    var  raise  = setInterval(function(){
+      if (that.dogShow.y > 490){
+        console.log('raise');
+        that.dogShow.y -= 1.5;
+      }else{
+        clearInterval(raise);
+        setTimeout(function(){ that.dogLower() },750);
+      }
+    });
+  },
+
+  dogLower: function(){
+    var that = this;
+    var lower  = setInterval(function(){
+      console.log('lower');
+      if (that.dogShow.y < 750){
+        that.dogShow.y += 1.5;
+      }else{
+        clearInterval(lower);
+        setTimeout(function(){ that.spawnDucks() },500);
+      }
+    });
+  }
 };
 
 loadGame()
