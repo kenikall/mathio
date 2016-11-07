@@ -45,7 +45,7 @@
 
 .bg-container{
   position: relative;
-  bottom:0px;
+  top:0px;
   left:0px;
 }
 .games-bg {
@@ -54,7 +54,7 @@
   background-repeat: no-repeat;
 
   position: absolute;
-  bottom: 0px;
+  top: 0px;
   left: 0px;
   z-index:1;
 }
@@ -64,7 +64,7 @@
   background-repeat: no-repeat;
 
   position: absolute;
-  bottom: 0px;
+  top: 0px;
   left: 0px;
   z-index:3;
 }
@@ -115,7 +115,7 @@
 
 #hunt{
   position:absolute;
-  left:75px;
+  left:25px;
   top:250px;
   z-index:5;
 }

@@ -9,9 +9,9 @@ var loadGame = function(){
   $('#math-hunt').html('')
   game = new Phaser.Game(1000,910, Phaser.auto, 'math-hunt');
   game.state.add('main', mainState);
-  game.state.add('menu', menuState);
+  // game.state.add('menu', menuState);
 
-  game.state.start('menu');
+  game.state.start('main');
 }
 
 function Duck(val, round) {
@@ -54,9 +54,9 @@ function Duck(val, round) {
     this.sprite.y -= this.yMove * this.speed;
   }.bind(this);
 };
-var menuState= {
+// var menuState= {
 
-}
+// }
 var mainState= {
   preload: function(){
     game.load.image('stage', '/images/math_hunt/duck_background.png');
