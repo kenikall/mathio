@@ -390,7 +390,7 @@ var flappyButtonClick = function(){
 
 var loadGame = function(){
   $('#flappy-bird').html('')
-  game = new Phaser.Game(1000,910, Phaser.AUTO, 'flappy-bird');
+  game = new Phaser.Game(1000,938, Phaser.AUTO, 'flappy-bird');
   game.state.add('main', mainState);
   game.state.start('main');
 }
