@@ -7,6 +7,7 @@ var p2skill;
 
 var loadGame = function(){
   $('#math-hunt').html('')
+
   game = new Phaser.Game(1000,910, Phaser.auto, 'math-hunt');
   game.state.add('main', mainState);
   // game.state.add('menu', menuState);
@@ -59,6 +60,7 @@ function Duck(val, round) {
 // }
 var mainState= {
   preload: function(){
+
     game.load.image('stage', '/images/math_hunt/duck_background.png');
     //crosshairs
     game.load.image('inner1', '/images/math_hunt/p1_inner.png');
@@ -97,6 +99,12 @@ var mainState= {
     game.load.audio('honk', '/sounds/math_hunt/honk.wav')
   },
   create: function(){
+    //setup scaling
+    this.scale.pageAlignHorizontally = true;
+    this.scale.pageAlignVertically = true;
+    this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    this.scale.updateLayout(true);
+
     //set stage
     game.stage.backgroundColor = '#40bdff';
     this.background = game.add.sprite( 0, 0, 'stage');
@@ -132,13 +140,6 @@ var mainState= {
     this.playerOneWrong = [];
     this.playerTwoCorrect = [];
     this.playerTwoWrong = [];
-
-    // this.answer1 = game.add.text(0,0, "", { font: '25px Arial', fill: '#ffffff#' });
-    // this.answer1.anchor.setTo(.5,.5);
-    // this.answer2 = game.add.text(0,0, "", { font: '25px Arial', fill: '#ffffff#' });
-    // this.answer2.anchor.setTo(.5,.5);
-    // this.answer3 = game.add.text(0,0, "", { font: '25px Arial', fill: '#ffffff#' });
-    // this.answer3.anchor.setTo(.5,.5);
 
     //set players
     this.p1 = game.add.sprite( 250, 250, 'p1');
@@ -516,9 +517,9 @@ var mainState= {
   },
 
   reorderSprites: function(){
-    this.answer1.bringToTop();
-    this.answer2.bringToTop();
-    this.answer3.bringToTop();
+    // this.answer1.bringToTop();
+    // this.answer2.bringToTop();
+    // this.answer3.bringToTop();
     this.background.bringToTop();
     this.p1b1.bringToTop();
     this.p1b2.bringToTop();
@@ -637,7 +638,6 @@ var mainState= {
   },
 
   callDog: function(hits){
-    console.log('dog called');
     if (this.round <= 4){
       this.dogShowAnimation(hits);
     } else {
@@ -668,7 +668,6 @@ var mainState= {
 
   dogShowAnimation: function(hits){
     var that = this;
-    console.log(hits);
     this.dogShow.animations.stop(null, true);
 
     if (hits === 0){
@@ -685,7 +684,6 @@ var mainState= {
     var that = this;
     var  raise  = setInterval(function(){
       if (that.dogShow.y > 490){
-        console.log('raise');
         that.dogShow.y -= 1.5;
       }else{
         clearInterval(raise);
@@ -697,7 +695,6 @@ var mainState= {
   dogLower: function(){
     var that = this;
     var lower  = setInterval(function(){
-      console.log('lower');
       if (that.dogShow.y < 750){
         that.dogShow.y += 1.5;
       }else{
