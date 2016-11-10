@@ -16,6 +16,10 @@
   100% {transform:  rotate(0deg) scaleX(1) scaleY(1) ;}
 }
 
+@keyframes raise{
+  100%{transform: translate(0, -100px)}
+}
+
 .clouds{
   position:absolute;
   top:0px;
@@ -49,7 +53,6 @@
   left:0px;
 }
 .games-bg {
-  // background: url(img_flwr.gif);
   background-size: 100% auto;
   background-repeat: no-repeat;
 
@@ -118,8 +121,13 @@
   left:25px;
   top:250px;
   z-index:5;
+  animation: raise 1s linear infinite;
+  animation-play-state: paused;
 }
 
+#hunt:hover{
+  animation-play-state: running;
+}
 
 #leaders{
   position:absolute;
@@ -127,6 +135,7 @@
   top:250px;
   z-index:5;
 }
+
 
 #flappy{
   position:absolute;

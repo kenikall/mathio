@@ -133,12 +133,12 @@ var mainState= {
     this.playerTwoCorrect = [];
     this.playerTwoWrong = [];
 
-    this.answer1 = game.add.text(0,0, "", { font: '25px Arial', fill: '#ffffff#' });
-    this.answer1.anchor.setTo(.5,.5);
-    this.answer2 = game.add.text(0,0, "", { font: '25px Arial', fill: '#ffffff#' });
-    this.answer2.anchor.setTo(.5,.5);
-    this.answer3 = game.add.text(0,0, "", { font: '25px Arial', fill: '#ffffff#' });
-    this.answer3.anchor.setTo(.5,.5);
+    // this.answer1 = game.add.text(0,0, "", { font: '25px Arial', fill: '#ffffff#' });
+    // this.answer1.anchor.setTo(.5,.5);
+    // this.answer2 = game.add.text(0,0, "", { font: '25px Arial', fill: '#ffffff#' });
+    // this.answer2.anchor.setTo(.5,.5);
+    // this.answer3 = game.add.text(0,0, "", { font: '25px Arial', fill: '#ffffff#' });
+    // this.answer3.anchor.setTo(.5,.5);
 
     //set players
     this.p1 = game.add.sprite( 250, 250, 'p1');
