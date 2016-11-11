@@ -9,10 +9,12 @@ var loadGame = function(){
   $('#math-hunt').html('')
 
   game = new Phaser.Game(1000,910, Phaser.auto, 'math-hunt');
+  game.state.add('boot', bootState);
+  game.state.add('preload', preloadState);
+  game.state.add('menu', menuState);
   game.state.add('main', mainState);
-  // game.state.add('menu', menuState);
 
-  game.state.start('main');
+  game.state.start('boot');
 }
 
 function Duck(val, round) {
@@ -55,12 +57,41 @@ function Duck(val, round) {
     this.sprite.y -= this.yMove * this.speed;
   }.bind(this);
 };
-// var menuState= {
 
-// }
-var mainState= {
+var bootState= {
+  create: function(){
+    //setup scaling
+    this.scale.pageAlignHorizontally = true;
+    this.scale.pageAlignVertically = true;
+    this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    this.scale.updateLayout(true);
+
+    this.game.state.start('preload');
+  }
+}
+
+var preloadState={
   preload: function(){
+    //menu items
+    game.load.image('directions','/images/math_hunt/menu_images/directions.png');
+    game.load.image('player1','/images/math_hunt/menu_images/player1.png');
+    game.load.image('player2','/images/math_hunt/menu_images/player2.png');
+    game.load.image('shield','/images/math_hunt/menu_images/shield.png');
+    game.load.image('title','/images/math_hunt/menu_images/title.png');
 
+    game.load.spritesheet('duck', '/images/math_hunt/menu_images/flying_duck.png',68,56, 3);
+    game.load.spritesheet('menu1', '/images/math_hunt/menu_images/menu1.png',38,64, 4);
+    game.load.spritesheet('menu2', '/images/math_hunt/menu_images/menu2.png',51,64, 4);
+    game.load.spritesheet('menu3', '/images/math_hunt/menu_images/menu3.png',51,64, 4);
+    game.load.spritesheet('menu4', '/images/math_hunt/menu_images/menu4.png',51,64, 4);
+    game.load.spritesheet('menu5', '/images/math_hunt/menu_images/menu5.png',50,64, 4);
+    game.load.spritesheet('menu6', '/images/math_hunt/menu_images/menu6.png',51,64, 4);
+    game.load.spritesheet('menu7', '/images/math_hunt/menu_images/menu7.png',50,64, 4);
+    game.load.spritesheet('menu8', '/images/math_hunt/menu_images/menu8.png',51,64, 4);
+    game.load.spritesheet('menu9', '/images/math_hunt/menu_images/menu9.png',51,64, 4);
+    game.load.spritesheet('menu10', '/images/math_hunt/menu_images/menu10.png',202,64, 4);
+
+    //gameplay background
     game.load.image('stage', '/images/math_hunt/duck_background.png');
     //crosshairs
     game.load.image('inner1', '/images/math_hunt/p1_inner.png');
@@ -71,9 +102,7 @@ var mainState= {
     game.load.image('redX', '/images/math_hunt/redX.png');
 
     //numbers
-    for ( var i=0 ; i<=50 ; i++ ){
-    game.load.image(i, '/images/math_hunt/'+i+'.png');
-    }
+    for ( var i=0 ; i<=50 ; i++ ){game.load.image(i, '/images/math_hunt/'+i+'.png');}
 
     //score
     game.load.image('redScore', '/images/math_hunt/red_score.png');
@@ -91,20 +120,31 @@ var mainState= {
     game.load.image('dedDuck', '/images/math_hunt/blue_shot.png');
     game.load.image('downDuck', '/images/math_hunt/blue_down.png');
     //sounds
-    game.load.audio('shotSound', '/sounds/math_hunt/shot.wav')
-    game.load.audio('quacks', '/sounds/math_hunt/quacks.wav')
-    game.load.audio('hit', '/sounds/math_hunt/hit.wav')
-    game.load.audio('fall', '/sounds/math_hunt/fall.wav')
-    game.load.audio('click', '/sounds/math_hunt/click.wav')
-    game.load.audio('honk', '/sounds/math_hunt/honk.wav')
+    game.load.audio('shotSound', '/sounds/math_hunt/shot.wav');
+    game.load.audio('quacks', '/sounds/math_hunt/quacks.wav');
+    game.load.audio('hit', '/sounds/math_hunt/hit.wav');
+    game.load.audio('fall', '/sounds/math_hunt/fall.wav');
+    game.load.audio('click', '/sounds/math_hunt/click.wav');
+    game.load.audio('honk', '/sounds/math_hunt/honk.wav');
+  },
+
+  create: function() {
+    this.game.state.start('menu');
+  }
+}
+
+var menuState= {
+  create: function(){
+    game.stage.backgroundColor = '#000000';
+    this.title = game.add.sprite(500,500, 'title')
+  }
+}
+var mainState= {
+  preload: function(){
+
+
   },
   create: function(){
-    //setup scaling
-    this.scale.pageAlignHorizontally = true;
-    this.scale.pageAlignVertically = true;
-    this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-    this.scale.updateLayout(true);
-
     //set stage
     game.stage.backgroundColor = '#40bdff';
     this.background = game.add.sprite( 0, 0, 'stage');
