@@ -19,18 +19,27 @@ $(document).ready(function(){
 
       $('#title').offset(titleCenter);
     }
-    $('#hunt').hover(function(){
-        console.log('over');
+    $('.icon').hover(function(){
+        // console.log('over');
       },function(){
-        console.log('out');
+        // console.log('out');
     });
-    $('#hunt').on('click', function(){
+    $('.icon').on('click', function(){
+      console.log(this)
+      if ($(this).is('#hunt')){var gameUrl = '/games/mathhunt'}
+      else if ($(this).is('#flappy')){var gameUrl = '/games/flappymath'}
+      else if ($(this).is('#leaders')){var gameUrl = '/leaders/index'}
+      // else if ($(this).hasClass("flappy")){var gameUrl = '/games/flappymath'}
+      // else if ($(this).hasClass("leaders")){var gameUrl = '/leaders/index'}
+      console.log(gameUrl);
+
       request = $.ajax({
         method: 'get',
-        url: 'games/show'
+        url: gameUrl
       })
 
       request.done(function(response){
+        //console.log(response);
         $('body').empty().append(response);
       })
 
