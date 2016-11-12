@@ -74,12 +74,24 @@ var preloadState={
   preload: function(){
     //menu items
     game.load.image('directions','/images/math_hunt/menu_images/directions.png');
-    game.load.image('player1','/images/math_hunt/menu_images/player1.png');
-    game.load.image('player2','/images/math_hunt/menu_images/player2.png');
+    game.load.image('info','/images/math_hunt/menu_images/info.png');
+    game.load.image('p1info','/images/math_hunt/menu_images/p1info.png');
+    game.load.image('p2info','/images/math_hunt/menu_images/p2info.png');
+    game.load.image('ready','/images/math_hunt/menu_images/ready.png');
+    game.load.image('start','/images/math_hunt/menu_images/start.png');
+    game.load.image('choose','/images/math_hunt/menu_images/choose.png');
     game.load.image('shield','/images/math_hunt/menu_images/shield.png');
     game.load.image('title','/images/math_hunt/menu_images/title.png');
+    game.load.image('options','/images/math_hunt/menu_images/options.png');
 
-    game.load.spritesheet('duck', '/images/math_hunt/menu_images/flying_duck.png',68,56, 3);
+    //operations
+    game.load.spritesheet('minus','/images/math_hunt/menu_images/minus.png',79,80,4);
+    game.load.spritesheet('division','/images/math_hunt/menu_images/division.png',79,80,4);
+    game.load.spritesheet('times','/images/math_hunt/menu_images/times.png',79,80,4);
+    game.load.spritesheet('plus','/images/math_hunt/menu_images/plus.png',79,80,4);
+
+    game.load.spritesheet('demo', '/images/math_hunt/menu_images/flying_duck.png',204,198, 3);
+    game.load.spritesheet('players', '/images/math_hunt/menu_images/players.png',621,85, 2);
     game.load.spritesheet('menu1', '/images/math_hunt/menu_images/menu1.png',38,64, 4);
     game.load.spritesheet('menu2', '/images/math_hunt/menu_images/menu2.png',51,64, 4);
     game.load.spritesheet('menu3', '/images/math_hunt/menu_images/menu3.png',51,64, 4);
@@ -93,6 +105,7 @@ var preloadState={
 
     //gameplay background
     game.load.image('stage', '/images/math_hunt/duck_background.png');
+
     //crosshairs
     game.load.image('inner1', '/images/math_hunt/p1_inner.png');
     game.load.image('inner2', '/images/math_hunt/p2_inner.png');
@@ -136,14 +149,33 @@ var preloadState={
 var menuState= {
   create: function(){
     game.stage.backgroundColor = '#000000';
-    this.title = game.add.sprite(500,500, 'title')
+    this.title = game.add.sprite(68,50, 'title')
+
+    // this.demoDuck = game.add.sprite(802,25,'demo');
+    // this.demoDuck.animations.add ('flap', [0,1,2], 8, true);
+    // this.demoDuck.animations.play('flap');
+
+    this.players = game.add.sprite(90,450,'players');
+    this.players.frame = 0;
+    this.directions = game.add.sprite(90, 550, 'directions');
+    this.options = game.add.sprite(90, 650, 'options');
+    this.start = game.add.sprite(90, 750, 'start');
+
+    this.p1 = game.add.sprite( 44, 493, 'p1');
+    this.p1.anchor.setTo( 0.5, 0.5 );
+    this.inner1 = game.add.sprite( 44, 493, 'inner1');
+    this.inner1.anchor.setTo( 0.5, 0.5 );
+    game.physics.arcade.enable(this.p1);
+
+    // this.p2 = game.add.sprite( 750, 250, 'p2');
+    // this.p2.anchor.setTo( 0.5, 0.5 );
+    // this.inner2 = game.add.sprite( 750, 250, 'inner2');
+    // this.inner2.anchor.setTo( 0.5, 0.5 );
+    // game.physics.arcade.enable(this.p2);
   }
 }
+
 var mainState= {
-  preload: function(){
-
-
-  },
   create: function(){
     //set stage
     game.stage.backgroundColor = '#40bdff';
@@ -689,7 +721,6 @@ var mainState= {
     this.dogJump = game.add.sprite(this.dogWalk.x,this.dogWalk.y-23,'dogJump');
     this.dogWalk.kill();
     this.dogJump.anchor.setTo(.5,.5);
-    // this.dogJump.animations.add ('jump', [1,2], 100, false);
     this.dogJump.frame = 0
     var that = this;
     setTimeout(function(){ that.dogJump.frame = 1; that.dogJumpAnimation(1) },500);
