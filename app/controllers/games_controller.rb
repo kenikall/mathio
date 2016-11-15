@@ -2,6 +2,10 @@ class GamesController < ApplicationController
   def index
   end
 
-  def show
+  def flappymath
   end
+
+  def mathhunt
+  end
+
 end

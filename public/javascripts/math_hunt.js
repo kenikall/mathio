@@ -7,11 +7,14 @@ var p2skill;
 
 var loadGame = function(){
   $('#math-hunt').html('')
-  game = new Phaser.Game(1000,910, Phaser.auto, 'math-hunt');
-  game.state.add('main', mainState);
-  // game.state.add('menu', menuState);
 
-  game.state.start('main');
+  game = new Phaser.Game(1000,910, Phaser.auto, 'math-hunt');
+  game.state.add('boot', bootState);
+  game.state.add('preload', preloadState);
+  game.state.add('menu', menuState);
+  game.state.add('main', mainState);
+
+  game.state.start('boot');
 }
 
 function Duck(val, round) {
@@ -54,12 +57,55 @@ function Duck(val, round) {
     this.sprite.y -= this.yMove * this.speed;
   }.bind(this);
 };
-// var menuState= {
 
-// }
-var mainState= {
+var bootState= {
+  create: function(){
+    //setup scaling
+    this.scale.pageAlignHorizontally = true;
+    this.scale.pageAlignVertically = true;
+    this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    this.scale.updateLayout(true);
+
+    this.game.state.start('preload');
+  }
+}
+
+var preloadState={
   preload: function(){
+    //menu items
+    game.load.image('directions','/images/math_hunt/menu_images/directions.png');
+    game.load.image('info','/images/math_hunt/menu_images/info.png');
+    game.load.image('p1info','/images/math_hunt/menu_images/p1info.png');
+    game.load.image('p2info','/images/math_hunt/menu_images/p2info.png');
+    game.load.image('ready','/images/math_hunt/menu_images/ready.png');
+    game.load.image('start','/images/math_hunt/menu_images/start.png');
+    game.load.image('choose','/images/math_hunt/menu_images/choose.png');
+    game.load.image('shield','/images/math_hunt/menu_images/shield.png');
+    game.load.image('title','/images/math_hunt/menu_images/title.png');
+    game.load.image('options','/images/math_hunt/menu_images/options.png');
+
+    //operations
+    game.load.spritesheet('minus','/images/math_hunt/menu_images/minus.png',79,80,4);
+    game.load.spritesheet('division','/images/math_hunt/menu_images/division.png',79,80,4);
+    game.load.spritesheet('times','/images/math_hunt/menu_images/times.png',79,80,4);
+    game.load.spritesheet('plus','/images/math_hunt/menu_images/plus.png',79,80,4);
+
+    game.load.spritesheet('demo', '/images/math_hunt/menu_images/flying_duck.png',204,198, 3);
+    game.load.spritesheet('players', '/images/math_hunt/menu_images/players.png',621,85, 2);
+    game.load.spritesheet('menu1', '/images/math_hunt/menu_images/menu1.png',38,64, 4);
+    game.load.spritesheet('menu2', '/images/math_hunt/menu_images/menu2.png',51,64, 4);
+    game.load.spritesheet('menu3', '/images/math_hunt/menu_images/menu3.png',51,64, 4);
+    game.load.spritesheet('menu4', '/images/math_hunt/menu_images/menu4.png',51,64, 4);
+    game.load.spritesheet('menu5', '/images/math_hunt/menu_images/menu5.png',50,64, 4);
+    game.load.spritesheet('menu6', '/images/math_hunt/menu_images/menu6.png',51,64, 4);
+    game.load.spritesheet('menu7', '/images/math_hunt/menu_images/menu7.png',50,64, 4);
+    game.load.spritesheet('menu8', '/images/math_hunt/menu_images/menu8.png',51,64, 4);
+    game.load.spritesheet('menu9', '/images/math_hunt/menu_images/menu9.png',51,64, 4);
+    game.load.spritesheet('menu10', '/images/math_hunt/menu_images/menu10.png',202,64, 4);
+
+    //gameplay background
     game.load.image('stage', '/images/math_hunt/duck_background.png');
+
     //crosshairs
     game.load.image('inner1', '/images/math_hunt/p1_inner.png');
     game.load.image('inner2', '/images/math_hunt/p2_inner.png');
@@ -69,9 +115,7 @@ var mainState= {
     game.load.image('redX', '/images/math_hunt/redX.png');
 
     //numbers
-    for ( var i=0 ; i<=50 ; i++ ){
-    game.load.image(i, '/images/math_hunt/'+i+'.png');
-    }
+    for ( var i=0 ; i<=50 ; i++ ){game.load.image(i, '/images/math_hunt/'+i+'.png');}
 
     //score
     game.load.image('redScore', '/images/math_hunt/red_score.png');
@@ -89,13 +133,49 @@ var mainState= {
     game.load.image('dedDuck', '/images/math_hunt/blue_shot.png');
     game.load.image('downDuck', '/images/math_hunt/blue_down.png');
     //sounds
-    game.load.audio('shotSound', '/sounds/math_hunt/shot.wav')
-    game.load.audio('quacks', '/sounds/math_hunt/quacks.wav')
-    game.load.audio('hit', '/sounds/math_hunt/hit.wav')
-    game.load.audio('fall', '/sounds/math_hunt/fall.wav')
-    game.load.audio('click', '/sounds/math_hunt/click.wav')
-    game.load.audio('honk', '/sounds/math_hunt/honk.wav')
+    game.load.audio('shotSound', '/sounds/math_hunt/shot.wav');
+    game.load.audio('quacks', '/sounds/math_hunt/quacks.wav');
+    game.load.audio('hit', '/sounds/math_hunt/hit.wav');
+    game.load.audio('fall', '/sounds/math_hunt/fall.wav');
+    game.load.audio('click', '/sounds/math_hunt/click.wav');
+    game.load.audio('honk', '/sounds/math_hunt/honk.wav');
   },
+
+  create: function() {
+    this.game.state.start('menu');
+  }
+}
+
+var menuState= {
+  create: function(){
+    game.stage.backgroundColor = '#000000';
+    this.title = game.add.sprite(68,50, 'title')
+
+    // this.demoDuck = game.add.sprite(802,25,'demo');
+    // this.demoDuck.animations.add ('flap', [0,1,2], 8, true);
+    // this.demoDuck.animations.play('flap');
+
+    this.players = game.add.sprite(90,450,'players');
+    this.players.frame = 0;
+    this.directions = game.add.sprite(90, 550, 'directions');
+    this.options = game.add.sprite(90, 650, 'options');
+    this.start = game.add.sprite(90, 750, 'start');
+
+    this.p1 = game.add.sprite( 44, 493, 'p1');
+    this.p1.anchor.setTo( 0.5, 0.5 );
+    this.inner1 = game.add.sprite( 44, 493, 'inner1');
+    this.inner1.anchor.setTo( 0.5, 0.5 );
+    game.physics.arcade.enable(this.p1);
+
+    // this.p2 = game.add.sprite( 750, 250, 'p2');
+    // this.p2.anchor.setTo( 0.5, 0.5 );
+    // this.inner2 = game.add.sprite( 750, 250, 'inner2');
+    // this.inner2.anchor.setTo( 0.5, 0.5 );
+    // game.physics.arcade.enable(this.p2);
+  }
+}
+
+var mainState= {
   create: function(){
     //set stage
     game.stage.backgroundColor = '#40bdff';
@@ -132,13 +212,6 @@ var mainState= {
     this.playerOneWrong = [];
     this.playerTwoCorrect = [];
     this.playerTwoWrong = [];
-
-    this.answer1 = game.add.text(0,0, "", { font: '25px Arial', fill: '#ffffff#' });
-    this.answer1.anchor.setTo(.5,.5);
-    this.answer2 = game.add.text(0,0, "", { font: '25px Arial', fill: '#ffffff#' });
-    this.answer2.anchor.setTo(.5,.5);
-    this.answer3 = game.add.text(0,0, "", { font: '25px Arial', fill: '#ffffff#' });
-    this.answer3.anchor.setTo(.5,.5);
 
     //set players
     this.p1 = game.add.sprite( 250, 250, 'p1');
@@ -516,9 +589,9 @@ var mainState= {
   },
 
   reorderSprites: function(){
-    this.answer1.bringToTop();
-    this.answer2.bringToTop();
-    this.answer3.bringToTop();
+    // this.answer1.bringToTop();
+    // this.answer2.bringToTop();
+    // this.answer3.bringToTop();
     this.background.bringToTop();
     this.p1b1.bringToTop();
     this.p1b2.bringToTop();
@@ -637,7 +710,6 @@ var mainState= {
   },
 
   callDog: function(hits){
-    console.log('dog called');
     if (this.round <= 4){
       this.dogShowAnimation(hits);
     } else {
@@ -649,7 +721,6 @@ var mainState= {
     this.dogJump = game.add.sprite(this.dogWalk.x,this.dogWalk.y-23,'dogJump');
     this.dogWalk.kill();
     this.dogJump.anchor.setTo(.5,.5);
-    // this.dogJump.animations.add ('jump', [1,2], 100, false);
     this.dogJump.frame = 0
     var that = this;
     setTimeout(function(){ that.dogJump.frame = 1; that.dogJumpAnimation(1) },500);
@@ -668,7 +739,6 @@ var mainState= {
 
   dogShowAnimation: function(hits){
     var that = this;
-    console.log(hits);
     this.dogShow.animations.stop(null, true);
 
     if (hits === 0){
@@ -685,7 +755,6 @@ var mainState= {
     var that = this;
     var  raise  = setInterval(function(){
       if (that.dogShow.y > 490){
-        console.log('raise');
         that.dogShow.y -= 1.5;
       }else{
         clearInterval(raise);
@@ -697,7 +766,6 @@ var mainState= {
   dogLower: function(){
     var that = this;
     var lower  = setInterval(function(){
-      console.log('lower');
       if (that.dogShow.y < 750){
         that.dogShow.y += 1.5;
       }else{

@@ -26,6 +26,12 @@ var mainState= {
     game.load.image('cloud', '/images/flappy_math/cloud.png');
   },
   create: function(){
+    //setup scaling
+    this.scale.pageAlignHorizontally = true;
+    this.scale.pageAlignVertically = true;
+    this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    this.scale.updateLayout(true);
+
     this.problem1 = game.add.text(20,60, "", { font: '30px Arial', fill: '#ffffff#' });
     this.problem2 = game.add.text(20,130, "", { font: '30px Arial', fill: '#ffffff#' });
 

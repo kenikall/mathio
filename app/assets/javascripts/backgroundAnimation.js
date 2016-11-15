@@ -17,7 +17,35 @@ $(document).ready(function(){
         $('#cloud-C').offset(cCloudPos);
       }, 50);
 
-      $('#title').offset(titleCenter)
+      $('#title').offset(titleCenter);
     }
+    $('.icon').hover(function(){
+        // console.log('over');
+      },function(){
+        // console.log('out');
+    });
+    $('.icon').on('click', function(){
+      console.log(this)
+      if ($(this).is('#hunt')){var gameUrl = '/games/mathhunt'}
+      else if ($(this).is('#flappy')){var gameUrl = '/games/flappymath'}
+      else if ($(this).is('#leaders')){var gameUrl = '/leaders/index'}
+      // else if ($(this).hasClass("flappy")){var gameUrl = '/games/flappymath'}
+      // else if ($(this).hasClass("leaders")){var gameUrl = '/leaders/index'}
+      console.log(gameUrl);
+
+      request = $.ajax({
+        method: 'get',
+        url: gameUrl
+      })
+
+      request.done(function(response){
+        //console.log(response);
+        $('body').empty().append(response);
+      })
+
+      request.fail(function(response){
+        console.log("Error with the route")
+      })
+    })
   })
 });

@@ -1,11 +1,34 @@
 Rails.application.routes.draw do
+  # resources :games#, only: [:index, :show]
+
   get 'results/show'
 
   get 'leaders/index'
 
   root 'games#index'
 
-  get 'games/show'
+  get 'games/flappymath'
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get 'games/mathhunt'
+
 end
+
+
+# Rails.application.routes.draw do
+#   get 'players/new' => 'players#new'
+
+#   post 'players' => 'players#create'
+
+#   delete 'players/logout' => 'players#destroy'
+
+#   devise_for :users
+#   resources :users, only: [:index, :show]
+
+#   resources :games, only: [:index, :show]
+
+#   post 'results' => 'results#create'
+
+#   root 'games#index'
+
+#   get 'matches/:id' => 'matches#show'
+# end

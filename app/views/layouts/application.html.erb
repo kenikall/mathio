@@ -1,18 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <link rel="icon" type="image/png" href="./favicon-32x32.png" sizes="32x32" />
-  <link rel="icon" type="image/png" href="./favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="./favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="./favicon-16x16.png" sizes="16x16" />
 
-    <title>Mathio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <title>Mathio by K. Mannah Kallon -  kenikall@gmail.com</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-
+  <div class = "navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+      <p class = 'navbar-text pull-left'>Built By K. Mannah Kallon </p>
+      <a class = 'navbar-btn btn-info btn pull-right'> resume </a>
+      <a class = 'navbar-btn btn-info btn pull-right'> contact </a>
+    </div>
+  </div>
     <%= yield %>
   </body>
 </html>
