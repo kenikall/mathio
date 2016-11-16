@@ -114,6 +114,14 @@ var preloadState={
     game.load.image('shot', '/images/math_hunt/shotCrosshairs.png');
     game.load.image('redX', '/images/math_hunt/redX.png');
 
+    //sounds
+    game.load.audio('shotSound', '/sounds/math_hunt/shot.wav');
+    game.load.audio('quacks', '/sounds/math_hunt/quacks.wav');
+    game.load.audio('hit', '/sounds/math_hunt/hit.wav');
+    game.load.audio('fall', '/sounds/math_hunt/fall.wav');
+    game.load.audio('click', '/sounds/math_hunt/click.wav');
+    game.load.audio('honk', '/sounds/math_hunt/honk.wav');
+
     //numbers
     for ( var i=0 ; i<=50 ; i++ ){game.load.image(i, '/images/math_hunt/'+i+'.png');}
 
@@ -132,13 +140,7 @@ var preloadState={
     //ducks
     game.load.image('dedDuck', '/images/math_hunt/blue_shot.png');
     game.load.image('downDuck', '/images/math_hunt/blue_down.png');
-    //sounds
-    game.load.audio('shotSound', '/sounds/math_hunt/shot.wav');
-    game.load.audio('quacks', '/sounds/math_hunt/quacks.wav');
-    game.load.audio('hit', '/sounds/math_hunt/hit.wav');
-    game.load.audio('fall', '/sounds/math_hunt/fall.wav');
-    game.load.audio('click', '/sounds/math_hunt/click.wav');
-    game.load.audio('honk', '/sounds/math_hunt/honk.wav');
+
   },
 
   create: function() {
@@ -156,6 +158,7 @@ var menuState= {
     // this.demoDuck.animations.play('flap');
 
     this.players = game.add.sprite(90,450,'players');
+    this.p
     this.players.frame = 0;
     this.directions = game.add.sprite(90, 550, 'directions');
     this.options = game.add.sprite(90, 650, 'options');
@@ -167,14 +170,86 @@ var menuState= {
     this.inner1.anchor.setTo( 0.5, 0.5 );
     game.physics.arcade.enable(this.p1);
 
+    // this.start.events.onInputDown.add(game.state.start('main'), this);
+// game.state.start('main')
     // this.p2 = game.add.sprite( 750, 250, 'p2');
     // this.p2.anchor.setTo( 0.5, 0.5 );
     // this.inner2 = game.add.sprite( 750, 250, 'inner2');
     // this.inner2.anchor.setTo( 0.5, 0.5 );
     // game.physics.arcade.enable(this.p2);
-  }
-}
 
+    this.p1.canShoot = true;
+    // this.p2.canShoot = true;
+
+    //move input keys
+    this.p1up    = game.input.keyboard.addKey(Phaser.Keyboard.UP);
+    this.p1down  = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
+    this.p1right = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
+    this.p1left  = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
+    this.p1shoot = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+
+    // this.p2up    = game.input.keyboard.addKey(Phaser.Keyboard.UP);
+    // this.p2down  = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
+    // this.p2right = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
+    // this.p2left  = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
+    // this.p2shoot = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
+  },
+
+   update: function(){
+    this.centerTarget();
+    this.move();
+    this.shoot();
+  },
+
+  centerTarget: function(){
+    this.inner1.x = this.p1.x;
+    this.inner1.y = this.p1.y;
+    // this.inner2.x = this.p2.x;
+    // this.inner2.y = this.p2.y;
+  },
+  checkOverlap: function(spriteA, spriteB) {
+    var boundsA = spriteA.getBounds();
+    var boundsB = spriteB.getBounds();
+    return Phaser.Rectangle.intersects(boundsA, boundsB);
+  },
+  move: function(){
+    if (this.p1up.isDown && this.inner1.y >= 0) { this.p1.y -= 5;}
+    else if (this.p1down.isDown && this.inner1.y <= 850) { this.p1.y += 5; console.log(this.inner1.y);}
+    if (this.p1right.isDown && this.inner1.x <= 1000) { this.p1.x += 5;}
+    else if (this.p1left.isDown && this.inner1.x >= 0) { this.p1.x -= 5;}
+
+    // if (this.p2up.isDown && this.inner2.y >= 0) { this.p2.y -= 5;}
+    // else if (this.p2down.isDown && this.inner2.y <= 705) { this.p2.y += 5; }
+    // if (this.p2right.isDown && this.inner2.x <= 1000) { this.p2.x += 5;}
+    // else if (this.p2left.isDown && this.inner2.x >= 0) { this.p2.x -= 5;}
+  },
+
+  shoot: function(){
+    if (this.p1shoot.isDown && this.p1.canShoot){
+      this.p1.canShoot = false;
+      var that = this;
+      setTimeout(function(){that.p1.canShoot = true}, 250)
+      shot1 = game.add.sprite(this.p1.x, this.p1.y, 'shot');
+      shot1.anchor.setTo( 0.5, 0.5);
+      setTimeout(function(){shot1.kill()},100);
+      // this.shotSound.play();
+
+      if (this.checkOverlap(this.inner1, this.players)){
+        if (this.players.frame === 0)
+          this.players.frame = 1;
+        else{
+          this.players.frame = 0;
+        }
+        ;}
+      else if (this.checkOverlap(this.inner1, this.directions)){console.log("directions");}
+      else if (this.checkOverlap(this.inner1, this.options)){console.log("options");}
+      else if (this.checkOverlap(this.inner1, this.start)){console.log("start");}
+    }
+  },
+
+}
+// start: function(){
+  // console.log( 'start');;}
 var mainState= {
   create: function(){
     //set stage
@@ -233,21 +308,6 @@ var mainState= {
     this.p2Question.anchor.set(.5,0)
     this.round = 0;
 
-    this.p1.canShoot = true;
-    this.p2.canShoot = true;
-
-    //move input keys
-    this.p1up    = game.input.keyboard.addKey(Phaser.Keyboard.W);
-    this.p1down  = game.input.keyboard.addKey(Phaser.Keyboard.S);
-    this.p1right = game.input.keyboard.addKey(Phaser.Keyboard.D);
-    this.p1left  = game.input.keyboard.addKey(Phaser.Keyboard.A);
-    this.p1shoot = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-
-    this.p2up    = game.input.keyboard.addKey(Phaser.Keyboard.UP);
-    this.p2down  = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
-    this.p2right = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
-    this.p2left  = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
-    this.p2shoot = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
 
     //initialize scoring
     this.score1 = [];
