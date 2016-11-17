@@ -91,7 +91,7 @@ var preloadState={
     game.load.spritesheet('plus','/images/math_hunt/menu_images/plus.png',79,80,4);
 
     game.load.spritesheet('demo', '/images/math_hunt/menu_images/flying_duck.png',204,198, 3);
-    game.load.spritesheet('players', '/images/math_hunt/menu_images/players.png',980,85, 2);
+    game.load.spritesheet('players', '/images/math_hunt/menu_images/players.png',683,85, 2);
     game.load.spritesheet('menu1', '/images/math_hunt/menu_images/menu1.png',38,64, 4);
     game.load.spritesheet('menu2', '/images/math_hunt/menu_images/menu2.png',51,64, 4);
     game.load.spritesheet('menu3', '/images/math_hunt/menu_images/menu3.png',51,64, 4);
@@ -153,24 +153,24 @@ var menuState= {
     game.stage.backgroundColor = '#000000';
     this.title = game.add.sprite(68,50, 'title');
 
-    this.demoDuck = game.add.sprite(0,0,'demo');
+    this.demoDuck = game.add.sprite(790,25,'demo');
     this.demoDuck.bringToTop();
-    this.demoDuck.frame = 1;
+    this.demoDuck.frame = 2;
     this.demoDuck.animations.add ('flap', [0,1,2], 8, true);
-    this.demoDuck.animations.play('flap');
+    // this.demoDuck.animations.play('flap');
 
     this.players = game.add.sprite(90,450,'players');
     this.players.frame = 0;
-    this.pShield = gmae.add.sprite(90,535, 'shield');
+    this.pShield = game.add.sprite(90,535, 'shield');
 
     this.directions = game.add.sprite(90, 550, 'directions');
-    this.dShield = gmae.add.sprite(90,635, 'shield');
+    this.dShield = game.add.sprite(90,635, 'shield');
 
     this.options = game.add.sprite(90, 650, 'options');
-    this.oShield = gmae.add.sprite(90,735, 'shield');
+    this.oShield = game.add.sprite(90,735, 'shield');
 
     this.start = game.add.sprite(90, 750, 'start');
-    this.sShield = gmae.add.sprite(90,835, 'shield');
+    this.sShield = game.add.sprite(90,835, 'shield');
 
     this.p1 = game.add.sprite( 44, 493, 'p1');
     this.p1.anchor.setTo( 0.5, 0.5 );
@@ -178,7 +178,7 @@ var menuState= {
     this.inner1.anchor.setTo( 0.5, 0.5 );
     game.physics.arcade.enable(this.p1);
 
-    // this.start.events.onInputDown.add(game.state.start('main'), this);
+    this.start.events.onInputDown.add(function(){game.state.start('main')}, this);
 // game.state.start('main')
     // this.p2 = game.add.sprite( 750, 250, 'p2');
     // this.p2.anchor.setTo( 0.5, 0.5 );
@@ -241,20 +241,22 @@ var menuState= {
       shot1.anchor.setTo( 0.5, 0.5);
       setTimeout(function(){shot1.kill()},100);
       // this.shotSound.play();
-
       if (this.checkOverlap(this.inner1, this.players)){
         if (this.players.frame === 0)
           this.players.frame = 1;
-        else{
-          this.players.frame = 0;
+        else{ this.players.frame = 0;
         }
-        ;}
+      }
       else if (this.checkOverlap(this.inner1, this.directions)){console.log("directions");}
       else if (this.checkOverlap(this.inner1, this.options)){console.log("options");}
-      else if (this.checkOverlap(this.inner1, this.start)){game.state.start('main');}
+      else if (this.checkOverlap(this.inner1, this.start)){
+        game.state.start('main');
+      }
     }
-  },
-
+  }
+//   startGame: function(){
+//     game.state.start('main');
+//   }
 }
 
 var mainState= {
@@ -315,6 +317,18 @@ var mainState= {
     this.p2Question.anchor.set(.5,0)
     this.round = 0;
 
+    //move input keys
+    this.p1up    = game.input.keyboard.addKey(Phaser.Keyboard.W);
+    this.p1down  = game.input.keyboard.addKey(Phaser.Keyboard.S);
+    this.p1right = game.input.keyboard.addKey(Phaser.Keyboard.E);
+    this.p1left  = game.input.keyboard.addKey(Phaser.Keyboard.Q);
+    this.p1shoot = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+
+    this.p2up    = game.input.keyboard.addKey(Phaser.Keyboard.UP);
+    this.p2down  = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
+    this.p2right = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
+    this.p2left  = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
+    this.p2shoot = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
 
     //initialize scoring
     this.score1 = [];
