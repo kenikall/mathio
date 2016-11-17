@@ -91,7 +91,7 @@ var preloadState={
     game.load.spritesheet('plus','/images/math_hunt/menu_images/plus.png',79,80,4);
 
     game.load.spritesheet('demo', '/images/math_hunt/menu_images/flying_duck.png',204,198, 3);
-    game.load.spritesheet('players', '/images/math_hunt/menu_images/players.png',621,85, 2);
+    game.load.spritesheet('players', '/images/math_hunt/menu_images/players.png',980,85, 2);
     game.load.spritesheet('menu1', '/images/math_hunt/menu_images/menu1.png',38,64, 4);
     game.load.spritesheet('menu2', '/images/math_hunt/menu_images/menu2.png',51,64, 4);
     game.load.spritesheet('menu3', '/images/math_hunt/menu_images/menu3.png',51,64, 4);
@@ -151,18 +151,26 @@ var preloadState={
 var menuState= {
   create: function(){
     game.stage.backgroundColor = '#000000';
-    this.title = game.add.sprite(68,50, 'title')
+    this.title = game.add.sprite(68,50, 'title');
 
-    // this.demoDuck = game.add.sprite(802,25,'demo');
-    // this.demoDuck.animations.add ('flap', [0,1,2], 8, true);
-    // this.demoDuck.animations.play('flap');
+    this.demoDuck = game.add.sprite(0,0,'demo');
+    this.demoDuck.bringToTop();
+    this.demoDuck.frame = 1;
+    this.demoDuck.animations.add ('flap', [0,1,2], 8, true);
+    this.demoDuck.animations.play('flap');
 
     this.players = game.add.sprite(90,450,'players');
-    this.p
     this.players.frame = 0;
+    this.pShield = gmae.add.sprite(90,535, 'shield');
+
     this.directions = game.add.sprite(90, 550, 'directions');
+    this.dShield = gmae.add.sprite(90,635, 'shield');
+
     this.options = game.add.sprite(90, 650, 'options');
+    this.oShield = gmae.add.sprite(90,735, 'shield');
+
     this.start = game.add.sprite(90, 750, 'start');
+    this.sShield = gmae.add.sprite(90,835, 'shield');
 
     this.p1 = game.add.sprite( 44, 493, 'p1');
     this.p1.anchor.setTo( 0.5, 0.5 );
@@ -214,7 +222,7 @@ var menuState= {
   },
   move: function(){
     if (this.p1up.isDown && this.inner1.y >= 0) { this.p1.y -= 5;}
-    else if (this.p1down.isDown && this.inner1.y <= 850) { this.p1.y += 5; console.log(this.inner1.y);}
+    else if (this.p1down.isDown && this.inner1.y <= 850) { this.p1.y += 5;}
     if (this.p1right.isDown && this.inner1.x <= 1000) { this.p1.x += 5;}
     else if (this.p1left.isDown && this.inner1.x >= 0) { this.p1.x -= 5;}
 
@@ -243,13 +251,12 @@ var menuState= {
         ;}
       else if (this.checkOverlap(this.inner1, this.directions)){console.log("directions");}
       else if (this.checkOverlap(this.inner1, this.options)){console.log("options");}
-      else if (this.checkOverlap(this.inner1, this.start)){console.log("start");}
+      else if (this.checkOverlap(this.inner1, this.start)){game.state.start('main');}
     }
   },
 
 }
-// start: function(){
-  // console.log( 'start');;}
+
 var mainState= {
   create: function(){
     //set stage
