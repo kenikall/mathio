@@ -172,11 +172,25 @@ var menuState= {
     this.start = game.add.sprite(90, 750, 'start');
     this.sShield = game.add.sprite(90,835, 'shield');
 
+    this.back = game.add.sprite(90, 950, 'options');
+    this.bShield = game.add.sprite(90,950, 'shield');
+
+    this.pShield.bringToTop();
+    this.directions.bringToTop();
+    this.dShield.bringToTop();
+    this.options.bringToTop();
+    this.oShield.bringToTop();
+    this.start.bringToTop();
+    this.sShield.bringToTop();
+    this.back.bringToTop();
+    this.bShield.bringToTop();
+
     this.p1 = game.add.sprite( 44, 493, 'p1');
     this.p1.anchor.setTo( 0.5, 0.5 );
     this.inner1 = game.add.sprite( 44, 493, 'inner1');
     this.inner1.anchor.setTo( 0.5, 0.5 );
     game.physics.arcade.enable(this.p1);
+
 
     this.start.events.onInputDown.add(function(){game.state.start('main')}, this);
 // game.state.start('main')
@@ -247,16 +261,43 @@ var menuState= {
         else{ this.players.frame = 0;
         }
       }
-      else if (this.checkOverlap(this.inner1, this.directions)){console.log("directions");}
-      else if (this.checkOverlap(this.inner1, this.options)){console.log("options");}
+      else if (this.checkOverlap(this.inner1, this.directions)){
+        var destination = this.oShield.y-85;
+        var that=this;
+        var raise  = setInterval(function(){
+          if (that.oShield.y > destination){
+            that.pShield.y -= 1;
+            that.oShield.y -= 1;
+            that.sShield.y -= 1;
+            that.bShield.y -= 1;
+          }else{
+            clearInterval(raise);
+          }
+          if (that.directions.y > that.players.y){ that.directions.y-=1.5; }
+          if (that.back.y > that.start.y){ that.back.y-=1.5; }
+        })
+      }
+      else if (this.checkOverlap(this.inner1, this.options)){
+        var destination = this.dShield.y-85;
+        var that=this;
+        var raise  = setInterval(function(){
+          if (that.dShield.y > destination){
+            that.pShield.y -= 1.5;
+            that.dShield.y -= 1.5;
+            that.sShield.y -= 1.5;
+            that.bShield.y -= 1.5;
+          }else{
+            clearInterval(raise);
+          }
+          if (that.options.y > that.players.y){ that.options.y-=1.5; }
+          if (that.back.y > that.start.y){ that.back.y-=1.5; }
+        })
+      }
       else if (this.checkOverlap(this.inner1, this.start)){
         game.state.start('main');
       }
     }
   }
-//   startGame: function(){
-//     game.state.start('main');
-//   }
 }
 
 var mainState= {
