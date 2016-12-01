@@ -19733,3 +19733,1224 @@ Processing by GamesController#mathhunt as HTML
 Completed 200 OK in 58ms (Views: 56.5ms | ActiveRecord: 0.0ms)
 
 
+Started GET "/games/mathhunt" for ::1 at 2016-11-22 09:59:59 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (8.3ms)
+Completed 200 OK in 239ms (Views: 211.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-11-28 23:39:34 -0800
+  [1m[36mActiveRecord::SchemaMigration Load (6.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by GamesController#index as HTML
+  Rendering games/index.html.erb within layouts/application
+  Rendered games/index.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 659ms (Views: 641.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-28 23:39:41 -0800
+Processing by GamesController#mathhunt as */*
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 88ms (Views: 69.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-11-28 23:40:15 -0800
+Processing by GamesController#index as HTML
+  Rendering games/index.html.erb within layouts/application
+  Rendered games/index.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 91ms (Views: 86.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-28 23:40:20 -0800
+Processing by GamesController#mathhunt as */*
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 139ms (Views: 115.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-28 23:40:51 -0800
+Processing by GamesController#mathhunt as */*
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 109ms (Views: 92.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/results" for ::1 at 2016-11-29 05:50:24 -0800
+  
+ActionController::RoutingError (No route matches [POST] "/results"):
+  
+actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `block in tagged'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `tagged'
+railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.0.1) lib/rails/engine.rb:522:in `call'
+puma (3.6.0) lib/puma/configuration.rb:225:in `call'
+puma (3.6.0) lib/puma/server.rb:578:in `handle_request'
+puma (3.6.0) lib/puma/server.rb:415:in `process_client'
+puma (3.6.0) lib/puma/server.rb:275:in `block in run'
+puma (3.6.0) lib/puma/thread_pool.rb:116:in `block in spawn_thread'
+  Rendering /Users/manahkallon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.text.erb
+  Rendering /Users/manahkallon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb
+  Rendered /Users/manahkallon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (1.2ms)
+  Rendered /Users/manahkallon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.text.erb (33.2ms)
+Started GET "/" for ::1 at 2016-11-30 11:12:02 -0800
+  [1m[36mActiveRecord::SchemaMigration Load (5.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by GamesController#index as HTML
+  Rendering games/index.html.erb within layouts/application
+  Rendered games/index.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 517ms (Views: 504.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 11:12:07 -0800
+Processing by GamesController#mathhunt as */*
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 89ms (Views: 68.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-11-30 11:20:34 -0800
+Processing by GamesController#index as HTML
+  Rendering games/index.html.erb within layouts/application
+  Rendered games/index.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 275ms (Views: 249.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 11:20:38 -0800
+Processing by GamesController#mathhunt as */*
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 75ms (Views: 58.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 11:20:44 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 103ms (Views: 101.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/favicon-16x16.png" for ::1 at 2016-11-30 11:20:45 -0800
+  
+ActionController::RoutingError (No route matches [GET] "/games/favicon-16x16.png"):
+  
+actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `block in tagged'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `tagged'
+railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.0.1) lib/rails/engine.rb:522:in `call'
+puma (3.6.0) lib/puma/configuration.rb:225:in `call'
+puma (3.6.0) lib/puma/server.rb:578:in `handle_request'
+puma (3.6.0) lib/puma/server.rb:415:in `process_client'
+puma (3.6.0) lib/puma/server.rb:275:in `block in run'
+puma (3.6.0) lib/puma/thread_pool.rb:116:in `block in spawn_thread'
+  Rendering /Users/manahkallon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout
+  Rendering /Users/manahkallon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/manahkallon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.6ms)
+  Rendered collection of /Users/manahkallon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb [5 times] (15.7ms)
+  Rendered /Users/manahkallon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (21.5ms)
+  Rendering /Users/manahkallon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/manahkallon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.9ms)
+  Rendered /Users/manahkallon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (498.6ms)
+Started GET "/games/favicon-32x32.png" for ::1 at 2016-11-30 11:20:46 -0800
+  
+ActionController::RoutingError (No route matches [GET] "/games/favicon-32x32.png"):
+  
+actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `block in tagged'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `tagged'
+railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.0.1) lib/rails/engine.rb:522:in `call'
+puma (3.6.0) lib/puma/configuration.rb:225:in `call'
+puma (3.6.0) lib/puma/server.rb:578:in `handle_request'
+puma (3.6.0) lib/puma/server.rb:415:in `process_client'
+puma (3.6.0) lib/puma/server.rb:275:in `block in run'
+puma (3.6.0) lib/puma/thread_pool.rb:116:in `block in spawn_thread'
+  Rendering /Users/manahkallon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout
+  Rendering /Users/manahkallon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/manahkallon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.8ms)
+  Rendered collection of /Users/manahkallon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb [5 times] (2.4ms)
+  Rendered /Users/manahkallon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (2.0ms)
+  Rendering /Users/manahkallon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/manahkallon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.4ms)
+  Rendered /Users/manahkallon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (117.5ms)
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 11:20:51 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 77ms (Views: 73.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/images/math_hunt/menu_images/back.png" for ::1 at 2016-11-30 11:20:53 -0800
+  
+ActionController::RoutingError (No route matches [GET] "/images/math_hunt/menu_images/back.png"):
+  
+actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `block in tagged'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `tagged'
+railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.0.1) lib/rails/engine.rb:522:in `call'
+puma (3.6.0) lib/puma/configuration.rb:225:in `call'
+puma (3.6.0) lib/puma/server.rb:578:in `handle_request'
+puma (3.6.0) lib/puma/server.rb:415:in `process_client'
+puma (3.6.0) lib/puma/server.rb:275:in `block in run'
+puma (3.6.0) lib/puma/thread_pool.rb:116:in `block in spawn_thread'
+  Rendering /Users/manahkallon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout
+  Rendering /Users/manahkallon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/manahkallon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (10.4ms)
+  Rendered collection of /Users/manahkallon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb [5 times] (117.0ms)
+  Rendered /Users/manahkallon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.9ms)
+  Rendering /Users/manahkallon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/manahkallon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (12.2ms)
+  Rendered /Users/manahkallon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (372.4ms)
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 11:28:14 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (3.8ms)
+Completed 200 OK in 161ms (Views: 145.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 11:29:24 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 67ms (Views: 64.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 11:29:54 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 68ms (Views: 66.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 11:29:56 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 71ms (Views: 67.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 11:38:32 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 122ms (Views: 119.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 11:39:01 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 47ms (Views: 45.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 11:47:54 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 186ms (Views: 170.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 11:58:01 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 104ms (Views: 101.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 11:58:19 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 222ms (Views: 217.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 11:59:17 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 110ms (Views: 103.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 12:03:32 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 89ms (Views: 87.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 12:03:51 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 68ms (Views: 66.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 12:04:38 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 50ms (Views: 47.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 12:04:49 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 35ms (Views: 33.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 12:06:06 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 73ms (Views: 70.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 12:06:22 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 31ms (Views: 29.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 12:06:44 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 46ms (Views: 44.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 12:07:08 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 63ms (Views: 59.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 12:17:36 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (4.5ms)
+Completed 200 OK in 156ms (Views: 141.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 12:17:52 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 154ms (Views: 152.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 12:18:03 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 99ms (Views: 95.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 12:18:13 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 41ms (Views: 39.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 12:18:27 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 86ms (Views: 82.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 12:18:39 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 40ms (Views: 38.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 12:19:04 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 139ms (Views: 135.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 12:19:20 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 68ms (Views: 66.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 12:19:33 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 48ms (Views: 46.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 12:27:30 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 93ms (Views: 88.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 12:28:08 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 50ms (Views: 49.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 12:28:38 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 135ms (Views: 131.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 12:30:34 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 128ms (Views: 125.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 12:31:21 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 57ms (Views: 54.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 12:38:02 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 114ms (Views: 110.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 12:38:15 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 42ms (Views: 40.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 12:38:43 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 49ms (Views: 47.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 12:39:00 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 43ms (Views: 41.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 12:39:15 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 71ms (Views: 69.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 12:39:52 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 55ms (Views: 53.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 12:40:10 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 59ms (Views: 57.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 12:40:20 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 42ms (Views: 40.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 12:55:44 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 206ms (Views: 194.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 12:56:30 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 122ms (Views: 119.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 12:57:14 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 113ms (Views: 110.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 13:04:23 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (3.5ms)
+Completed 200 OK in 520ms (Views: 503.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 13:24:43 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (6.3ms)
+Completed 200 OK in 338ms (Views: 323.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 13:26:26 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 75ms (Views: 72.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 13:28:32 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 90ms (Views: 85.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 14:00:11 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (5.7ms)
+Completed 200 OK in 156ms (Views: 145.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 14:01:23 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (4.3ms)
+Completed 200 OK in 84ms (Views: 82.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 14:03:03 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 79ms (Views: 75.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 14:04:43 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 109ms (Views: 103.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 14:05:37 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 147ms (Views: 142.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 14:06:32 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 83ms (Views: 80.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 14:07:34 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 84ms (Views: 80.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 14:09:13 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 87ms (Views: 84.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 14:16:22 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 152ms (Views: 148.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 14:19:42 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 53ms (Views: 50.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 14:20:00 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 54ms (Views: 52.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 14:37:39 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (6.7ms)
+Completed 200 OK in 209ms (Views: 193.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 14:39:55 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 113ms (Views: 110.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 14:40:32 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 57ms (Views: 55.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 14:41:41 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 38ms (Views: 37.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 14:45:12 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 57ms (Views: 54.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 14:45:26 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 33ms (Views: 31.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 14:45:48 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 51ms (Views: 46.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 14:46:46 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 44ms (Views: 41.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 14:46:58 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 43ms (Views: 41.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 14:47:17 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 38ms (Views: 35.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 14:48:22 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 56ms (Views: 54.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 14:50:34 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 94ms (Views: 88.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 14:51:09 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 35ms (Views: 33.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 14:52:06 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 107ms (Views: 82.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 14:52:13 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 56ms (Views: 53.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 14:56:05 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (4.6ms)
+Completed 200 OK in 280ms (Views: 264.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:01:21 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (4.7ms)
+Completed 200 OK in 186ms (Views: 175.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:01:31 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 87ms (Views: 83.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:04:45 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 202ms (Views: 183.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:06:01 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 98ms (Views: 91.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:06:24 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 102ms (Views: 98.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:08:35 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (4.2ms)
+Completed 200 OK in 99ms (Views: 96.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:08:52 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 66ms (Views: 63.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:10:12 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 78ms (Views: 75.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:10:19 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 67ms (Views: 65.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:13:31 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 79ms (Views: 76.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:16:58 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 99ms (Views: 97.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:21:49 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 108ms (Views: 105.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:22:17 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (5.4ms)
+Completed 200 OK in 123ms (Views: 118.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:24:53 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 100ms (Views: 97.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:26:06 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 95ms (Views: 93.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:27:56 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 102ms (Views: 100.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:28:48 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 113ms (Views: 111.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:28:53 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 62ms (Views: 59.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:29:47 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 64ms (Views: 61.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/images/menu_images/shield.png" for ::1 at 2016-11-30 15:29:48 -0800
+  
+ActionController::RoutingError (No route matches [GET] "/images/menu_images/shield.png"):
+  
+actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `block in tagged'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `tagged'
+railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.0.1) lib/rails/engine.rb:522:in `call'
+puma (3.6.0) lib/puma/configuration.rb:225:in `call'
+puma (3.6.0) lib/puma/server.rb:578:in `handle_request'
+puma (3.6.0) lib/puma/server.rb:415:in `process_client'
+puma (3.6.0) lib/puma/server.rb:275:in `block in run'
+puma (3.6.0) lib/puma/thread_pool.rb:116:in `block in spawn_thread'
+  Rendering /Users/manahkallon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout
+  Rendering /Users/manahkallon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/manahkallon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (19.2ms)
+  Rendered collection of /Users/manahkallon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb [5 times] (24.3ms)
+  Rendered /Users/manahkallon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (13.7ms)
+  Rendering /Users/manahkallon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/manahkallon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (4.6ms)
+  Rendered /Users/manahkallon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (266.1ms)
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:30:17 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 64ms (Views: 62.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:32:02 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 68ms (Views: 65.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:32:09 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 59ms (Views: 54.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:32:58 -0800
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 459ms (Views: 446.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:33:21 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 79ms (Views: 75.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/images/math_hunt/menu_images/shield.png" for ::1 at 2016-11-30 15:33:22 -0800
+  
+ActionController::RoutingError (No route matches [GET] "/images/math_hunt/menu_images/shield.png"):
+  
+actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `block in tagged'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `tagged'
+railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.0.1) lib/rails/engine.rb:522:in `call'
+puma (3.6.0) lib/puma/configuration.rb:225:in `call'
+puma (3.6.0) lib/puma/server.rb:578:in `handle_request'
+puma (3.6.0) lib/puma/server.rb:415:in `process_client'
+puma (3.6.0) lib/puma/server.rb:275:in `block in run'
+puma (3.6.0) lib/puma/thread_pool.rb:116:in `block in spawn_thread'
+  Rendering /Users/manahkallon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout
+  Rendering /Users/manahkallon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/manahkallon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.0ms)
+  Rendered collection of /Users/manahkallon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb [5 times] (16.7ms)
+  Rendered /Users/manahkallon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (35.4ms)
+  Rendering /Users/manahkallon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/manahkallon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.7ms)
+  Rendered /Users/manahkallon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (260.8ms)
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:33:39 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 124ms (Views: 120.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:34:07 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 104ms (Views: 101.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:34:54 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 140ms (Views: 138.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:35:21 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 116ms (Views: 111.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:37:22 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 151ms (Views: 148.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:38:02 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 223ms (Views: 218.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:38:30 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 65ms (Views: 63.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:39:10 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 101ms (Views: 98.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:39:36 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 112ms (Views: 108.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:43:05 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 170ms (Views: 167.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:43:24 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 144ms (Views: 142.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:43:30 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 72ms (Views: 69.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:44:06 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 91ms (Views: 88.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:44:56 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 90ms (Views: 88.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:51:04 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 180ms (Views: 176.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:53:17 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 180ms (Views: 177.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:53:23 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 90ms (Views: 88.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:55:19 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 108ms (Views: 102.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:55:30 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 63ms (Views: 61.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:56:27 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 115ms (Views: 112.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:58:19 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 149ms (Views: 146.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:58:34 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 77ms (Views: 75.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 15:58:47 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 74ms (Views: 72.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 16:01:11 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 133ms (Views: 125.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 16:02:26 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 114ms (Views: 112.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 16:03:11 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 89ms (Views: 86.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 16:06:03 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 104ms (Views: 102.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 16:06:43 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 54ms (Views: 52.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 16:07:19 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 151ms (Views: 149.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 16:07:40 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 78ms (Views: 75.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 16:08:58 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 92ms (Views: 89.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-11-30 16:24:04 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (7.7ms)
+Completed 200 OK in 231ms (Views: 216.1ms | ActiveRecord: 0.0ms)
+
+
