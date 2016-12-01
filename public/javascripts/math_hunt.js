@@ -155,7 +155,7 @@ var menuState= {
     this.numPlayers = 1;
     this.p1speed = 5;
     this.p2speed = 0;
-    this.p1operation = "addition";
+    this.p1operation = "plus";
     this.p2operation = "none";
     this.menuStatus = "start";
 
@@ -206,36 +206,27 @@ var menuState= {
     this.infoShield2 = game.add.sprite(90,this.p1info.y-43, 'shield');
     this.infoShield3 = game.add.sprite(90,this.p1info.y+42, 'shield');
 
-    this.plus = game.add.sprite(game.world.centerX*.2,this.pos2, 'plus');
-    this.setFrame(this.plus, "plus")
-    this.minus = game.add.sprite(game.world.centerX*.4,this.pos2, 'minus');
-    this.setFrame(this.minus, "minus")
-    this.times = game.add.sprite(game.world.centerX*.6,this.pos2, 'times');
-    this.setFrame(this.times, "times")
-    this.division = game.add.sprite(game.world.centerX*.8,this.pos2, 'division');
-    this.setFrame(this.division, "division")
+    this.plus = game.add.sprite(game.world.centerX*.7,this.pos2, 'plus');
+    this.minus = game.add.sprite(game.world.centerX*.9,this.pos2, 'minus');
+    this.times = game.add.sprite(game.world.centerX*1.1,this.pos2, 'times');
+    this.division = game.add.sprite(game.world.centerX*1.3,this.pos2, 'division');
 
-    this.menu1 = game.add.sprite(game.world.centerX*.15,this.pos3, 'menu1');
-    this.setFrame(this.menu1, 1);
-    this.menu2 = game.add.sprite(game.world.centerX*.15,this.pos3, 'menu2');
-    this.setFrame(this.menu2, 2);
-    this.menu3 = game.add.sprite(game.world.centerX*.15,this.pos3, 'menu3');
-    this.setFrame(this.menu3, 3);
-    this.menu4 = game.add.sprite(game.world.centerX*.15,this.pos3, 'menu4');
-    this.setFrame(this.menu4, 4);
-    this.menu5 = game.add.sprite(game.world.centerX*.15,this.pos3, 'menu5');
-    this.setFrame(this.menu5, 5);
-    this.menu6 = game.add.sprite(game.world.centerX*.15,this.pos3, 'menu6');
-    this.setFrame(this.menu6, 6);
-    this.menu7 = game.add.sprite(game.world.centerX*.15,this.pos3, 'menu7');
-    this.setFrame(this.menu7, 7);
-    this.menu8 = game.add.sprite(game.world.centerX*.15,this.pos3, 'menu8');
-    this.setFrame(this.menu8, 8);
-    this.menu9 = game.add.sprite(game.world.centerX*.15,this.pos3, 'menu9');
-    this.setFrame(this.menu9, 9);
-    this.menu10 = game.add.sprite(game.world.centerX*.15,this.pos3, 'menu10');
-    this.setFrame(this.menu10, 10);
+    this.menu1 = game.add.sprite(game.world.centerX*.05,this.pos3, 'menu1');
+    this.menu2 = game.add.sprite(game.world.centerX*.25,this.pos3, 'menu2');
+    this.menu3 = game.add.sprite(game.world.centerX*.45,this.pos3, 'menu3');
+    this.menu4 = game.add.sprite(game.world.centerX*.65,this.pos3, 'menu4');
+    this.menu5 = game.add.sprite(game.world.centerX*.85,this.pos3, 'menu5');
+    this.menu6 = game.add.sprite(game.world.centerX*1.05,this.pos3, 'menu6');
+    this.menu7 = game.add.sprite(game.world.centerX*1.25,this.pos3, 'menu7');
+    this.menu8 = game.add.sprite(game.world.centerX*1.45,this.pos3, 'menu8');
+    this.menu9 = game.add.sprite(game.world.centerX*1.65,this.pos3, 'menu9');
+    this.menu10 = game.add.sprite(game.world.centerX*1.8,this.pos3, 'menu10');
+    this.setFrame();
 
+    this.optionsShield1 = game.add.sprite(game.world.centerX-1000,this.pos2, 'shield');
+    this.optionsShield2 = game.add.sprite(game.world.centerX,this.pos2, 'shield');
+    this.optionsShield3 = game.add.sprite(game.world.centerX-1000,this.pos3, 'shield');
+    this.optionsShield4 = game.add.sprite(game.world.centerX,this.pos3, 'shield');
 
     this.p1 = game.add.sprite( 44, 493, 'p1');
     this.p1.anchor.setTo( 0.5, 0.5 );
@@ -274,7 +265,22 @@ var menuState= {
     this.move();
     this.shoot();
   },
-  setFrame: function(sprite, value){
+  setFrame: function(){
+    this.menu1.frame =(this.p1speed === 1)?1:(this.p2speed === 1)?3:(this.p1speed === 1 && this.p2speed === 1)?2:0;
+    this.menu2.frame =(this.p1speed === 2)?1:(this.p2speed === 2)?3:(this.p1speed === 2 && this.p2speed === 1)?2:0;
+    this.menu3.frame =(this.p1speed === 3)?1:(this.p2speed === 3)?3:(this.p1speed === 3 && this.p2speed === 1)?2:0;
+    this.menu4.frame =(this.p1speed === 4)?1:(this.p2speed === 4)?3:(this.p1speed === 4 && this.p2speed === 1)?2:0;
+    this.menu5.frame =(this.p1speed === 5)?1:(this.p2speed === 5)?3:(this.p1speed === 5 && this.p2speed === 1)?2:0;
+    this.menu6.frame =(this.p1speed === 6)?1:(this.p2speed === 6)?3:(this.p1speed === 6 && this.p2speed === 1)?2:0;
+    this.menu7.frame =(this.p1speed === 7)?1:(this.p2speed === 7)?3:(this.p1speed === 7 && this.p2speed === 1)?2:0;
+    this.menu8.frame =(this.p1speed === 8)?1:(this.p2speed === 8)?3:(this.p1speed === 8 && this.p2speed === 1)?2:0;
+    this.menu9.frame =(this.p1speed === 9)?1:(this.p2speed === 9)?3:(this.p1speed === 9 && this.p2speed === 1)?2:0;
+    this.menu10.frame =(this.p1speed === 10)?1:(this.p2speed === 10)?3:(this.p1speed === 10 && this.p2speed === 1)?2:0;
+
+    this.plus.frame =(this.p1operation === "plus")?1:(this.p2operation === "plus")?3:(this.p1operation === "plus" && this.p2operation === 1)?2:0;
+    this.minus.frame =(this.p1operation === "minus")?1:(this.p2operation === "minus")?3:(this.p1operation === "minus" && this.p2operation === 1)?2:0;
+    this.times.frame =(this.p1operation === "times")?1:(this.p2operation === "times")?3:(this.p1operation === "times" && this.p2operation === 1)?2:0;
+    this.division.frame =(this.p1operation === "division")?1:(this.p2operation === "division")?3:(this.p1operation === "division" && this.p2operation === 1)?2:0;
 
   },
   centerTarget: function(){
@@ -298,7 +304,7 @@ var menuState= {
     // if (this.p2right.isDown && this.inner2.x <= 1000) { this.p2.x += 5;}
     // else if (this.p2left.isDown && this.inner2.x >= 0) { this.p2.x -= 5;}
   },
-  initialLayers(){
+  initialLayers: function(){
         //sub menu items
     this.info.bringToTop();
     this.p1info.bringToTop();
@@ -307,6 +313,10 @@ var menuState= {
     this.infoShield2.bringToTop();
     this.infoShield3.bringToTop();
 
+    this.optionsShield1.bringToTop();
+    this.optionsShield2.bringToTop();
+    this.optionsShield3.bringToTop();
+    this.optionsShield4.bringToTop();
     //menu items
     this.pShield.bringToTop();
     this.directions.bringToTop();
@@ -330,10 +340,11 @@ var menuState= {
     this.infoShield3.bringToTop();
     this.back.bringToTop();
     this.bShield.bringToTop();
-    this.p1.bringToTop;
+    this.p1.bringToTop();
 
     var that=this;
     var horz = setInterval(function(){
+        console.log("called");
         if (that.infoShield1.y < that.pos2){ that.infoShield1.y += 1.5}
         if (that.infoShield2.x < 90){ that.infoShield2.x += 1.5}
         if (that.infoShield3.x > 90){ that.infoShield3.x -= 1.5}
@@ -349,7 +360,7 @@ var menuState= {
 
           if (that.back.y < that.pos6){ that.back.y += 1; }
 
-          if (that.pShield.y >= that.pos2 && that.oShield.y >= that.pos4 && that.sShield.y >= that.pos5 && that.back.y <= that.pos6 ){ clearInterval(lower); }
+          if (that.directions.y >= that.pos2 && that.pShield.y >= that.pos2 && that.oShield.y >= that.pos4 && that.sShield.y >= that.pos5 && that.back.y <= that.pos6 ){ clearInterval(lower); }
         })
       }
     })
@@ -376,6 +387,7 @@ var menuState= {
         that.infoShield3.bringToTop();
         that.directions.bringToTop();
         that.back.bringToTop();
+        that.bShield.bringToTop();
         that.p1.bringToTop();
 
         that.p1.bringToTop();
@@ -402,22 +414,67 @@ var menuState= {
 
       if (that.options.y <= that.pos1 && that.pShield.y <= that.pos1 && that.dShield.y <= that.pos2 && that.sShield.y <= that.pos4 && that.back.y <= that.pos5 ){
         clearInterval(raise);
-        // that.info.bringToTop();
-        // that.p1info.bringToTop();
-        // that.p2info.bringToTop();
-        // that.infoShield1.bringToTop();
-        // that.infoShield2.bringToTop();
-        // that.infoShield3.bringToTop();
-        // that.directions.bringToTop();
+        that.plus.bringToTop();
+        that.minus.bringToTop();
+        that.times.bringToTop();
+        that.division.bringToTop();
+
+        that.menu1.bringToTop();
+        that.menu2.bringToTop();
+        that.menu3.bringToTop();
+        that.menu4.bringToTop();
+        that.menu5.bringToTop();
+        that.menu6.bringToTop();
+        that.menu7.bringToTop();
+        that.menu8.bringToTop();
+        that.menu9.bringToTop();
+        that.menu10.bringToTop();
+
+        that.optionsShield1.bringToTop();
+        that.optionsShield2.bringToTop();
+        that.optionsShield3.bringToTop();
+        that.optionsShield4.bringToTop();
+
         that.back.bringToTop();
+        that.bShield.bringToTop();
         that.p1.bringToTop();
 
-        that.p1.bringToTop();
         var horz = setInterval(function(){
-          if (that.infoShield1.y > that.pos1){ that.infoShield1.y -= 1.5}
-          if (that.infoShield2.x > -1000){ that.infoShield2.x -= 1.5}
-          if (that.infoShield3.x < 1100){ that.infoShield3.x += 1.5}
-          if(that.infoShield1.y <= that.pos1 && that.infoShield2.x <= -1000 && that.infoShield3.x >= 1100 ) { clearInterval(horz);}
+          if (that.optionsShield1.x > -1500){ that.optionsShield1.x -= 1.5}
+          if (that.optionsShield2.x < 1500){ that.optionsShield2.x += 1.5}
+          if (that.optionsShield3.x > -1500){ that.optionsShield3.x -= 1.5}
+          if (that.optionsShield4.x < 1500){ that.optionsShield4.x += 1.5}
+          if(that.optionsShield1.x <= -1500 && that.optionsShield2.x >= 1500 ) { clearInterval(horz);}
+        })
+      }
+    })
+  },
+
+  optionsBreakDown: function(){
+    this.menuStatus = "start";
+    this.back.bringToTop();
+    this.bShield.bringToTop();
+    this.p1.bringToTop();
+
+    var that=this;
+    var horz = setInterval(function(){
+      if (that.optionsShield1.x < -500){ that.optionsShield1.x += 1.5}
+        if (that.optionsShield2.x > 500){ that.optionsShield2.x -= 1.5}
+        if (that.optionsShield3.x < -500){ that.optionsShield3.x += 1.5}
+        if (that.optionsShield4.x > 500){ that.optionsShield4.x -= 1.5}
+        if(that.optionsShield1.x >= -500 && that.optionsShield2.x <= 500 ) {
+          clearInterval(horz);
+          that.initialLayers();
+          var raise  = setInterval(function(){
+          if (that.options.y < that.pos3){ that.options.y+=1; }
+
+          if (that.pShield.y < that.pos2+85){ that.pShield.y += 1; }
+          if (that.dShield.y < that.pos3+85){ that.dShield.y += 1; }
+          if (that.sShield.y < that.pos5+85){ that.sShield.y += 1; }
+
+          if (that.back.y < that.pos6){ that.back.y += 1; }
+
+          if (that.options.y>=that.pos3 && that.pShield.y >= that.pos2+85 && that.dShield.y >= that.pos3+85 && that.sShield.y >= that.pos5+85 && that.back.y <= that.pos6 ){ clearInterval(raise); }
         })
       }
     })
@@ -452,9 +509,64 @@ var menuState= {
       }
       else if (this.checkOverlap(this.inner1, this.back)){
         console.log(this.menuStatus);
-
         if (this.menuStatus === "directions" ){ this.directionsBreakDown(); }
-
+        else if (this.menuStatus === "options"){ this.optionsBreakDown(); }
+      }
+      else if (this.menuStatus === "options" && this.checkOverlap(this.inner1, this.menu1)){
+        this.p1speed = 1;
+        this.setFrame();
+      }
+      else if (this.menuStatus === "options" && this.checkOverlap(this.inner1, this.menu2)){
+        this.p1speed = 2;
+        this.setFrame();
+      }
+      else if (this.menuStatus === "options" && this.checkOverlap(this.inner1, this.menu3)){
+        this.p1speed = 3;
+        this.setFrame();
+      }
+      else if (this.menuStatus === "options" && this.checkOverlap(this.inner1, this.menu4)){
+        this.p1speed = 4;
+        this.setFrame();
+      }
+      else if (this.menuStatus === "options" && this.checkOverlap(this.inner1, this.menu5)){
+        this.p1speed = 5;
+        this.setFrame();
+      }
+      else if (this.menuStatus === "options" && this.checkOverlap(this.inner1, this.menu6)){
+        this.p1speed = 6;
+        this.setFrame();
+      }
+      else if (this.menuStatus === "options" && this.checkOverlap(this.inner1, this.menu7)){
+        this.p1speed = 7;
+        this.setFrame();
+      }
+      else if (this.menuStatus === "options" && this.checkOverlap(this.inner1, this.menu8)){
+        this.p1speed = 8;
+        this.setFrame();
+      }
+      else if (this.menuStatus === "options" && this.checkOverlap(this.inner1, this.menu9)){
+        this.p1speed = 9;
+        this.setFrame();
+      }
+      else if (this.menuStatus === "options" && this.checkOverlap(this.inner1, this.menu10)){
+        this.p1speed = 10;
+        this.setFrame();
+      }
+      else if (this.menuStatus === "options" && this.checkOverlap(this.inner1, this.plus)){
+        this.p1operation = "plus";
+        this.setFrame();
+      }
+      else if (this.menuStatus === "options" && this.checkOverlap(this.inner1, this.minus)){
+        this.p1operation = "minus";
+        this.setFrame();
+      }
+      else if (this.menuStatus === "options" && this.checkOverlap(this.inner1, this.times)){
+        this.p1operation = "times";
+        this.setFrame();
+      }
+      else if (this.menuStatus === "options" && this.checkOverlap(this.inner1, this.division)){
+        this.p1operation = "division";
+        this.setFrame();
       }
       else if (this.menuStatus === "start" && this.checkOverlap(this.inner1, this.start)){
         game.state.start('main');
