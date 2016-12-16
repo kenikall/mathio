@@ -85,6 +85,14 @@ var preloadState={
     game.load.image('options','/images/math_hunt/menu_images/options.png');
     game.load.image('back','/images/math_hunt/menu_images/back.png');
 
+    //game over
+    game.load.image('gameOver','/images/math_hunt/gameOver.png');
+    game.load.image('playAgain','/images/math_hunt/playAgain.png');
+    game.load.image('mainMenu','/images/math_hunt/mainMenu.png');
+
+    //rounds
+    game.load.spritesheet('rounds','/images/math_hunt/rounds.png',415,60,5);
+
     //operations
     game.load.spritesheet('minus','/images/math_hunt/menu_images/minus.png',79,80,4);
     game.load.spritesheet('division','/images/math_hunt/menu_images/division.png',79,80,4);
@@ -358,9 +366,9 @@ var menuState= {
           if (that.oShield.y < that.pos4+85){ that.oShield.y += 1; }
           if (that.sShield.y < that.pos5+85){ that.sShield.y += 1; }
 
-          if (that.back.y < that.pos6){ that.back.y += 1; }
+          if (that.back.y < that.pos6+85){ that.back.y += 1; }
 
-          if (that.directions.y >= that.pos2 && that.pShield.y >= that.pos2 && that.oShield.y >= that.pos4 && that.sShield.y >= that.pos5 && that.back.y <= that.pos6 ){ clearInterval(lower); }
+          if (that.directions.y >= that.pos2 && that.pShield.y >= that.pos2 && that.oShield.y >= that.pos4 && that.sShield.y >= that.pos5 && that.back.y+85 <= that.pos6 ){ clearInterval(lower); }
         })
       }
     })
@@ -472,9 +480,9 @@ var menuState= {
           if (that.dShield.y < that.pos3+85){ that.dShield.y += 1; }
           if (that.sShield.y < that.pos5+85){ that.sShield.y += 1; }
 
-          if (that.back.y < that.pos6){ that.back.y += 1; }
+          if (that.back.y < that.pos6+85){ that.back.y += 1; }
 
-          if (that.options.y>=that.pos3 && that.pShield.y >= that.pos2+85 && that.dShield.y >= that.pos3+85 && that.sShield.y >= that.pos5+85 && that.back.y <= that.pos6 ){ clearInterval(raise); }
+          if (that.options.y>=that.pos3 && that.pShield.y >= that.pos2+85 && that.dShield.y >= that.pos3+85 && that.sShield.y >= that.pos5+85 && that.back.y+85 <= that.pos6 ){ clearInterval(raise); }
         })
       }
     })
@@ -663,8 +671,6 @@ var mainState= {
         walk = false
       }
     },1)
-
-
   },
   update: function(){
     this.centerTarget();
@@ -675,7 +681,7 @@ var mainState= {
   checkOverlap: function(spriteA, duck) {
     if (duck){
       var boundsA = spriteA.getBounds();
-      var boundsB = duck.sprite.getBounds();
+      var boundsB = duck.getBounds();
       return Phaser.Rectangle.intersects(boundsA, boundsB);
     }
   },
@@ -746,6 +752,47 @@ var mainState= {
   },
 
   shoot: function(){
+    if(this.p1shoot.isDown && this.checkOverlap(this.inner1, this.playAgain)){
+      this.p1.canShoot = false;
+      var that = this;
+      setTimeout(function(){that.p1.canShoot = true}, 1000)
+      shot1 = game.add.sprite(this.p1.x, this.p1.y, 'shot');
+      shot1.anchor.setTo( 0.5, 0.5);
+      setTimeout(function(){shot1.kill()},100);
+      this.shotSound.play();
+      game.state.start('main');
+    }
+    if(this.p2shoot.isDown && this.checkOverlap(this.inner2, this.playAgain)){
+      this.p2.canShoot = false;
+      var that = this;
+      setTimeout(function(){that.p2.canShoot = true}, 1000)
+      shot2 = game.add.sprite(this.p2.x, this.p2.y, 'shot');
+      shot2.anchor.setTo( 0.5, 0.5);
+      setTimeout(function(){shot2.kill()},100);
+      this.shotSound.play();
+      game.state.start('main')
+    }
+    if(this.p1shoot.isDown && this.checkOverlap(this.inner1, this.mainMenu)){
+      this.p1.canShoot = false;
+      var that = this;
+      setTimeout(function(){that.p1.canShoot = true}, 1000)
+      shot1 = game.add.sprite(this.p1.x, this.p1.y, 'shot');
+      shot1.anchor.setTo( 0.5, 0.5);
+      setTimeout(function(){shot1.kill()},100);
+      this.shotSound.play();
+      game.state.start('menu')
+    }
+    if(this.p2shoot.isDown && this.checkOverlap(this.inner2, this.mainMenu)){
+      this.p2.canShoot = false;
+      var that = this;
+      setTimeout(function(){that.p2.canShoot = true}, 1000)
+      shot2 = game.add.sprite(this.p2.x, this.p2.y, 'shot');
+      shot2.anchor.setTo( 0.5, 0.5);
+      setTimeout(function(){shot2.kill()},100);
+      this.shotSound.play();
+      game.state.start('menu')
+    }
+
     if (this.p1shoot.isDown && this.p1.canShoot && this.fireBullets(1)){
       this.p1.canShoot = false;
       var that = this;
@@ -891,9 +938,14 @@ var mainState= {
   },
 
   gameOver: function(){
-    var text = game.add.text(game.world.centerX, game.world.centerY, "Game Over", { font: "64px Arial", fill: "#000000", align: "center" });
-    text.anchor.setTo(.5,.5);
-    this.duckAjaxCall()
+    var goFrame = game.add.sprite(game.world.centerX, game.world.centerY*0.3, 'gameOver');
+    goFrame.anchor.setTo(.5,0);
+    this.mainMenu = game.add.sprite(game.world.centerX, game.world.centerY*0.65, 'mainMenu');
+    this.mainMenu.anchor.setTo(.5,.5);
+    this.playAgain = game.add.sprite(game.world.centerX, game.world.centerY*0.75, 'playAgain');
+    this.playAgain.anchor.setTo(.5,.5);
+    this.p1.bringToTop();
+    this.p2.bringToTop();
   },
 
   duckAjaxCall(){
@@ -927,7 +979,7 @@ var mainState= {
     })
   },
 
-    formatQuestions: function(){
+  formatQuestions: function(){
     p1incorrect = p1incorrect.map(function(p){
         return mainState.parseEquation(p)
     })
@@ -956,9 +1008,10 @@ var mainState= {
   },
 
   showRound: function(round){
-    var roundText = game.add.text(game.world.centerX, game.world.centerY, "Round "+ round.toString(), { font: "64px Arial", fill: "#000000", align: "center" });
-    roundText.anchor.setTo(.5,.5);
-    setTimeout(function(){ roundText.text = ""},1000);
+    var roundText = game.add.sprite(game.world.centerX, game.world.centerY, 'rounds');
+    roundText.anchor.setTo(.5, .5);
+    roundText.frame = round-1;
+    setTimeout(function(){ roundText.kill()},1000);
     var that = this;
     setTimeout(function(){that.endRound() },10000);
   },
@@ -1104,7 +1157,7 @@ var mainState= {
   },
 
   callDog: function(hits){
-    if (this.round <= 4){
+    if (this.round <= 1){
       this.dogShowAnimation(hits);
     } else {
       this.gameOver();
@@ -1159,11 +1212,12 @@ var mainState= {
 
   dogLower: function(){
     var that = this;
-    var lower  = setInterval(function(){
+    lower  = setInterval(function(){
       if (that.dogShow.y < 750){
         that.dogShow.y += 1.5;
       }else{
         clearInterval(lower);
+        that.dogShow.Destoy();
         setTimeout(function(){ that.spawnDucks() },500);
       }
     });
