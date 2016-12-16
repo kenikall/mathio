@@ -83,6 +83,15 @@ var preloadState={
     game.load.image('shield','/images/math_hunt/menu_images/shield.png');
     game.load.image('title','/images/math_hunt/menu_images/title.png');
     game.load.image('options','/images/math_hunt/menu_images/options.png');
+    game.load.image('back','/images/math_hunt/menu_images/back.png');
+
+    //game over
+    game.load.image('gameOver','/images/math_hunt/gameOver.png');
+    game.load.image('playAgain','/images/math_hunt/playAgain.png');
+    game.load.image('mainMenu','/images/math_hunt/mainMenu.png');
+
+    //rounds
+    game.load.spritesheet('rounds','/images/math_hunt/rounds.png',415,60,5);
 
     //operations
     game.load.spritesheet('minus','/images/math_hunt/menu_images/minus.png',79,80,4);
@@ -91,7 +100,7 @@ var preloadState={
     game.load.spritesheet('plus','/images/math_hunt/menu_images/plus.png',79,80,4);
 
     game.load.spritesheet('demo', '/images/math_hunt/menu_images/flying_duck.png',204,198, 3);
-    game.load.spritesheet('players', '/images/math_hunt/menu_images/players.png',980,85, 2);
+    game.load.spritesheet('players', '/images/math_hunt/menu_images/players.png',683,85, 2);
     game.load.spritesheet('menu1', '/images/math_hunt/menu_images/menu1.png',38,64, 4);
     game.load.spritesheet('menu2', '/images/math_hunt/menu_images/menu2.png',51,64, 4);
     game.load.spritesheet('menu3', '/images/math_hunt/menu_images/menu3.png',51,64, 4);
@@ -123,7 +132,7 @@ var preloadState={
     game.load.audio('honk', '/sounds/math_hunt/honk.wav');
 
     //numbers
-    for ( var i=0 ; i<=50 ; i++ ){game.load.image(i, '/images/math_hunt/'+i+'.png');}
+    for ( var i=0 ; i<=50 ; i++ ){game.load.image(i, '/images/math_hunt/numbers/'+i+'.png');}
 
     //score
     game.load.image('redScore', '/images/math_hunt/red_score.png');
@@ -150,27 +159,82 @@ var preloadState={
 
 var menuState= {
   create: function(){
+    //menu variables
+    this.numPlayers = 1;
+    this.p1speed = 5;
+    this.p2speed = 0;
+    this.p1operation = "plus";
+    this.p2operation = "none";
+    this.menuStatus = "start";
+
+    //menu locations
+    this.pos1 = 450;
+    this.pos2 = 550;
+    this.pos3 = 650;
+    this.pos4 = 750;
+    this.pos5 = 800;
+    this.pos6 = 950;
+
     game.stage.backgroundColor = '#000000';
     this.title = game.add.sprite(68,50, 'title');
 
-    this.demoDuck = game.add.sprite(0,0,'demo');
+    this.demoDuck = game.add.sprite(790,25,'demo');
     this.demoDuck.bringToTop();
-    this.demoDuck.frame = 1;
+    this.demoDuck.frame = 2;
     this.demoDuck.animations.add ('flap', [0,1,2], 8, true);
-    this.demoDuck.animations.play('flap');
+    // this.demoDuck.animations.play('flap');
 
-    this.players = game.add.sprite(90,450,'players');
+    //initial menu options
+    this.players = game.add.sprite(90,this.pos1,'players');
     this.players.frame = 0;
-    this.pShield = gmae.add.sprite(90,535, 'shield');
+    this.pShield = game.add.sprite(90,this.pos1+85, 'shield');
 
-    this.directions = game.add.sprite(90, 550, 'directions');
-    this.dShield = gmae.add.sprite(90,635, 'shield');
+    this.directions = game.add.sprite(90, this.pos2, 'directions');
+    this.dShield = game.add.sprite(90,this.pos2+85, 'shield');
 
-    this.options = game.add.sprite(90, 650, 'options');
-    this.oShield = gmae.add.sprite(90,735, 'shield');
+    this.options = game.add.sprite(90, this.pos3, 'options');
+    this.oShield = game.add.sprite(90,this.pos3+85, 'shield');
 
-    this.start = game.add.sprite(90, 750, 'start');
-    this.sShield = gmae.add.sprite(90,835, 'shield');
+    this.start = game.add.sprite(90, this.pos4, 'start');
+    this.sShield = game.add.sprite(90,this.pos4+85, 'shield');
+
+    this.back = game.add.sprite(90, this.pos6, 'back');
+    this.bShield = game.add.sprite(90,this.pos6, 'shield');
+
+    //sub menu options
+    this.info = game.add.sprite(90, this.pos2, 'info');
+
+    this.p1info = game.add.sprite(game.world.centerX, this.pos3+20, 'p1info');
+    this.p1info.anchor.setTo(.5, 0.25);
+
+    this.p2info = game.add.sprite(game.world.centerX*1.5, this.pos3+20, 'p2info');
+    this.p2info.anchor.setTo(.5, 0.25);
+    this.p2info.alpha = 0;
+    this.infoShield1 = game.add.sprite(90,this.pos2, 'shield');
+    this.infoShield2 = game.add.sprite(90,this.p1info.y-43, 'shield');
+    this.infoShield3 = game.add.sprite(90,this.p1info.y+42, 'shield');
+
+    this.plus = game.add.sprite(game.world.centerX*.7,this.pos2, 'plus');
+    this.minus = game.add.sprite(game.world.centerX*.9,this.pos2, 'minus');
+    this.times = game.add.sprite(game.world.centerX*1.1,this.pos2, 'times');
+    this.division = game.add.sprite(game.world.centerX*1.3,this.pos2, 'division');
+
+    this.menu1 = game.add.sprite(game.world.centerX*.05,this.pos3, 'menu1');
+    this.menu2 = game.add.sprite(game.world.centerX*.25,this.pos3, 'menu2');
+    this.menu3 = game.add.sprite(game.world.centerX*.45,this.pos3, 'menu3');
+    this.menu4 = game.add.sprite(game.world.centerX*.65,this.pos3, 'menu4');
+    this.menu5 = game.add.sprite(game.world.centerX*.85,this.pos3, 'menu5');
+    this.menu6 = game.add.sprite(game.world.centerX*1.05,this.pos3, 'menu6');
+    this.menu7 = game.add.sprite(game.world.centerX*1.25,this.pos3, 'menu7');
+    this.menu8 = game.add.sprite(game.world.centerX*1.45,this.pos3, 'menu8');
+    this.menu9 = game.add.sprite(game.world.centerX*1.65,this.pos3, 'menu9');
+    this.menu10 = game.add.sprite(game.world.centerX*1.8,this.pos3, 'menu10');
+    this.setFrame();
+
+    this.optionsShield1 = game.add.sprite(game.world.centerX-1000,this.pos2, 'shield');
+    this.optionsShield2 = game.add.sprite(game.world.centerX,this.pos2, 'shield');
+    this.optionsShield3 = game.add.sprite(game.world.centerX-1000,this.pos3, 'shield');
+    this.optionsShield4 = game.add.sprite(game.world.centerX,this.pos3, 'shield');
 
     this.p1 = game.add.sprite( 44, 493, 'p1');
     this.p1.anchor.setTo( 0.5, 0.5 );
@@ -178,8 +242,9 @@ var menuState= {
     this.inner1.anchor.setTo( 0.5, 0.5 );
     game.physics.arcade.enable(this.p1);
 
-    // this.start.events.onInputDown.add(game.state.start('main'), this);
-// game.state.start('main')
+    this.initialLayers()
+
+    this.start.events.onInputDown.add(function(){game.state.start('main')}, this);
     // this.p2 = game.add.sprite( 750, 250, 'p2');
     // this.p2.anchor.setTo( 0.5, 0.5 );
     // this.inner2 = game.add.sprite( 750, 250, 'inner2');
@@ -208,7 +273,24 @@ var menuState= {
     this.move();
     this.shoot();
   },
+  setFrame: function(){
+    this.menu1.frame =(this.p1speed === 1)?1:(this.p2speed === 1)?3:(this.p1speed === 1 && this.p2speed === 1)?2:0;
+    this.menu2.frame =(this.p1speed === 2)?1:(this.p2speed === 2)?3:(this.p1speed === 2 && this.p2speed === 1)?2:0;
+    this.menu3.frame =(this.p1speed === 3)?1:(this.p2speed === 3)?3:(this.p1speed === 3 && this.p2speed === 1)?2:0;
+    this.menu4.frame =(this.p1speed === 4)?1:(this.p2speed === 4)?3:(this.p1speed === 4 && this.p2speed === 1)?2:0;
+    this.menu5.frame =(this.p1speed === 5)?1:(this.p2speed === 5)?3:(this.p1speed === 5 && this.p2speed === 1)?2:0;
+    this.menu6.frame =(this.p1speed === 6)?1:(this.p2speed === 6)?3:(this.p1speed === 6 && this.p2speed === 1)?2:0;
+    this.menu7.frame =(this.p1speed === 7)?1:(this.p2speed === 7)?3:(this.p1speed === 7 && this.p2speed === 1)?2:0;
+    this.menu8.frame =(this.p1speed === 8)?1:(this.p2speed === 8)?3:(this.p1speed === 8 && this.p2speed === 1)?2:0;
+    this.menu9.frame =(this.p1speed === 9)?1:(this.p2speed === 9)?3:(this.p1speed === 9 && this.p2speed === 1)?2:0;
+    this.menu10.frame =(this.p1speed === 10)?1:(this.p2speed === 10)?3:(this.p1speed === 10 && this.p2speed === 1)?2:0;
 
+    this.plus.frame =(this.p1operation === "plus")?1:(this.p2operation === "plus")?3:(this.p1operation === "plus" && this.p2operation === 1)?2:0;
+    this.minus.frame =(this.p1operation === "minus")?1:(this.p2operation === "minus")?3:(this.p1operation === "minus" && this.p2operation === 1)?2:0;
+    this.times.frame =(this.p1operation === "times")?1:(this.p2operation === "times")?3:(this.p1operation === "times" && this.p2operation === 1)?2:0;
+    this.division.frame =(this.p1operation === "division")?1:(this.p2operation === "division")?3:(this.p1operation === "division" && this.p2operation === 1)?2:0;
+
+  },
   centerTarget: function(){
     this.inner1.x = this.p1.x;
     this.inner1.y = this.p1.y;
@@ -221,17 +303,190 @@ var menuState= {
     return Phaser.Rectangle.intersects(boundsA, boundsB);
   },
   move: function(){
-    if (this.p1up.isDown && this.inner1.y >= 0) { this.p1.y -= 5;}
-    else if (this.p1down.isDown && this.inner1.y <= 850) { this.p1.y += 5;}
-    if (this.p1right.isDown && this.inner1.x <= 1000) { this.p1.x += 5;}
-    else if (this.p1left.isDown && this.inner1.x >= 0) { this.p1.x -= 5;}
-
+    if (this.p1up.isDown && this.inner1.y >= 0) { this.p1.y -= this.p1speed;}
+    else if (this.p1down.isDown && this.inner1.y <= 850) { this.p1.y += this.p1speed;}
+    if (this.p1right.isDown && this.inner1.x <= 1000) { this.p1.x += this.p1speed;}
+    else if (this.p1left.isDown && this.inner1.x >= 0) { this.p1.x -= this.p1speed;}
     // if (this.p2up.isDown && this.inner2.y >= 0) { this.p2.y -= 5;}
     // else if (this.p2down.isDown && this.inner2.y <= 705) { this.p2.y += 5; }
     // if (this.p2right.isDown && this.inner2.x <= 1000) { this.p2.x += 5;}
     // else if (this.p2left.isDown && this.inner2.x >= 0) { this.p2.x -= 5;}
   },
+  initialLayers: function(){
+        //sub menu items
+    this.info.bringToTop();
+    this.p1info.bringToTop();
+    this.p2info.bringToTop();
+    this.infoShield1.bringToTop();
+    this.infoShield2.bringToTop();
+    this.infoShield3.bringToTop();
 
+    this.optionsShield1.bringToTop();
+    this.optionsShield2.bringToTop();
+    this.optionsShield3.bringToTop();
+    this.optionsShield4.bringToTop();
+    //menu items
+    this.pShield.bringToTop();
+    this.directions.bringToTop();
+    this.dShield.bringToTop();
+    this.options.bringToTop();
+    this.oShield.bringToTop();
+    this.start.bringToTop();
+    this.sShield.bringToTop();
+    this.back.bringToTop();
+    this.bShield.bringToTop();
+
+    this.inner1.bringToTop();
+    this.p1.bringToTop();
+  },
+
+  directionsBreakDown: function(){
+    this.menuStatus = "start";
+    this.p1info.bringToTop();
+    this.p2info.bringToTop();
+    this.infoShield2.bringToTop();
+    this.infoShield3.bringToTop();
+    this.back.bringToTop();
+    this.bShield.bringToTop();
+    this.p1.bringToTop();
+
+    var that=this;
+    var horz = setInterval(function(){
+        console.log("called");
+        if (that.infoShield1.y < that.pos2){ that.infoShield1.y += 1.5}
+        if (that.infoShield2.x < 90){ that.infoShield2.x += 1.5}
+        if (that.infoShield3.x > 90){ that.infoShield3.x -= 1.5}
+        if(that.infoShield1.y >= that.pos1 && that.infoShield2.x >= 90 && that.infoShield3.x <= 90 ) {
+          clearInterval(horz);
+          that.initialLayers();
+          var lower  = setInterval(function(){
+          if (that.directions.y < that.pos2){ that.directions.y+=1; }
+
+          if (that.pShield.y < that.pos2+85){ that.pShield.y += 1; }
+          if (that.oShield.y < that.pos4+85){ that.oShield.y += 1; }
+          if (that.sShield.y < that.pos5+85){ that.sShield.y += 1; }
+
+          if (that.back.y < that.pos6+85){ that.back.y += 1; }
+
+          if (that.directions.y >= that.pos2 && that.pShield.y >= that.pos2 && that.oShield.y >= that.pos4 && that.sShield.y >= that.pos5 && that.back.y+85 <= that.pos6 ){ clearInterval(lower); }
+        })
+      }
+    })
+  },
+  directionsSetUp: function(){
+    this.menuStatus = "directions";
+    var that=this;
+    var raise  = setInterval(function(){
+      if (that.directions.y > that.pos1){ that.directions.y-=1; }
+
+      if (that.pShield.y > that.pos1){ that.pShield.y -= 1; }
+      if (that.oShield.y > that.pos3){ that.oShield.y -= 1; }
+      if (that.sShield.y > that.pos4){ that.sShield.y -= 1; }
+
+      if (that.back.y > that.pos5){ that.back.y -= 1; }
+
+      if (that.pShield.y <= that.pos1 && that.oShield.y <= that.pos3 && that.sShield.y <= that.pos4 && that.back.y <= that.pos5 ){
+        clearInterval(raise);
+        that.info.bringToTop();
+        that.p1info.bringToTop();
+        that.p2info.bringToTop();
+        that.infoShield1.bringToTop();
+        that.infoShield2.bringToTop();
+        that.infoShield3.bringToTop();
+        that.directions.bringToTop();
+        that.back.bringToTop();
+        that.bShield.bringToTop();
+        that.p1.bringToTop();
+
+        that.p1.bringToTop();
+        var horz = setInterval(function(){
+          if (that.infoShield1.y > that.pos1){ that.infoShield1.y -= 1.5}
+          if (that.infoShield2.x > -1000){ that.infoShield2.x -= 1.5}
+          if (that.infoShield3.x < 1100){ that.infoShield3.x += 1.5}
+          if(that.infoShield1.y <= that.pos1 && that.infoShield2.x <= -1000 && that.infoShield3.x >= 1100 ) { clearInterval(horz);}
+        })
+      }
+    })
+  },
+  optionsSetUp: function(){
+    this.menuStatus = "options";
+    var that=this;
+    var raise  = setInterval(function(){
+      if (that.options.y > that.pos1){ that.options.y-=1; }
+
+      if (that.pShield.y > that.pos1){ that.pShield.y -= 1; }
+      if (that.dShield.y > that.pos2){ that.dShield.y -= 1; }
+      if (that.sShield.y > that.pos4){ that.sShield.y -= 1; }
+
+      if (that.back.y > that.pos5){ that.back.y -= 1; }
+
+      if (that.options.y <= that.pos1 && that.pShield.y <= that.pos1 && that.dShield.y <= that.pos2 && that.sShield.y <= that.pos4 && that.back.y <= that.pos5 ){
+        clearInterval(raise);
+        that.plus.bringToTop();
+        that.minus.bringToTop();
+        that.times.bringToTop();
+        that.division.bringToTop();
+
+        that.menu1.bringToTop();
+        that.menu2.bringToTop();
+        that.menu3.bringToTop();
+        that.menu4.bringToTop();
+        that.menu5.bringToTop();
+        that.menu6.bringToTop();
+        that.menu7.bringToTop();
+        that.menu8.bringToTop();
+        that.menu9.bringToTop();
+        that.menu10.bringToTop();
+
+        that.optionsShield1.bringToTop();
+        that.optionsShield2.bringToTop();
+        that.optionsShield3.bringToTop();
+        that.optionsShield4.bringToTop();
+
+        that.back.bringToTop();
+        that.bShield.bringToTop();
+        that.p1.bringToTop();
+
+        var horz = setInterval(function(){
+          if (that.optionsShield1.x > -1500){ that.optionsShield1.x -= 1.5}
+          if (that.optionsShield2.x < 1500){ that.optionsShield2.x += 1.5}
+          if (that.optionsShield3.x > -1500){ that.optionsShield3.x -= 1.5}
+          if (that.optionsShield4.x < 1500){ that.optionsShield4.x += 1.5}
+          if(that.optionsShield1.x <= -1500 && that.optionsShield2.x >= 1500 ) { clearInterval(horz);}
+        })
+      }
+    })
+  },
+
+  optionsBreakDown: function(){
+    this.menuStatus = "start";
+    this.back.bringToTop();
+    this.bShield.bringToTop();
+    this.p1.bringToTop();
+
+    var that=this;
+    var horz = setInterval(function(){
+      if (that.optionsShield1.x < -500){ that.optionsShield1.x += 1.5}
+        if (that.optionsShield2.x > 500){ that.optionsShield2.x -= 1.5}
+        if (that.optionsShield3.x < -500){ that.optionsShield3.x += 1.5}
+        if (that.optionsShield4.x > 500){ that.optionsShield4.x -= 1.5}
+        if(that.optionsShield1.x >= -500 && that.optionsShield2.x <= 500 ) {
+          clearInterval(horz);
+          that.initialLayers();
+          var raise  = setInterval(function(){
+          if (that.options.y < that.pos3){ that.options.y+=1; }
+
+          if (that.pShield.y < that.pos2+85){ that.pShield.y += 1; }
+          if (that.dShield.y < that.pos3+85){ that.dShield.y += 1; }
+          if (that.sShield.y < that.pos5+85){ that.sShield.y += 1; }
+
+          if (that.back.y < that.pos6+85){ that.back.y += 1; }
+
+          if (that.options.y>=that.pos3 && that.pShield.y >= that.pos2+85 && that.dShield.y >= that.pos3+85 && that.sShield.y >= that.pos5+85 && that.back.y+85 <= that.pos6 ){ clearInterval(raise); }
+        })
+      }
+    })
+  },
   shoot: function(){
     if (this.p1shoot.isDown && this.p1.canShoot){
       this.p1.canShoot = false;
@@ -241,20 +496,91 @@ var menuState= {
       shot1.anchor.setTo( 0.5, 0.5);
       setTimeout(function(){shot1.kill()},100);
       // this.shotSound.play();
-
-      if (this.checkOverlap(this.inner1, this.players)){
-        if (this.players.frame === 0)
+      if (this.menuStatus === "start" && this.checkOverlap(this.inner1, this.players)){
+        if (this.players.frame === 0){
           this.players.frame = 1;
-        else{
+          this.p1info.x = game.world.centerX *.5;
+          this.p2info.alpha = 1;
+          this.numPlayers = 2;
+        }else{
           this.players.frame = 0;
+          this.numPlayers = 1;
+          this.p1info.x = game.world.centerX;
+          this.p2info.alpha = 0;
         }
-        ;}
-      else if (this.checkOverlap(this.inner1, this.directions)){console.log("directions");}
-      else if (this.checkOverlap(this.inner1, this.options)){console.log("options");}
-      else if (this.checkOverlap(this.inner1, this.start)){game.state.start('main');}
+      }
+      else if (this.menuStatus === "start" && this.checkOverlap(this.inner1, this.directions)){
+        this.directionsSetUp();
+      }
+      else if (this.menuStatus === "start" && this.checkOverlap(this.inner1, this.options)){
+        this.optionsSetUp();
+      }
+      else if (this.checkOverlap(this.inner1, this.back)){
+        console.log(this.menuStatus);
+        if (this.menuStatus === "directions" ){ this.directionsBreakDown(); }
+        else if (this.menuStatus === "options"){ this.optionsBreakDown(); }
+      }
+      else if (this.menuStatus === "options" && this.checkOverlap(this.inner1, this.menu1)){
+        this.p1speed = 1;
+        this.setFrame();
+      }
+      else if (this.menuStatus === "options" && this.checkOverlap(this.inner1, this.menu2)){
+        this.p1speed = 2;
+        this.setFrame();
+      }
+      else if (this.menuStatus === "options" && this.checkOverlap(this.inner1, this.menu3)){
+        this.p1speed = 3;
+        this.setFrame();
+      }
+      else if (this.menuStatus === "options" && this.checkOverlap(this.inner1, this.menu4)){
+        this.p1speed = 4;
+        this.setFrame();
+      }
+      else if (this.menuStatus === "options" && this.checkOverlap(this.inner1, this.menu5)){
+        this.p1speed = 5;
+        this.setFrame();
+      }
+      else if (this.menuStatus === "options" && this.checkOverlap(this.inner1, this.menu6)){
+        this.p1speed = 6;
+        this.setFrame();
+      }
+      else if (this.menuStatus === "options" && this.checkOverlap(this.inner1, this.menu7)){
+        this.p1speed = 7;
+        this.setFrame();
+      }
+      else if (this.menuStatus === "options" && this.checkOverlap(this.inner1, this.menu8)){
+        this.p1speed = 8;
+        this.setFrame();
+      }
+      else if (this.menuStatus === "options" && this.checkOverlap(this.inner1, this.menu9)){
+        this.p1speed = 9;
+        this.setFrame();
+      }
+      else if (this.menuStatus === "options" && this.checkOverlap(this.inner1, this.menu10)){
+        this.p1speed = 10;
+        this.setFrame();
+      }
+      else if (this.menuStatus === "options" && this.checkOverlap(this.inner1, this.plus)){
+        this.p1operation = "plus";
+        this.setFrame();
+      }
+      else if (this.menuStatus === "options" && this.checkOverlap(this.inner1, this.minus)){
+        this.p1operation = "minus";
+        this.setFrame();
+      }
+      else if (this.menuStatus === "options" && this.checkOverlap(this.inner1, this.times)){
+        this.p1operation = "times";
+        this.setFrame();
+      }
+      else if (this.menuStatus === "options" && this.checkOverlap(this.inner1, this.division)){
+        this.p1operation = "division";
+        this.setFrame();
+      }
+      else if (this.menuStatus === "start" && this.checkOverlap(this.inner1, this.start)){
+        game.state.start('main');
+      }
     }
-  },
-
+  }
 }
 
 var mainState= {
@@ -315,6 +641,18 @@ var mainState= {
     this.p2Question.anchor.set(.5,0)
     this.round = 0;
 
+    //move input keys
+    this.p1up    = game.input.keyboard.addKey(Phaser.Keyboard.W);
+    this.p1down  = game.input.keyboard.addKey(Phaser.Keyboard.S);
+    this.p1right = game.input.keyboard.addKey(Phaser.Keyboard.E);
+    this.p1left  = game.input.keyboard.addKey(Phaser.Keyboard.Q);
+    this.p1shoot = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+
+    this.p2up    = game.input.keyboard.addKey(Phaser.Keyboard.UP);
+    this.p2down  = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
+    this.p2right = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
+    this.p2left  = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
+    this.p2shoot = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
 
     //initialize scoring
     this.score1 = [];
@@ -333,8 +671,6 @@ var mainState= {
         walk = false
       }
     },1)
-
-
   },
   update: function(){
     this.centerTarget();
@@ -345,7 +681,7 @@ var mainState= {
   checkOverlap: function(spriteA, duck) {
     if (duck){
       var boundsA = spriteA.getBounds();
-      var boundsB = duck.sprite.getBounds();
+      var boundsB = duck.getBounds();
       return Phaser.Rectangle.intersects(boundsA, boundsB);
     }
   },
@@ -416,6 +752,47 @@ var mainState= {
   },
 
   shoot: function(){
+    if(this.p1shoot.isDown && this.checkOverlap(this.inner1, this.playAgain)){
+      this.p1.canShoot = false;
+      var that = this;
+      setTimeout(function(){that.p1.canShoot = true}, 1000)
+      shot1 = game.add.sprite(this.p1.x, this.p1.y, 'shot');
+      shot1.anchor.setTo( 0.5, 0.5);
+      setTimeout(function(){shot1.kill()},100);
+      this.shotSound.play();
+      game.state.start('main');
+    }
+    if(this.p2shoot.isDown && this.checkOverlap(this.inner2, this.playAgain)){
+      this.p2.canShoot = false;
+      var that = this;
+      setTimeout(function(){that.p2.canShoot = true}, 1000)
+      shot2 = game.add.sprite(this.p2.x, this.p2.y, 'shot');
+      shot2.anchor.setTo( 0.5, 0.5);
+      setTimeout(function(){shot2.kill()},100);
+      this.shotSound.play();
+      game.state.start('main')
+    }
+    if(this.p1shoot.isDown && this.checkOverlap(this.inner1, this.mainMenu)){
+      this.p1.canShoot = false;
+      var that = this;
+      setTimeout(function(){that.p1.canShoot = true}, 1000)
+      shot1 = game.add.sprite(this.p1.x, this.p1.y, 'shot');
+      shot1.anchor.setTo( 0.5, 0.5);
+      setTimeout(function(){shot1.kill()},100);
+      this.shotSound.play();
+      game.state.start('menu')
+    }
+    if(this.p2shoot.isDown && this.checkOverlap(this.inner2, this.mainMenu)){
+      this.p2.canShoot = false;
+      var that = this;
+      setTimeout(function(){that.p2.canShoot = true}, 1000)
+      shot2 = game.add.sprite(this.p2.x, this.p2.y, 'shot');
+      shot2.anchor.setTo( 0.5, 0.5);
+      setTimeout(function(){shot2.kill()},100);
+      this.shotSound.play();
+      game.state.start('menu')
+    }
+
     if (this.p1shoot.isDown && this.p1.canShoot && this.fireBullets(1)){
       this.p1.canShoot = false;
       var that = this;
@@ -561,9 +938,14 @@ var mainState= {
   },
 
   gameOver: function(){
-    var text = game.add.text(game.world.centerX, game.world.centerY, "Game Over", { font: "64px Arial", fill: "#000000", align: "center" });
-    text.anchor.setTo(.5,.5);
-    this.duckAjaxCall()
+    var goFrame = game.add.sprite(game.world.centerX, game.world.centerY*0.3, 'gameOver');
+    goFrame.anchor.setTo(.5,0);
+    this.mainMenu = game.add.sprite(game.world.centerX, game.world.centerY*0.65, 'mainMenu');
+    this.mainMenu.anchor.setTo(.5,.5);
+    this.playAgain = game.add.sprite(game.world.centerX, game.world.centerY*0.75, 'playAgain');
+    this.playAgain.anchor.setTo(.5,.5);
+    this.p1.bringToTop();
+    this.p2.bringToTop();
   },
 
   duckAjaxCall(){
@@ -597,7 +979,7 @@ var mainState= {
     })
   },
 
-    formatQuestions: function(){
+  formatQuestions: function(){
     p1incorrect = p1incorrect.map(function(p){
         return mainState.parseEquation(p)
     })
@@ -626,9 +1008,10 @@ var mainState= {
   },
 
   showRound: function(round){
-    var roundText = game.add.text(game.world.centerX, game.world.centerY, "Round "+ round.toString(), { font: "64px Arial", fill: "#000000", align: "center" });
-    roundText.anchor.setTo(.5,.5);
-    setTimeout(function(){ roundText.text = ""},1000);
+    var roundText = game.add.sprite(game.world.centerX, game.world.centerY, 'rounds');
+    roundText.anchor.setTo(.5, .5);
+    roundText.frame = round-1;
+    setTimeout(function(){ roundText.kill()},1000);
     var that = this;
     setTimeout(function(){that.endRound() },10000);
   },
@@ -656,9 +1039,6 @@ var mainState= {
   },
 
   reorderSprites: function(){
-    // this.answer1.bringToTop();
-    // this.answer2.bringToTop();
-    // this.answer3.bringToTop();
     this.background.bringToTop();
     this.p1b1.bringToTop();
     this.p1b2.bringToTop();
@@ -777,7 +1157,7 @@ var mainState= {
   },
 
   callDog: function(hits){
-    if (this.round <= 4){
+    if (this.round <= 1){
       this.dogShowAnimation(hits);
     } else {
       this.gameOver();
@@ -832,11 +1212,12 @@ var mainState= {
 
   dogLower: function(){
     var that = this;
-    var lower  = setInterval(function(){
+    lower  = setInterval(function(){
       if (that.dogShow.y < 750){
         that.dogShow.y += 1.5;
       }else{
         clearInterval(lower);
+        that.dogShow.Destoy();
         setTimeout(function(){ that.spawnDucks() },500);
       }
     });
