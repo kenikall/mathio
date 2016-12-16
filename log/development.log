@@ -22391,3 +22391,185 @@ Processing by GamesController#mathhunt as HTML
 Completed 200 OK in 192ms (Views: 187.7ms | ActiveRecord: 0.0ms)
 
 
+Started GET "/games/mathhunt" for ::1 at 2016-12-15 16:27:07 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 54ms (Views: 52.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-12-16 12:45:22 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (6.7ms)
+Completed 200 OK in 166ms (Views: 161.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-12-16 12:47:11 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 108ms (Views: 105.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-12-16 12:58:24 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 147ms (Views: 139.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-12-16 12:59:41 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (3.9ms)
+Completed 200 OK in 87ms (Views: 85.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-12-16 13:03:05 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 94ms (Views: 90.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-12-16 13:05:54 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 88ms (Views: 85.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-12-16 13:24:24 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 184ms (Views: 170.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-12-16 13:30:59 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 466ms (Views: 462.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-12-16 14:00:11 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 117ms (Views: 108.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-12-16 14:03:28 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 119ms (Views: 117.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-12-16 14:05:43 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 89ms (Views: 86.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-12-16 14:11:11 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 63ms (Views: 60.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-12-16 14:12:40 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 109ms (Views: 106.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-12-16 14:14:18 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 66ms (Views: 64.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-12-16 14:32:01 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (5.4ms)
+Completed 200 OK in 137ms (Views: 128.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-12-16 14:34:15 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 122ms (Views: 119.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-12-16 14:35:45 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 95ms (Views: 92.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-12-16 14:36:57 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 62ms (Views: 59.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-12-16 14:50:20 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (3.6ms)
+Completed 200 OK in 166ms (Views: 149.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-12-16 14:57:03 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 73ms (Views: 71.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-12-16 14:59:01 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 55ms (Views: 52.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-12-16 15:03:14 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 86ms (Views: 83.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-12-16 15:04:28 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 66ms (Views: 64.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-12-16 15:06:59 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 92ms (Views: 89.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games/mathhunt" for ::1 at 2016-12-16 15:10:53 -0800
+Processing by GamesController#mathhunt as HTML
+  Rendering games/mathhunt.html.erb within layouts/application
+  Rendered games/mathhunt.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 151ms (Views: 149.3ms | ActiveRecord: 0.0ms)
+
+
