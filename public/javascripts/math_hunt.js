@@ -240,27 +240,28 @@ var menuState= {
     this.p1.anchor.setTo( 0.5, 0.5 );
     this.inner1 = game.add.sprite( 44, 493, 'inner1');
     this.inner1.anchor.setTo( 0.5, 0.5 );
+    this.inner1.alpha = 0;
     game.physics.arcade.enable(this.p1);
 
     this.initialLayers()
 
     this.start.events.onInputDown.add(function(){game.state.start('main')}, this);
-    this.p2 = game.add.sprite( 750, 250, 'p2');
+    this.p2 = game.add.sprite( 750, 493, 'p2');
     this.p2.anchor.setTo( 0.5, 0.5 );
-    this.inner2 = game.add.sprite( 750, 250, 'inner2');
+    this.inner2 = game.add.sprite( 750, 493, 'inner2');
     this.inner2.anchor.setTo( 0.5, 0.5 );
     game.physics.arcade.enable(this.p2);
-    this.p2.kill()
-    this.inner2.kill()
+    this.p2.kill();
+    this.inner2.alpha = 0;
 
     this.p1.canShoot = true;
     this.p2.canShoot = true;
 
     //move input keys
-    this.p1up    = game.input.keyboard.addKey(Phaser.Keyboard.UP);
-    this.p1down  = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
-    this.p1right = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
-    this.p1left  = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
+    this.p1up    = game.input.keyboard.addKey(Phaser.Keyboard.W);
+    this.p1down  = game.input.keyboard.addKey(Phaser.Keyboard.S);
+    this.p1right = game.input.keyboard.addKey(Phaser.Keyboard.Q);
+    this.p1left  = game.input.keyboard.addKey(Phaser.Keyboard.E);
     this.p1shoot = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
     this.p2up    = game.input.keyboard.addKey(Phaser.Keyboard.UP);
@@ -276,16 +277,17 @@ var menuState= {
     this.shoot();
   },
   setFrame: function(){
-    this.menu1.frame =(p1speed === 1)?3:(this.p2speed === 1)?1:(p1speed === 1 && this.p2speed === 1)?2:0;
-    this.menu2.frame =(p1speed === 2)?3:(this.p2speed === 2)?1:(p1speed === 2 && this.p2speed === 1)?2:0;
-    this.menu3.frame =(p1speed === 3)?3:(this.p2speed === 3)?1:(p1speed === 3 && this.p2speed === 1)?2:0;
-    this.menu4.frame =(p1speed === 4)?3:(this.p2speed === 4)?1:(p1speed === 4 && this.p2speed === 1)?2:0;
-    this.menu5.frame =(p1speed === 5)?3:(this.p2speed === 5)?1:(p1speed === 5 && this.p2speed === 1)?2:0;
-    this.menu6.frame =(p1speed === 6)?3:(this.p2speed === 6)?1:(p1speed === 6 && this.p2speed === 1)?2:0;
-    this.menu7.frame =(p1speed === 7)?3:(this.p2speed === 7)?1:(p1speed === 7 && this.p2speed === 1)?2:0;
-    this.menu8.frame =(p1speed === 8)?3:(this.p2speed === 8)?1:(p1speed === 8 && this.p2speed === 1)?2:0;
-    this.menu9.frame =(p1speed === 9)?3:(this.p2speed === 9)?1:(p1speed === 9 && this.p2speed === 1)?2:0;
-    this.menu10.frame =(p1speed === 10)?3:(this.p2speed === 10)?1:(p1speed === 10 && this.p2speed === 1)?2:0;
+    console.log(p2speed);
+    this.menu1.frame =(p1speed === 1)?3:(p2speed === 1)?1:(p1speed === 1 && p2speed === 1)?2:0;
+    this.menu2.frame =(p1speed === 2)?3:(p2speed === 2)?1:(p1speed === 2 && p2speed === 1)?2:0;
+    this.menu3.frame =(p1speed === 3)?3:(p2speed === 3)?1:(p1speed === 3 && p2speed === 1)?2:0;
+    this.menu4.frame =(p1speed === 4)?3:(p2speed === 4)?1:(p1speed === 4 && p2speed === 1)?2:0;
+    this.menu5.frame =(p1speed === 5)?3:(p2speed === 5)?1:(p1speed === 5 && p2speed === 1)?2:0;
+    this.menu6.frame =(p1speed === 6)?3:(p2speed === 6)?1:(p1speed === 6 && p2speed === 1)?2:0;
+    this.menu7.frame =(p1speed === 7)?3:(p2speed === 7)?1:(p1speed === 7 && p2speed === 1)?2:0;
+    this.menu8.frame =(p1speed === 8)?3:(p2speed === 8)?1:(p1speed === 8 && p2speed === 1)?2:0;
+    this.menu9.frame =(p1speed === 9)?3:(p2speed === 9)?1:(p1speed === 9 && p2speed === 1)?2:0;
+    this.menu10.frame =(p1speed === 10)?3:(p2speed === 10)?1:(p1speed === 10 && p2speed === 1)?2:0;
 
     this.plus.frame =(p1skill === "Addition")?3:(p2skill === "Addition")?3:(p1skill === "Addition" && p2skill === 1)?2:0;
     this.minus.frame =(p1skill === "Subtraction")?3:(p2skill === "Subtraction")?3:(p1skill === "Subtraction" && p2skill === 1)?2:0;
@@ -293,16 +295,14 @@ var menuState= {
     this.division.frame =(p1skill === "Division")?3:(p2skill === "Division")?3:(p1skill === "Division" && p2skill === 1)?2:0;
   },
   changePlayers: function(){
+    console.log(numPlayers)
     if (numPlayers === 2){
-      this.p2 = game.add.sprite( 750, 250, 'p2');
-      // this.p2.anchor.setTo( 0.5, 0.5 );
-      this.inner2 = game.add.sprite( 750, 250, 'inner2');
-      // this.inner2.anchor.setTo( 0.5, 0.5 );
+      this.p2.reset(825, 493, 'p2');
+      console.log(this.p2.x);
+      this.p2.bringToTop();
     } else {
       this.p2.kill();
-      this.inner2.kill();
     }
-    console.log("called");
   },
   centerTarget: function(){
     this.inner1.x = this.p1.x;
@@ -326,7 +326,7 @@ var menuState= {
     else if (this.p2left.isDown && this.inner2.x >= 0) { this.p2.x -= 5;}
   },
   initialLayers: function(){
-        //sub menu items
+    //sub menu items
     this.info.bringToTop();
     this.p1info.bringToTop();
     this.p2info.bringToTop();
@@ -362,6 +362,7 @@ var menuState= {
     this.back.bringToTop();
     this.bShield.bringToTop();
     this.p1.bringToTop();
+    this.p2.bringToTop();
 
     var that=this;
     var horz = setInterval(function(){
@@ -409,8 +410,8 @@ var menuState= {
         that.back.bringToTop();
         that.bShield.bringToTop();
         that.p1.bringToTop();
+        that.p2.bringToTop();
 
-        that.p1.bringToTop();
         var horz = setInterval(function(){
           if (that.infoShield1.y > that.pos1){ that.infoShield1.y -= 1.5}
           if (that.infoShield2.x > -1000){ that.infoShield2.x -= 1.5}
@@ -458,6 +459,7 @@ var menuState= {
         that.back.bringToTop();
         that.bShield.bringToTop();
         that.p1.bringToTop();
+        that.p2.bringToTop();
 
         var horz = setInterval(function(){
           if (that.optionsShield1.x > -1500){ that.optionsShield1.x -= 1.5}
@@ -475,6 +477,7 @@ var menuState= {
     this.back.bringToTop();
     this.bShield.bringToTop();
     this.p1.bringToTop();
+    this.p2.bringToTop();
 
     var that=this;
     var horz = setInterval(function(){
@@ -500,95 +503,99 @@ var menuState= {
     })
   },
   shoot: function(){
-    if (this.p1shoot.isDown && this.p1.canShoot){
+    var p1shooting = false;
+    var p2shooting = false;
+
+    if(this.p1shoot.isDown && this.p1.canShoot){
       this.p1.canShoot = false;
       var that = this;
       setTimeout(function(){that.p1.canShoot = true}, 250)
       shot1 = game.add.sprite(this.p1.x, this.p1.y, 'shot');
       shot1.anchor.setTo( 0.5, 0.5);
       setTimeout(function(){shot1.kill()},100);
-      // this.shotSound.play();
-      if (this.menuStatus === "start" && this.checkOverlap(this.inner1, this.players)){
-        if (this.players.frame === 0){
+      p1shooting = true;
+      console.log("p1");
+    }
+    if(this.p2shoot.isDown && this.p2.canShoot){
+      this.p2.canShoot = false;
+      var that = this;
+      setTimeout(function(){that.p2.canShoot = true}, 250)
+      shot1 = game.add.sprite(this.p2.x, this.p2.y, 'shot');
+      shot1.anchor.setTo( 0.5, 0.5);
+      setTimeout(function(){shot1.kill()},100);
+      p2shooting = true;
+      console.log("p2");
+    }
+    //start menu
+    if (this.menuStatus === "start"){
+      if (p1shooting && this.checkOverlap(this.inner1, this.players) ||
+          p2shooting && this.checkOverlap(this.inner2, this.players)){
+        if (numPlayers === 1){
           this.players.frame = 1;
           this.p1info.x = game.world.centerX *.5;
-          this.numPlayers = 2;
+          numPlayers = 2;
         }else{
+          if (p2skill === "none"){
+            p2speed = 5;
+            p2skill = "Addition"
+          }
           this.players.frame = 0;
-          this.numPlayers = 1;
+          numPlayers = 1;
           this.p1info.x = game.world.centerX;
         }
         this.changePlayers();
       }
-      else if (this.menuStatus === "start" && this.checkOverlap(this.inner1, this.directions)){
+      else if (p1shooting && this.checkOverlap(this.inner1, this.directions)||
+              (p2shooting && this.checkOverlap(this.inner2, this.players))){
         this.directionsSetUp();
       }
-      else if (this.menuStatus === "start" && this.checkOverlap(this.inner1, this.options)){
+      else if (p1shooting && this.checkOverlap(this.inner1, this.options)||
+              (p2shooting && this.checkOverlap(this.inner2, this.options))){
         this.optionsSetUp();
       }
-      else if (this.checkOverlap(this.inner1, this.back)){
-        if (this.menuStatus === "directions" ){ this.directionsBreakDown(); }
-        else if (this.menuStatus === "options"){ this.optionsBreakDown(); }
-      }
-      else if (this.menuStatus === "options" && this.checkOverlap(this.inner1, this.menu1)){
-        p1speed = 1;
-        this.setFrame();
-      }
-      else if (this.menuStatus === "options" && this.checkOverlap(this.inner1, this.menu2)){
-        p1speed = 2;
-        this.setFrame();
-      }
-      else if (this.menuStatus === "options" && this.checkOverlap(this.inner1, this.menu3)){
-        p1speed = 3;
-        this.setFrame();
-      }
-      else if (this.menuStatus === "options" && this.checkOverlap(this.inner1, this.menu4)){
-        p1speed = 4;
-        this.setFrame();
-      }
-      else if (this.menuStatus === "options" && this.checkOverlap(this.inner1, this.menu5)){
-        p1speed = 5;
-        this.setFrame();
-      }
-      else if (this.menuStatus === "options" && this.checkOverlap(this.inner1, this.menu6)){
-        p1speed = 6;
-        this.setFrame();
-      }
-      else if (this.menuStatus === "options" && this.checkOverlap(this.inner1, this.menu7)){
-        p1speed = 7;
-        this.setFrame();
-      }
-      else if (this.menuStatus === "options" && this.checkOverlap(this.inner1, this.menu8)){
-        p1speed = 8;
-        this.setFrame();
-      }
-      else if (this.menuStatus === "options" && this.checkOverlap(this.inner1, this.menu9)){
-        p1speed = 9;
-        this.setFrame();
-      }
-      else if (this.menuStatus === "options" && this.checkOverlap(this.inner1, this.menu10)){
-        p1speed = 10;
-        this.setFrame();
-      }
-      else if (this.menuStatus === "options" && this.checkOverlap(this.inner1, this.plus)){
-        p1skill = "Addition";
-        this.setFrame();
-      }
-      else if (this.menuStatus === "options" && this.checkOverlap(this.inner1, this.minus)){
-        p1skill = "Subtraction";
-        this.setFrame();
-      }
-      else if (this.menuStatus === "options" && this.checkOverlap(this.inner1, this.times)){
-        p1skill = "Multiplication";
-        this.setFrame();
-      }
-      else if (this.menuStatus === "options" && this.checkOverlap(this.inner1, this.division)){
-        p1skill = "Division";
-        this.setFrame();
-      }
-      else if (this.menuStatus === "start" && this.checkOverlap(this.inner1, this.start)){
+      else if (p1shooting && this.checkOverlap(this.inner1, this.start)||
+              (p2shooting && this.checkOverlap(this.inner2, this.start))){
         game.state.start('main');
       }
+    } else if (this.menuStatus === "directions") {
+      if (p1shooting && this.checkOverlap(this.inner1, this.back)||
+         (p2shooting && this.checkOverlap(this.inner2, this.back))){
+        this.directionsBreakDown();
+      }
+    } else if (this.menuStatus === "options"){
+      if (p1shooting && this.checkOverlap(this.inner1, this.back)||
+         (p2shooting && this.checkOverlap(this.inner2, this.back))){
+        this.optionsBreakDown();
+      }
+      else if (p1shooting && this.checkOverlap(this.inner1, this.menu1)){ p1speed = 1; }
+      else if (p2shooting && this.checkOverlap(this.inner2, this.menu1)){ p2speed = 1; }
+      else if (p1shooting && this.checkOverlap(this.inner1, this.menu2)){ p1speed = 2; }
+      else if (p2shooting && this.checkOverlap(this.inner2, this.menu2)){ p2speed = 2; }
+      else if (p1shooting && this.checkOverlap(this.inner1, this.menu3)){ p1speed = 3; }
+      else if (p2shooting && this.checkOverlap(this.inner2, this.menu3)){ p2speed = 3; }
+      else if (p1shooting && this.checkOverlap(this.inner1, this.menu4)){ p1speed = 4; }
+      else if (p2shooting && this.checkOverlap(this.inner2, this.menu4)){ p2speed = 4; }
+      else if (p1shooting && this.checkOverlap(this.inner1, this.menu5)){ p1speed = 5; }
+      else if (p2shooting && this.checkOverlap(this.inner2, this.menu5)){ p2speed = 5; }
+      else if (p1shooting && this.checkOverlap(this.inner1, this.menu6)){ p1speed = 6; }
+      else if (p2shooting && this.checkOverlap(this.inner2, this.menu6)){ p2speed = 6; }
+      else if (p1shooting && this.checkOverlap(this.inner1, this.menu7)){ p1speed = 7; }
+      else if (p2shooting && this.checkOverlap(this.inner2, this.menu7)){ p2speed = 7; }
+      else if (p1shooting && this.checkOverlap(this.inner1, this.menu8)){ p1speed = 8; }
+      else if (p2shooting && this.checkOverlap(this.inner2, this.menu8)){ p2speed = 8; }
+      else if (p1shooting && this.checkOverlap(this.inner1, this.menu9)){ p1speed = 9; }
+      else if (p2shooting && this.checkOverlap(this.inner2, this.menu9)){ p2speed = 9; }
+      else if (p1shooting && this.checkOverlap(this.inner1, this.menu10)){ p1speed = 10; }
+      else if (p2shooting && this.checkOverlap(this.inner2, this.menu10)){ p2speed = 10; }
+      else if (p1shooting && this.checkOverlap(this.inner1, this.plus)){ p1skill = "Addition"; }
+      else if (p2shooting && this.checkOverlap(this.inner2, this.plus)){ p2skill = "Addition"; }
+      else if (p1shooting && this.checkOverlap(this.inner1, this.minus)){ p1skill = "Subtraction"; }
+      else if (p2shooting && this.checkOverlap(this.inner2, this.minus)){ p2skill = "Subtraction"; }
+      else if (p1shooting && this.checkOverlap(this.inner1, this.times)){ p1skill = "Multiplication"; }
+      else if (p2shooting && this.checkOverlap(this.inner2, this.times)){ p2skill = "Multiplication"; }
+      else if (p1shooting && this.checkOverlap(this.inner1, this.division)){ p1skill = "Division"; }
+      else if (p2shooting && this.checkOverlap(this.inner2, this.division)){ p2skill = "Division"; }
+      if (p1shooting || p2shooting){ this.setFrame(); }
     }
   }
 }
@@ -636,6 +643,7 @@ var mainState= {
     this.p1.anchor.setTo( 0.5, 0.5 );
     this.inner1 = game.add.sprite( 250, 250, 'inner1');
     this.inner1.anchor.setTo( 0.5, 0.5 );
+    this.inner1.alpha = 0;
     this.p1.canShoot = true;
     game.physics.arcade.enable(this.p1);
 
@@ -643,6 +651,7 @@ var mainState= {
     this.p2.anchor.setTo( 0.5, 0.5 );
     this.inner2 = game.add.sprite( 750, 250, 'inner2');
     this.inner2.anchor.setTo( 0.5, 0.5 );
+    this.inner2.alpha = 0;
     this.p2.canShoot = true;
     game.physics.arcade.enable(this.p2);
 
