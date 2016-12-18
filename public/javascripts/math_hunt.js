@@ -256,6 +256,8 @@ var menuState= {
     this.p1.canShoot = true;
     this.p2.canShoot = true;
     this.canStart = true;
+    this.canBack  =false;
+
     //move input keys
     this.p1up    = game.input.keyboard.addKey(Phaser.Keyboard.W);
     this.p1down  = game.input.keyboard.addKey(Phaser.Keyboard.S);
@@ -390,7 +392,6 @@ var menuState= {
     })
   },
   directionsSetUp: function(){
-    // this.menuStatus = "directions";
     var that=this;
     var raise  = setInterval(function(){
       if (that.directions.y > that.pos1){ that.directions.y-=1; }
@@ -419,7 +420,10 @@ var menuState= {
           if (that.infoShield1.y > that.pos1){ that.infoShield1.y -= 1.5}
           if (that.infoShield2.x > -1000){ that.infoShield2.x -= 1.5}
           if (that.infoShield3.x < 1100){ that.infoShield3.x += 1.5}
-          if(that.infoShield1.y <= that.pos1 && that.infoShield2.x <= -1000 && that.infoShield3.x >= 1100 ) { clearInterval(horz);}
+          if(that.infoShield1.y <= that.pos1 && that.infoShield2.x <= -1000 && that.infoShield3.x >= 1100 ) {
+            that.canBack = true;
+            clearInterval(horz);
+          }
         })
       }
     })
@@ -469,14 +473,16 @@ var menuState= {
           if (that.optionsShield2.x < 1500){ that.optionsShield2.x += 1.5}
           if (that.optionsShield3.x > -1500){ that.optionsShield3.x -= 1.5}
           if (that.optionsShield4.x < 1500){ that.optionsShield4.x += 1.5}
-          if(that.optionsShield1.x <= -1500 && that.optionsShield2.x >= 1500 ) { clearInterval(horz);}
+          if(that.optionsShield1.x <= -1500 && that.optionsShield2.x >= 1500 ) {
+            that.canBack = true;
+            clearInterval(horz);
+          }
         })
       }
     })
   },
 
   optionsBreakDown: function(){
-    // this.menuStatus = "start";
     this.back.bringToTop();
     this.bShield.bringToTop();
     this.p1.bringToTop();
@@ -541,6 +547,7 @@ var menuState= {
         if (numPlayers === 1){
           this.players.frame = 1;
           this.p1info.x = game.world.centerX *.5;
+          this.p2info.alpha = 1;
           numPlayers = 2;
         }else{
           if (p2skill === "none"){
@@ -572,15 +579,21 @@ var menuState= {
       this.canStart = false;
       if (p1shooting && this.checkOverlap(this.inner1, this.back)||
          (p2shooting && this.checkOverlap(this.inner2, this.back))){
-        this.menuStatus = "start";
-        this.directionsBreakDown();
+        if(this.canBack){
+          this.canBack = false;
+          this.menuStatus = "start";
+          this.directionsBreakDown();
+        }
       }
     } else if (this.menuStatus === "options"){
       this.canStart = false;
       if (p1shooting && this.checkOverlap(this.inner1, this.back)||
          (p2shooting && this.checkOverlap(this.inner2, this.back))){
-        this.menuStatus = "start";
-        this.optionsBreakDown();
+        if(this.canBack){
+          this.canBack = false;
+          this.menuStatus = "start";
+          this.optionsBreakDown();
+        }
       }
       else if (p1shooting && this.checkOverlap(this.inner1, this.menu1)){ p1speed = 1; }
       else if (p2shooting && this.checkOverlap(this.inner2, this.menu1)){ p2speed = 1; }
@@ -617,6 +630,22 @@ var menuState= {
 
 var mainState= {
   create: function(){
+    //crosshairs
+    game.load.image('inner1', '/images/math_hunt/p1_inner.png');
+    game.load.image('inner2', '/images/math_hunt/p2_inner.png');
+    game.load.image('p1', '/images/math_hunt/p1crosshairs.png');
+    game.load.image('p2', '/images/math_hunt/p2crosshairs.png');
+    game.load.image('shot', '/images/math_hunt/shotCrosshairs.png');
+    game.load.image('redX', '/images/math_hunt/redX.png');
+
+    //sounds
+    game.load.audio('shotSound', '/sounds/math_hunt/shot.wav');
+    // game.load.audio('quacks', '/sounds/math_hunt/quacks.wav');
+    game.load.audio('hit', '/sounds/math_hunt/hit.wav');
+    game.load.audio('fall', '/sounds/math_hunt/fall.wav');
+    game.load.audio('click', '/sounds/math_hunt/click.wav');
+    game.load.audio('honk', '/sounds/math_hunt/honk.wav');
+
     //set stage
     game.stage.backgroundColor = '#40bdff';
     this.background = game.add.sprite( 0, 0, 'stage');
@@ -735,10 +764,14 @@ var mainState= {
     this.p1b1 = game.add.sprite( 100, 850, 'bullet');
     this.p1b2 = game.add.sprite( 150, 850, 'bullet');
     this.p1b3 = game.add.sprite( 200, 850, 'bullet');
-
     this.p2b1 = game.add.sprite( 775, 850, 'bullet');
     this.p2b2 = game.add.sprite( 825, 850, 'bullet');
     this.p2b3 = game.add.sprite( 875, 850, 'bullet');
+    if (numPlayers !== 2){
+      this.p2b1.kill();
+      this.p2b2.kill();
+      this.p2b3.kill();
+    }
   },
 
   fireBullets: function(player){
@@ -802,7 +835,7 @@ var mainState= {
       shot1.anchor.setTo( 0.5, 0.5);
       setTimeout(function(){shot1.kill()},100);
       this.shotSound.play();
-      game.state.start('main');
+      this.game.state.start('main');
     }
     if(this.p2shoot.isDown && this.checkOverlap(this.inner2, this.playAgain)){
       this.p2.canShoot = false;
@@ -812,7 +845,7 @@ var mainState= {
       shot2.anchor.setTo( 0.5, 0.5);
       setTimeout(function(){shot2.kill()},100);
       this.shotSound.play();
-      game.state.start('main')
+      this.game.state.start('main');
     }
     if(this.p1shoot.isDown && this.checkOverlap(this.inner1, this.mainMenu)){
       this.p1.canShoot = false;
@@ -822,7 +855,7 @@ var mainState= {
       shot1.anchor.setTo( 0.5, 0.5);
       setTimeout(function(){shot1.kill()},100);
       this.shotSound.play();
-      game.state.start('menu')
+      this.game.state.start('menu');
     }
     if(this.p2shoot.isDown && this.checkOverlap(this.inner2, this.mainMenu)){
       this.p2.canShoot = false;
@@ -832,7 +865,7 @@ var mainState= {
       shot2.anchor.setTo( 0.5, 0.5);
       setTimeout(function(){shot2.kill()},100);
       this.shotSound.play();
-      game.state.start('menu')
+      this.game.state.start('menu');
     }
 
     if (this.p1shoot.isDown && this.p1.canShoot && this.fireBullets(1)){
@@ -950,12 +983,13 @@ var mainState= {
         game.add.sprite(312+(i*30 +10),830,'noScore');
       }
     }
-
-    for (var i=0 ; i < this.score2.length ; i++){
-      if (this.score2[i] === 1){
-        game.add.sprite(655-(i*30 + 10),830,'blueScore');
-      } else if (this.score2[i] === 0){
-        game.add.sprite(655-(i*30 + 10),830,'noScore');
+    if (numPlayers === 2){
+      for (var i=0 ; i < this.score2.length ; i++){
+        if (this.score2[i] === 1){
+          game.add.sprite(655-(i*30 + 10),830,'blueScore');
+        } else if (this.score2[i] === 0){
+          game.add.sprite(655-(i*30 + 10),830,'noScore');
+        }
       }
     }
   },
@@ -988,64 +1022,64 @@ var mainState= {
     this.p2.bringToTop();
   },
 
-  duckAjaxCall(){
+  // duckAjaxCall(){
 
-    this.formatQuestions()
+  //   this.formatQuestions()
 
-    data = {
-      player1correct: p1correct,
-      player2correct: p2correct,
-      player1wrong: p1incorrect,
-      player2wrong: p2incorrect,
-      game_id: 4
-    }
+  //   data = {
+  //     player1correct: p1correct,
+  //     player2correct: p2correct,
+  //     player1wrong: p1incorrect,
+  //     player2wrong: p2incorrect,
+  //     game_id: 4
+  //   }
 
-    var request = $.ajax({
-      url: '/results',
-      type: 'post',
-      data: data
-    })
+  //   var request = $.ajax({
+  //     url: '/results',
+  //     type: 'post',
+  //     data: data
+  //   })
 
-    request.done(function(response){
-      setTimeout(function(){
-      ($('#hidden_match_button')).css('margin-top', '40%')
-      $('#math-hunt').css('background', '#40bdff').html($('#hidden_match_button'))
-      $('#hidden_match_button').slideToggle(1000)
-      }, 2000)
-    })
+  //   request.done(function(response){
+  //     setTimeout(function(){
+  //     ($('#hidden_match_button')).css('margin-top', '40%')
+  //     $('#math-hunt').css('background', '#40bdff').html($('#hidden_match_button'))
+  //     $('#hidden_match_button').slideToggle(1000)
+  //     }, 2000)
+  //   })
 
-    request.fail(function(response){
-      console.log('failed')
-    })
-  },
+  //   request.fail(function(response){
+  //     console.log('failed')
+  //   })
+  // },
 
-  formatQuestions: function(){
-    p1incorrect = p1incorrect.map(function(p){
-        return mainState.parseEquation(p)
-    })
-     p2incorrect = p2incorrect.map(function(p){
-        return mainState.parseEquation(p)
-    })
-      p1correct = p1correct.map(function(p){
-        return mainState.parseEquation(p)
-    })
-      p2correct = p2correct.map(function(p){
-        return mainState.parseEquation(p)
-    })
-  },
+  // formatQuestions: function(){
+  //   p1incorrect = p1incorrect.map(function(p){
+  //       return mainState.parseEquation(p)
+  //   })
+  //    p2incorrect = p2incorrect.map(function(p){
+  //       return mainState.parseEquation(p)
+  //   })
+  //     p1correct = p1correct.map(function(p){
+  //       return mainState.parseEquation(p)
+  //   })
+  //     p2correct = p2correct.map(function(p){
+  //       return mainState.parseEquation(p)
+  //   })
+  // },
 
-  parseEquation: function(equation){
-      equation = equation.split(' ')
-      if (equation[1] === '+'){
-        return (equation[0] + ' ' + equation[1] + ' ' + equation[2] + ' = ' + (parseInt(equation[0]) +parseInt(equation[2])))
-      } else if (equation[1] === '-'){
-        return (equation[0] + ' ' + equation[1] + ' ' + equation[2] + ' = ' + (parseInt(equation[0]) - parseInt(equation[2])))
-      } else if (equation[1] === '*') {
-        return (equation[0] + ' ' + equation[1] + ' ' + equation[2] + ' = ' + (parseInt(equation[0]) * parseInt(equation[2])))
-      } else {
-        return (equation[0] + ' ' + equation[1] + ' ' + equation[2] + ' = ' + (parseInt(equation[0]) / parseInt(equation[2])))
-      }
-  },
+  // parseEquation: function(equation){
+  //     equation = equation.split(' ')
+  //     if (equation[1] === '+'){
+  //       return (equation[0] + ' ' + equation[1] + ' ' + equation[2] + ' = ' + (parseInt(equation[0]) +parseInt(equation[2])))
+  //     } else if (equation[1] === '-'){
+  //       return (equation[0] + ' ' + equation[1] + ' ' + equation[2] + ' = ' + (parseInt(equation[0]) - parseInt(equation[2])))
+  //     } else if (equation[1] === '*') {
+  //       return (equation[0] + ' ' + equation[1] + ' ' + equation[2] + ' = ' + (parseInt(equation[0]) * parseInt(equation[2])))
+  //     } else {
+  //       return (equation[0] + ' ' + equation[1] + ' ' + equation[2] + ' = ' + (parseInt(equation[0]) / parseInt(equation[2])))
+  //     }
+  // },
 
   showRound: function(round){
     var roundText = game.add.sprite(game.world.centerX, game.world.centerY, 'rounds');
@@ -1089,7 +1123,7 @@ var mainState= {
     this.p1.bringToTop();
     this.p2.bringToTop();
     this.p1Question.bringToTop();
-    this.p2Question.bringToTop();
+    if (numPlayers===2){ this.p2Question.bringToTop(); }
     this.renderScore();
   },
 
@@ -1145,7 +1179,6 @@ var mainState= {
             answer1 = num1 + num2;
             this.p1Question.text = num1.toString() + " + " + num2.toString();
         }
-
         switch(p2skill){
         case "Addition":
           answer2 = num3 + num4;
@@ -1183,10 +1216,11 @@ var mainState= {
           answer2 = num3 + num4;
           this.p2Question.text = num3.toString() + " + " + num4.toString();
         }
-    }
 
+    }
     this.oneDuck(answer1);
     this.oneDuck(answer2);
+    if (numPlayers !== 2) {this.p2Question = "";}
 
     var rand = Math.floor(Math.random()*20);
     while ( rand === answer1 || rand === answer2){
