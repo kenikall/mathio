@@ -755,7 +755,7 @@ var mainState= {
     this.startGame();
   },
   startGame: function(){
-    this.intro.play();
+    if(sound){ this.intro.play(); }
     this.round = 0;
     this.dogWalk = game.add.sprite(-125,700,'dogWalk');
     this.dogWalk.anchor.setTo(.5,.5);
@@ -818,7 +818,7 @@ var mainState= {
         this.p1bullets.pop();
         return true;
       }else{
-        this.emptyGunSound.play();
+        if(sound){ this.emptyGunSound.play(); }
         return false;
       }
     }
@@ -836,7 +836,7 @@ var mainState= {
         this.p2bullets.pop();
         return true;
       }else{
-        this.emptyGunSound.play();
+        if(sound){ this.emptyGunSound.play(); }
         return false;
       }
     }
@@ -863,7 +863,7 @@ var mainState= {
       shot1 = game.add.sprite(this.p1.x, this.p1.y, 'shot');
       shot1.anchor.setTo( 0.5, 0.5);
       setTimeout(function(){shot1.kill()},100);
-      this.shotSound.play();
+      if(sound){ this.shotSound.play(); }
 
       this.goFrame.kill();
       this.mainMenu.kill();
@@ -880,7 +880,7 @@ var mainState= {
       shot2 = game.add.sprite(this.p2.x, this.p2.y, 'shot');
       shot2.anchor.setTo( 0.5, 0.5);
       setTimeout(function(){shot2.kill()},100);
-      this.shotSound.play();
+      if(sound){ this.shotSound.play(); }
 
       this.goFrame.kill();
       this.mainMenu.kill();
@@ -897,7 +897,7 @@ var mainState= {
       shot1 = game.add.sprite(this.p1.x, this.p1.y, 'shot');
       shot1.anchor.setTo( 0.5, 0.5);
       setTimeout(function(){shot1.kill()},100);
-      this.shotSound.play();
+      if(sound){ this.shotSound.play(); }
       location.reload();
     }
     if(this.p2shoot.isDown && this.checkOverlap(this.inner2, this.mainMenu)){
@@ -907,7 +907,7 @@ var mainState= {
       shot2 = game.add.sprite(this.p2.x, this.p2.y, 'shot');
       shot2.anchor.setTo( 0.5, 0.5);
       setTimeout(function(){shot2.kill()},100);
-      this.shotSound.play();
+      if(sound){ this.shotSound.play(); }
       this.game.state.start('menu');
     }
 
@@ -918,7 +918,7 @@ var mainState= {
       shot1 = game.add.sprite(this.p1.x, this.p1.y, 'shot');
       shot1.anchor.setTo( 0.5, 0.5);
       setTimeout(function(){shot1.kill()},100);
-      this.shotSound.play();
+      if(sound){ this.shotSound.play(); }
       if (this.ducks.length > 0){
         if (this.checkOverlap(this.inner1, this.ducks[0])){
           this.ducks[0].sprite.kill();
@@ -928,13 +928,13 @@ var mainState= {
           x = game.add.sprite(this.p1.x, this.p1.y, 'redX');
           x.anchor.setTo( 0.5, 0.5);
           setTimeout(function(){x.kill()},100);
-          this.honk.play()
+          if(sound){ this.honk.play() }
           p1incorrect.push(this.p1Question.text)
         } else if (this.checkOverlap(this.inner1, this.ducks[2])){
           x = game.add.sprite(this.p1.x, this.p1.y, 'redX');
           x.anchor.setTo( 0.5, 0.5);
           setTimeout(function(){x.kill()},100);
-          this.honk.play();
+          if(sound){ this.honk.play(); }
           p1incorrect.push(this.p1Question.text)
         }
       }
@@ -946,14 +946,14 @@ var mainState= {
       shot2 = game.add.sprite(this.p2.x, this.p2.y, 'shot');
       shot2.anchor.setTo( 0.5, 0.5);
       setTimeout(function(){shot2.kill()},100);
-      this.shotSound.play();
+      if(sound){ this.shotSound.play(); }
 
       if (this.ducks.length > 0){
         if (this.checkOverlap(this.inner2, this.ducks[0])){
           x = game.add.sprite(this.p2.x, this.p2.y, 'redX');
           x.anchor.setTo( 0.5, 0.5);
           setTimeout(function(){x.kill()},100);
-          this.honk.play()
+          if(sound){ this.honk.play(); }
           p2incorrect.push(this.p2Question.text)
         } else if (this.checkOverlap(this.inner2, this.ducks[1])){
           this.ducks[1].sprite.kill();
@@ -964,7 +964,7 @@ var mainState= {
           x = game.add.sprite(this.p2.x, this.p2.y, 'redX');
           x.anchor.setTo( 0.5, 0.5);
           setTimeout(function(){x.kill()},100);
-          this.honk.play()
+          if(sound){ this.honk.play(); }
           p2incorrect.push(this.p2Question.text)
         }
       }
@@ -976,7 +976,7 @@ var mainState= {
     yCord = this.inner1.y;
     var dedDuck = game.add.sprite(xCord, yCord, 'dedDuck');
     dedDuck.anchor.setTo(.5,.5);
-    this.hit.play();
+    if(sound){ this.hit.play(); }
     this.updateScore(1);
     var that = this;
     setTimeout(function(){
@@ -985,7 +985,7 @@ var mainState= {
       downDuck.anchor.setTo(.5,.5);
       game.physics.arcade.enable(downDuck);
       downDuck.body.velocity.y = 200;
-      that.fall.play();
+      if(sound){ that.fall.play(); }
       that.reorderSprites();
     },500);
   },
@@ -995,7 +995,7 @@ var mainState= {
     yCord = this.inner2.y;
     var dedDuck = game.add.sprite(xCord, yCord, 'dedDuck');
     dedDuck.anchor.setTo(.5,.5);
-    this.hit.play();
+    if(sound){ this.hit.play(); }
     this.updateScore(2);
     var that = this;
     setTimeout(function(){
@@ -1004,7 +1004,7 @@ var mainState= {
       downDuck.anchor.setTo(.5,.5);
       game.physics.arcade.enable(downDuck);
       downDuck.body.velocity.y = 200;
-      that.fall.play();
+      if(sound){ that.fall.play(); }
       that.reorderSprites();
     },500);
   },
@@ -1047,7 +1047,7 @@ var mainState= {
   spawnDucks: function(){
     var that = this;
     this.round++
-    this.roundStart.play();
+    if(sound){ this.roundStart.play(); }
     this.showRound(this.round);
 
     this.ducks = [];
@@ -1056,7 +1056,7 @@ var mainState= {
   },
 
   gameOver: function(){
-    this.gameOverMusic.play();
+    if(sound){ this.gameOverMusic.play(); }
     this.goFrame = game.add.sprite(game.world.centerX, game.world.centerY*0.3, 'gameOver');
     this.goFrame.anchor.setTo(.5,0);
     this.mainMenu = game.add.sprite(game.world.centerX, game.world.centerY*0.65, 'mainMenu');
@@ -1274,10 +1274,12 @@ var mainState= {
     }
     this.oneDuck(rand);
     var that = this;
-    setTimeout(function(){ that.flapping = setInterval(function(){
-        that.flap.play();
-        if (Math.random()> .8){ that.quack.play(); }
-    },150)}, 1000);
+    if(sound){
+        setTimeout(function(){ that.flapping = setInterval(function(){
+            that.flap.play();
+            if (Math.random()> .8){ that.quack.play(); }
+        },150)}, 1000);
+    }
     this.reorderSprites();
   },
 
@@ -1295,7 +1297,7 @@ var mainState= {
     this.dogJump.anchor.setTo(.5,.5);
     this.dogJump.frame = 0
     var that = this;
-    setTimeout(function(){ that.dogJump.frame = 1; that.dogJumpAnimation(1); that.bark.play(); },500);
+    setTimeout(function(){ that.dogJump.frame = 1; that.dogJumpAnimation(1); },500);
     setTimeout(function(){ that.dogJump.sendToBack(); that.dogJumpAnimation(-2) },1000);
     setTimeout(function(){ that.dogJump.frame = 2 },650);
     setTimeout(function(){ that.dogJump.kill(); that.spawnDucks();},1500);
@@ -1303,7 +1305,7 @@ var mainState= {
 
   dogJumpAnimation: function(up){
     var that = this;
-    this.bark.play();
+    if(sound){ this.bark.play(); }
     var jump = setInterval(function(){
       setTimeout(function(){ clearInterval(jump); },1500);
       that.dogJump.y -= 1.50*up
@@ -1331,7 +1333,9 @@ var mainState= {
       if (that.dogShow.y > 490){
         that.dogShow.y -= 1.5;
       }else{
-        (that.dogShow.frame === 2 ||that.dogShow.frame === 3)?that.congrats.play():that.dogLaugh.play();
+        if(sound){
+            (that.dogShow.frame === 2 ||that.dogShow.frame === 3)?that.congrats.play():that.dogLaugh.play();
+        }
         clearInterval(raise);
         setTimeout(function(){ that.dogLower() },750);
       }
