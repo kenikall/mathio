@@ -134,11 +134,20 @@ var preloadState={
 
     //sounds
     game.load.audio('shotSound', '/sounds/math_hunt/shot.wav');
-    game.load.audio('quacks', '/sounds/math_hunt/quacks.wav');
+    // game.load.audio('quacks', '/sounds/math_hunt/quacks.wav');
     game.load.audio('hit', '/sounds/math_hunt/hit.wav');
     game.load.audio('fall', '/sounds/math_hunt/fall.wav');
     game.load.audio('click', '/sounds/math_hunt/click.wav');
     game.load.audio('honk', '/sounds/math_hunt/honk.wav');
+    game.load.audio('bark', '/sounds/math_hunt/bark.wav');
+    game.load.audio('congrats', '/sounds/math_hunt/congrats.wav');
+    game.load.audio('dogLaugh', '/sounds/math_hunt/dogLaugh.wav');
+    game.load.audio('flap', '/sounds/math_hunt/flap.wav');
+    game.load.audio('gameOverMusic', '/sounds/math_hunt/gameOverMusic.wav');
+    game.load.audio('roundStart', '/sounds/math_hunt/roundStart.wav');
+    game.load.audio('intro', '/sounds/math_hunt/intro.mp3');
+    game.load.audio('quack', '/sounds/math_hunt/quack.mp3');
+
 
     //numbers
     for ( var i=0 ; i<=50 ; i++ ){game.load.image(i, '/images/math_hunt/numbers/'+i+'.png');}
@@ -276,7 +285,7 @@ var menuState= {
     this.p2down  = game.input.keyboard.addKey(Phaser.Keyboard.S);
     this.p2right = game.input.keyboard.addKey(Phaser.Keyboard.E);
     this.p2left  = game.input.keyboard.addKey(Phaser.Keyboard.Q);
-    this.p2shoot = game.input.keyboard.addKey(Phaser.Keyboard.Z);
+    this.p2shoot = game.input.keyboard.addKey(Phaser.Keyboard.A);
     this.setFrame();
   },
 
@@ -311,6 +320,7 @@ var menuState= {
     if (numPlayers === 2){
       this.p2.reset(825, 493, 'p2');
       this.p2.bringToTop();
+      this.p2.canShoot = true;
     } else {
       p2speed = 0;
       p2skill = "none"
@@ -542,6 +552,7 @@ var menuState= {
       p1shooting = true;
     }
     if(this.p2shoot.isDown && this.p2.canShoot){
+        console.log('shootiong');
       this.p2.canShoot = false;
       var that = this;
       setTimeout(function(){that.p2.canShoot = true}, 250)
@@ -668,7 +679,15 @@ var mainState= {
     this.quacks = game.add.audio('quacks');
     this.hit = game.add.audio('hit');
     this.fall = game.add.audio('fall');
-    this.honk = game.add.audio('honk')
+    this.honk = game.add.audio('honk');
+    this.bark = game.add.audio('bark');
+    this.congrats = game.add.audio('congrats');
+    this.dogLaugh = game.add.audio('dogLaugh');
+    this.flap = game.add.audio('flap');
+    this.gameOverMsic = game.add.audio('gameOverMsic');
+    this.roundStart = game.add.audio('roundStart');
+    this.intro = game.add.audio('intro');
+    this.quack = game.add.audio('quack');
 
     //set up animations
     this.dogShow = game.add.sprite(500,775,'dogShow');
@@ -725,7 +744,7 @@ var mainState= {
     this.p2down  = game.input.keyboard.addKey(Phaser.Keyboard.S);
     this.p2right = game.input.keyboard.addKey(Phaser.Keyboard.E);
     this.p2left  = game.input.keyboard.addKey(Phaser.Keyboard.Q);
-    this.p2shoot = game.input.keyboard.addKey(Phaser.Keyboard.Z);
+    this.p2shoot = game.input.keyboard.addKey(Phaser.Keyboard.A);
     //initialize scoring
     this.score1 = [];
     this.score2 = [];
@@ -736,6 +755,7 @@ var mainState= {
     this.startGame();
   },
   startGame: function(){
+    this.intro.play();
     this.round = 0;
     this.dogWalk = game.add.sprite(-125,700,'dogWalk');
     this.dogWalk.anchor.setTo(.5,.5);
@@ -904,7 +924,6 @@ var mainState= {
           this.ducks[0].sprite.kill();
           p1correct.push(this.p1Question.text);
           this.hitBird1();
-          // this.spawnDucks();
         } else if (this.checkOverlap(this.inner1, this.ducks[1])){
           x = game.add.sprite(this.p1.x, this.p1.y, 'redX');
           x.anchor.setTo( 0.5, 0.5);
@@ -940,6 +959,7 @@ var mainState= {
           this.ducks[1].sprite.kill();
           p2correct.push(this.p2Question.text)
           this.hitBird2(this.ducks[1])
+          console.log(this.ducks.length);
         } else if (this.checkOverlap(this.inner2, this.ducks[2])){
           x = game.add.sprite(this.p2.x, this.p2.y, 'redX');
           x.anchor.setTo( 0.5, 0.5);
@@ -1025,16 +1045,18 @@ var mainState= {
   },
 
   spawnDucks: function(){
+    var that = this;
     this.round++
+    this.roundStart.play();
     this.showRound(this.round);
 
     this.ducks = [];
     this.reload();
-    this.quacks.play();
     this.spawnQuestions();
   },
 
   gameOver: function(){
+    this.gameOverMusic.play();
     this.goFrame = game.add.sprite(game.world.centerX, game.world.centerY*0.3, 'gameOver');
     this.goFrame.anchor.setTo(.5,0);
     this.mainMenu = game.add.sprite(game.world.centerX, game.world.centerY*0.65, 'mainMenu');
@@ -1123,6 +1145,7 @@ var mainState= {
     {
       this.ducks[i].speed = 10;
     }
+    clearInterval(this.flapping);
     this.renderScore();
     this.callDog(hits);
   },
@@ -1250,6 +1273,11 @@ var mainState= {
       rand = Math.floor(Math.random()*20);
     }
     this.oneDuck(rand);
+    var that = this;
+    setTimeout(function(){ that.flapping = setInterval(function(){
+        that.flap.play();
+        if (Math.random()> .8){ that.quack.play(); }
+    },150)}, 1000);
     this.reorderSprites();
   },
 
@@ -1267,7 +1295,7 @@ var mainState= {
     this.dogJump.anchor.setTo(.5,.5);
     this.dogJump.frame = 0
     var that = this;
-    setTimeout(function(){ that.dogJump.frame = 1; that.dogJumpAnimation(1) },500);
+    setTimeout(function(){ that.dogJump.frame = 1; that.dogJumpAnimation(1); that.bark.play(); },500);
     setTimeout(function(){ that.dogJump.sendToBack(); that.dogJumpAnimation(-2) },1000);
     setTimeout(function(){ that.dogJump.frame = 2 },650);
     setTimeout(function(){ that.dogJump.kill(); that.spawnDucks();},1500);
@@ -1275,6 +1303,7 @@ var mainState= {
 
   dogJumpAnimation: function(up){
     var that = this;
+    this.bark.play();
     var jump = setInterval(function(){
       setTimeout(function(){ clearInterval(jump); },1500);
       that.dogJump.y -= 1.50*up
@@ -1302,6 +1331,7 @@ var mainState= {
       if (that.dogShow.y > 490){
         that.dogShow.y -= 1.5;
       }else{
+        (that.dogShow.frame === 2 ||that.dogShow.frame === 3)?that.congrats.play():that.dogLaugh.play();
         clearInterval(raise);
         setTimeout(function(){ that.dogLower() },750);
       }
