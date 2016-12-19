@@ -118,6 +118,9 @@ var preloadState={
     game.load.spritesheet('menu9', '/images/math_hunt/menu_images/menu9.png',51,64, 4);
     game.load.spritesheet('menu10', '/images/math_hunt/menu_images/menu10.png',102,64, 4);
 
+    game.load.image('sound', '/images/math_hunt/menu_images/sound.png')
+    game.load.spritesheet('onoff', '/images/math_hunt/menu_images/offON.png',133,51, 2);
+
     //gameplay background
     game.load.image('stage', '/images/math_hunt/duck_background.png');
 
@@ -131,7 +134,7 @@ var preloadState={
 
     //sounds
     game.load.audio('shotSound', '/sounds/math_hunt/shot.wav');
-    // game.load.audio('quacks', '/sounds/math_hunt/quacks.wav');
+    game.load.audio('quacks', '/sounds/math_hunt/quacks.wav');
     game.load.audio('hit', '/sounds/math_hunt/hit.wav');
     game.load.audio('fall', '/sounds/math_hunt/fall.wav');
     game.load.audio('click', '/sounds/math_hunt/click.wav');
@@ -220,20 +223,24 @@ var menuState= {
     this.division = game.add.sprite(game.world.centerX*1.3,this.pos2, 'division');
 
     this.menu1 = game.add.sprite(game.world.centerX*.05,this.pos3, 'menu1');
-    this.menu2 = game.add.sprite(game.world.centerX*.25,this.pos3, 'menu2');
-    this.menu3 = game.add.sprite(game.world.centerX*.45,this.pos3, 'menu3');
-    this.menu4 = game.add.sprite(game.world.centerX*.65,this.pos3, 'menu4');
-    this.menu5 = game.add.sprite(game.world.centerX*.85,this.pos3, 'menu5');
-    this.menu6 = game.add.sprite(game.world.centerX*1.05,this.pos3, 'menu6');
-    this.menu7 = game.add.sprite(game.world.centerX*1.25,this.pos3, 'menu7');
-    this.menu8 = game.add.sprite(game.world.centerX*1.45,this.pos3, 'menu8');
-    this.menu9 = game.add.sprite(game.world.centerX*1.65,this.pos3, 'menu9');
-    this.menu10 = game.add.sprite(game.world.centerX*1.8,this.pos3, 'menu10');
+    this.menu2 = game.add.sprite(game.world.centerX*.20,this.pos3, 'menu2');
+    this.menu3 = game.add.sprite(game.world.centerX*.40,this.pos3, 'menu3');
+    this.menu4 = game.add.sprite(game.world.centerX*.60,this.pos3, 'menu4');
+    this.menu5 = game.add.sprite(game.world.centerX*.80,this.pos3, 'menu5');
+    this.menu6 = game.add.sprite(game.world.centerX,this.pos3, 'menu6');
+    this.menu7 = game.add.sprite(game.world.centerX*1.20,this.pos3, 'menu7');
+    this.menu8 = game.add.sprite(game.world.centerX*1.40,this.pos3, 'menu8');
+    this.menu9 = game.add.sprite(game.world.centerX*1.60,this.pos3, 'menu9');
+    this.menu10 = game.add.sprite(game.world.centerX*1.75,this.pos3, 'menu10');
+
+    this.sound = game.add.sprite(game.world.centerX*.75,this.pos4-10, 'sound');
+    this.onoff = game.add.sprite(game.world.centerX*1.25,this.pos4-10, 'onoff');
+    this.onoff.frame = 1;
 
     this.optionsShield1 = game.add.sprite(game.world.centerX-1000,this.pos2, 'shield');
+    this.optionsShield1.height = 500;
     this.optionsShield2 = game.add.sprite(game.world.centerX,this.pos2, 'shield');
-    this.optionsShield3 = game.add.sprite(game.world.centerX-1000,this.pos3, 'shield');
-    this.optionsShield4 = game.add.sprite(game.world.centerX,this.pos3, 'shield');
+    this.optionsShield2.height = 500;
 
     this.p1 = game.add.sprite( 44, 493, 'p1');
     this.p1.anchor.setTo( 0.5, 0.5 );
@@ -335,8 +342,6 @@ var menuState= {
 
     this.optionsShield1.bringToTop();
     this.optionsShield2.bringToTop();
-    this.optionsShield3.bringToTop();
-    this.optionsShield4.bringToTop();
     //menu items
     this.pShield.bringToTop();
     this.directions.bringToTop();
@@ -457,11 +462,11 @@ var menuState= {
         that.menu8.bringToTop();
         that.menu9.bringToTop();
         that.menu10.bringToTop();
+        that.sound.bringToTop();
+        that.onoff.bringToTop();
 
         that.optionsShield1.bringToTop();
         that.optionsShield2.bringToTop();
-        that.optionsShield3.bringToTop();
-        that.optionsShield4.bringToTop();
 
         that.back.bringToTop();
         that.bShield.bringToTop();
@@ -471,8 +476,6 @@ var menuState= {
         var horz = setInterval(function(){
           if (that.optionsShield1.x > -1500){ that.optionsShield1.x -= 1.5}
           if (that.optionsShield2.x < 1500){ that.optionsShield2.x += 1.5}
-          if (that.optionsShield3.x > -1500){ that.optionsShield3.x -= 1.5}
-          if (that.optionsShield4.x < 1500){ that.optionsShield4.x += 1.5}
           if(that.optionsShield1.x <= -1500 && that.optionsShield2.x >= 1500 ) {
             that.canBack = true;
             clearInterval(horz);
@@ -492,8 +495,6 @@ var menuState= {
     var horz = setInterval(function(){
       if (that.optionsShield1.x < -500){ that.optionsShield1.x += 1.5}
         if (that.optionsShield2.x > 500){ that.optionsShield2.x -= 1.5}
-        if (that.optionsShield3.x < -500){ that.optionsShield3.x += 1.5}
-        if (that.optionsShield4.x > 500){ that.optionsShield4.x -= 1.5}
         if(that.optionsShield1.x >= -500 && that.optionsShield2.x <= 500 ) {
           clearInterval(horz);
           that.initialLayers();
@@ -595,6 +596,10 @@ var menuState= {
           this.optionsBreakDown();
         }
       }
+      else if ((p1shooting && (this.checkOverlap(this.inner1, this.sound)||this.checkOverlap(this.inner1, this.onoff)))||(p2shooting && (this.checkOverlap(this.inner2, this.sound)||this.checkOverlap(this.inner2, this.onoff)))){
+        if (sound) { sound = false; this.onoff.frame = 0; console.log(sound) }
+        else { sound = true;  this.onoff.frame = 1; console.log(sound)  }
+      }
       else if (p1shooting && this.checkOverlap(this.inner1, this.menu1)){ p1speed = 1; }
       else if (p2shooting && this.checkOverlap(this.inner2, this.menu1)){ p2speed = 1; }
       else if (p1shooting && this.checkOverlap(this.inner1, this.menu2)){ p1speed = 2; }
@@ -662,11 +667,6 @@ var mainState= {
     this.honk = game.add.audio('honk')
 
     //set up animations
-    this.dogWalk = game.add.sprite(-125,700,'dogWalk');
-    this.dogWalk.anchor.setTo(.5,.5);
-    this.dogWalk.animations.add ('walk', [0,4], 5, true);
-    this.dogWalk.animations.play('walk');
-
     this.dogShow = game.add.sprite(500,775,'dogShow');
     this.dogShow.anchor.setTo(.5,.5);
     this.dogShow.sendToBack()
@@ -731,14 +731,22 @@ var mainState= {
     //initialize bullets
     this.reload();
 
-    //timers
+    this.startGame();
+  },
+  startGame: function(){
+    this.round = 0;
+    this.dogWalk = game.add.sprite(-125,700,'dogWalk');
+    this.dogWalk.anchor.setTo(.5,.5);
+    this.dogWalk.animations.add ('walk', [0,4], 5, true);
+    this.dogWalk.animations.play('walk');
+
     var that = this;
-    walk = true;
-    setInterval(function(){
+    var walk = setInterval(function(){
+      console.log('walking');
       if(that.dogWalk.x<300){that.dogWalk.x++;
-      }else if (walk){
+      }else{
+        clearInterval(walk);
         that.dogWalkAnimation();
-        walk = false
       }
     },1)
   },
@@ -828,16 +836,23 @@ var mainState= {
 
   shoot: function(){
     var that = this;
-    if(this.p1shoot.isDown && this.checkOverlap(this.inner1, this.playAgain)){
+    if(this.p1.canShoot && this.p1shoot.isDown && this.checkOverlap(this.inner1, this.playAgain)){
       this.p1.canShoot = false;
       setTimeout(function(){that.p1.canShoot = true}, 1000)
       shot1 = game.add.sprite(this.p1.x, this.p1.y, 'shot');
       shot1.anchor.setTo( 0.5, 0.5);
       setTimeout(function(){shot1.kill()},100);
       this.shotSound.play();
-      this.game.state.start('main');
+
+      this.goFrame.kill();
+      this.mainMenu.kill();
+      this.playAgain.kill();
+      this.score1 = [];
+      this.score2 = [];
+      this.renderScore();
+      this.startGame();
     }
-    if(this.p2shoot.isDown && this.checkOverlap(this.inner2, this.playAgain)){
+    if(this.p1.canShoot && this.p2shoot.isDown && this.checkOverlap(this.inner2, this.playAgain)){
       this.p2.canShoot = false;
       // var that = this;
       setTimeout(function(){that.p2.canShoot = true}, 1000)
@@ -845,7 +860,14 @@ var mainState= {
       shot2.anchor.setTo( 0.5, 0.5);
       setTimeout(function(){shot2.kill()},100);
       this.shotSound.play();
-      this.game.state.start('main');
+
+      this.goFrame.kill();
+      this.mainMenu.kill();
+      this.playAgain.kill();
+      this.score1 = [];
+      this.score2 = [];
+      this.renderScore();
+      this.startGame();
     }
     if(this.p1shoot.isDown && this.checkOverlap(this.inner1, this.mainMenu)){
       this.p1.canShoot = false;
@@ -1012,8 +1034,8 @@ var mainState= {
   },
 
   gameOver: function(){
-    var goFrame = game.add.sprite(game.world.centerX, game.world.centerY*0.3, 'gameOver');
-    goFrame.anchor.setTo(.5,0);
+    this.goFrame = game.add.sprite(game.world.centerX, game.world.centerY*0.3, 'gameOver');
+    this.goFrame.anchor.setTo(.5,0);
     this.mainMenu = game.add.sprite(game.world.centerX, game.world.centerY*0.65, 'mainMenu');
     this.mainMenu.anchor.setTo(.5,.5);
     this.playAgain = game.add.sprite(game.world.centerX, game.world.centerY*0.75, 'playAgain');
