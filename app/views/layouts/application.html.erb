@@ -8,21 +8,26 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
 
-    <title>Mathio by K. Mannah Kallon -  kenikall@gmail.com</title>
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/8bit-wonder" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="css/stackicons.css" />
+
+    <title>Math Hunt by K. Mannah Kallon -  MannahCodes@gmail.com</title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-  <div class = "navbar navbar-default navbar-fixed-bottom">
-    <div class="container st-multi-color">
-      <p class = 'navbar-text pull-left'>Built By K. Mannah Kallon </p><br>
-      <a title="Email" class="st-icon-gmail" href="">Email</a>
-      <a title="Linked In" class="st-icon-linkedin" href="">Linked In</a>
-      <a title="GitHub" class="st-icon-github" href="">GitHub</a>
-      <a title="Facebook" class="st-icon-facebook" href="">Facebook</a>
-      <a title="Twitter" class="st-icon-twitter" href="">Twitter</a>
+  <div style="font-family:'8BITWONDERNominal'; font-weight: normal; font-style: normal; font-size:200%" class = "navbar navbar-default navbar-fixed-top">
+    <p class = 'text-center'>Built By K. Mannah Kallon - Use the Q,W,E,S keys to navigate - Spacebar to select</p>
+    <div class = "text-center st-multi-color st-shape-r5">
+      <div style="font-size:100%; margin-left: 2em; ">
+        <a title="MannahCodes@gmail.com" class="st-icon-gmail st-multi-color" href="mailto:mannahcodes@gmail"><span></span>Email</a>
+        <a style="margin-left: 2em;" target="_blank" title="Linked In" class="st-icon-linkedin st-multi-color" href="https://www.linkedin.com/in/kenikall"><span></span>Linked In</a>
+        <a style="margin-left: 2em;" target="_blank" title="GitHub" class="st-icon-github st-shape-circle" href="https://github.com/kenikall"><span></span>GitHub</a>
+        <a style="margin-left: 2em;" target="_blank" title="Facebook" class="st-icon-facebook st-multi-color" href="https://www.facebook.com/mannahcodes/"><span></span>Facebook</a>
+        <a style="margin-left: 2em;" target="_blank" title="Twitter" class="st-icon-twitter st-multi-color" href="https://twitter.com/mannahKallon"><span></span>Twitter</a>
+      </div>
     </div>
   </div>
     <%= yield %>

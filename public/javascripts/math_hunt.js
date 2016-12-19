@@ -303,10 +303,18 @@ var menuState= {
     this.division.frame =(p1skill === "Division" && p2skill === "Division")?2:(p1skill === "Division")?3:(p2skill === "Division")?1:0;
   },
   changePlayers: function(){
+    if (p2skill === "none"){
+        p2speed = 5;
+        p2skill = "Addition"
+        this.setFrame();
+    }
     if (numPlayers === 2){
       this.p2.reset(825, 493, 'p2');
       this.p2.bringToTop();
     } else {
+      p2speed = 0;
+      p2skill = "none"
+      this.setFrame();
       this.p2.kill();
     }
   },
@@ -355,6 +363,7 @@ var menuState= {
 
     this.inner1.bringToTop();
     this.p1.bringToTop();
+    if (numPlayers === 2){ this.p2.bringToTop(); }
   },
 
   directionsBreakDown: function(){
@@ -551,11 +560,6 @@ var menuState= {
           this.p2info.alpha = 1;
           numPlayers = 2;
         }else{
-          if (p2skill === "none"){
-            p2speed = 5;
-            p2skill = "Addition"
-            this.setFrame();
-          }
           this.players.frame = 0;
           numPlayers = 1;
           this.p1info.x = game.world.centerX;
@@ -709,7 +713,6 @@ var mainState= {
     this.p1Question.anchor.set(.5,0)
     this.p2Question = game.add.text(840,810,"", { font: '30px Arial', fill: '#4933ff' });
     this.p2Question.anchor.set(.5,0)
-    this.round = 0;
 
     //move input keys
     this.p1up    = game.input.keyboard.addKey(Phaser.Keyboard.W);
@@ -1253,7 +1256,7 @@ var mainState= {
   },
 
   callDog: function(hits){
-    if (this.round <= 1){
+    if (this.round <= 5){
       this.dogShowAnimation(hits);
     } else {
       this.gameOver();
