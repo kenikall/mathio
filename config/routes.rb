@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   get 'leaders/index'
 
-  root 'games#index'
+  root 'games#mathhunt'
 
   get 'games/flappymath'
 
