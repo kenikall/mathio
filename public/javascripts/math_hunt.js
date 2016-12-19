@@ -601,8 +601,8 @@ var menuState= {
         }
       }
       else if ((p1shooting && (this.checkOverlap(this.inner1, this.sound)||this.checkOverlap(this.inner1, this.onoff)))||(p2shooting && (this.checkOverlap(this.inner2, this.sound)||this.checkOverlap(this.inner2, this.onoff)))){
-        if (sound) { sound = false; this.onoff.frame = 0; console.log(sound) }
-        else { sound = true;  this.onoff.frame = 1; console.log(sound)  }
+        if (sound) { sound = false; this.onoff.frame = 0; }
+        else { sound = true;  this.onoff.frame = 1; }
       }
       else if (p1shooting && this.checkOverlap(this.inner1, this.menu1)){ p1speed = 1; }
       else if (p2shooting && this.checkOverlap(this.inner2, this.menu1)){ p2speed = 1; }
@@ -745,7 +745,6 @@ var mainState= {
 
     var that = this;
     var walk = setInterval(function(){
-      console.log('walking');
       if(that.dogWalk.x<300){that.dogWalk.x++;
       }else{
         clearInterval(walk);
@@ -880,7 +879,7 @@ var mainState= {
       shot1.anchor.setTo( 0.5, 0.5);
       setTimeout(function(){shot1.kill()},100);
       this.shotSound.play();
-      this.game.state.start('menu');
+      location.reload();
     }
     if(this.p2shoot.isDown && this.checkOverlap(this.inner2, this.mainMenu)){
       this.p2.canShoot = false;
@@ -1256,7 +1255,7 @@ var mainState= {
   },
 
   callDog: function(hits){
-    if (this.round <= 5){
+    if (this.round < 5){
       this.dogShowAnimation(hits);
     } else {
       this.gameOver();
