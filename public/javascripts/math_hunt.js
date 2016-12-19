@@ -266,17 +266,17 @@ var menuState= {
     this.canBack  =false;
 
     //move input keys
-    this.p1up    = game.input.keyboard.addKey(Phaser.Keyboard.W);
-    this.p1down  = game.input.keyboard.addKey(Phaser.Keyboard.S);
-    this.p1right = game.input.keyboard.addKey(Phaser.Keyboard.E);
-    this.p1left  = game.input.keyboard.addKey(Phaser.Keyboard.Q);
+    this.p1up    = game.input.keyboard.addKey(Phaser.Keyboard.UP);
+    this.p1down  = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
+    this.p1right = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
+    this.p1left  = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
     this.p1shoot = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
-    this.p2up    = game.input.keyboard.addKey(Phaser.Keyboard.UP);
-    this.p2down  = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
-    this.p2right = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
-    this.p2left  = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
-    this.p2shoot = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
+    this.p2up    = game.input.keyboard.addKey(Phaser.Keyboard.W);
+    this.p2down  = game.input.keyboard.addKey(Phaser.Keyboard.S);
+    this.p2right = game.input.keyboard.addKey(Phaser.Keyboard.E);
+    this.p2left  = game.input.keyboard.addKey(Phaser.Keyboard.Q);
+    this.p2shoot = game.input.keyboard.addKey(Phaser.Keyboard.Z);
     this.setFrame();
   },
 
@@ -715,18 +715,17 @@ var mainState= {
     this.p2Question.anchor.set(.5,0)
 
     //move input keys
-    this.p1up    = game.input.keyboard.addKey(Phaser.Keyboard.W);
-    this.p1down  = game.input.keyboard.addKey(Phaser.Keyboard.S);
-    this.p1right = game.input.keyboard.addKey(Phaser.Keyboard.E);
-    this.p1left  = game.input.keyboard.addKey(Phaser.Keyboard.Q);
+    this.p1up    = game.input.keyboard.addKey(Phaser.Keyboard.UP);
+    this.p1down  = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
+    this.p1right = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
+    this.p1left  = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
     this.p1shoot = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
-    this.p2up    = game.input.keyboard.addKey(Phaser.Keyboard.UP);
-    this.p2down  = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
-    this.p2right = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
-    this.p2left  = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
-    this.p2shoot = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
-
+    this.p2up    = game.input.keyboard.addKey(Phaser.Keyboard.W);
+    this.p2down  = game.input.keyboard.addKey(Phaser.Keyboard.S);
+    this.p2right = game.input.keyboard.addKey(Phaser.Keyboard.E);
+    this.p2left  = game.input.keyboard.addKey(Phaser.Keyboard.Q);
+    this.p2shoot = game.input.keyboard.addKey(Phaser.Keyboard.Z);
     //initialize scoring
     this.score1 = [];
     this.score2 = [];
