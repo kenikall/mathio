@@ -119,7 +119,7 @@ var preloadState={
     game.load.spritesheet('menu10', '/images/math_hunt/menu_images/menu10.png',102,64, 4);
 
     game.load.image('sound', '/images/math_hunt/menu_images/sound.png')
-    game.load.spritesheet('onoff', '/images/math_hunt/menu_images/offON.png',133,51, 2);
+    game.load.spritesheet('onoff', '/images/math_hunt/menu_images/offOn.png',133,51, 2);
 
     //gameplay background
     game.load.image('stage', '/images/math_hunt/duck_background.png');
