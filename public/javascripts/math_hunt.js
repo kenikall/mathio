@@ -756,6 +756,13 @@ var mainState= {
     this.startGame();
   },
   startGame: function(){
+    this.goFrame = game.add.sprite(5000, game.world.centerY*0.3, 'gameOver');
+    this.goFrame.anchor.setTo(.5,0);
+    this.mainMenu = game.add.sprite(5000, game.world.centerY*0.65, 'mainMenu');
+    this.mainMenu.anchor.setTo(.5,.5);
+    this.playAgain = game.add.sprite(5000, game.world.centerY*0.75, 'playAgain');
+    this.playAgain.anchor.setTo(.5,.5);
+
     if(sound){ this.intro.play(); }
     this.round = 0;
     this.dogWalk = game.add.sprite(-125,700,'dogWalk');
@@ -866,15 +873,19 @@ var mainState= {
       setTimeout(function(){shot1.kill()},100);
       if(sound){ this.shotSound.play(); }
 
-      this.goFrame.destroy();
-      this.mainMenu.destroy();
-      this.playAgain.destroy();
+      this.goFrame.x=5000;
+      this.mainMenu.x=5000;
+      this.playAgain.x=5000;
+
+      this.goFrame.kill();
+      this.mainMenu.kill();
+      this.playAgain.kill();
       this.score1 = [];
       this.score2 = [];
       this.renderScore();
       this.startGame();
     }
-    if(this.p1.canShoot && this.p2shoot.isDown && this.checkOverlap(this.inner2, this.playAgain)){
+    if(this.p2.canShoot && this.p2shoot.isDown && this.checkOverlap(this.inner2, this.playAgain)){
       this.p2.canShoot = false;
       // var that = this;
       setTimeout(function(){that.p2.canShoot = true}, 1000)
@@ -883,9 +894,14 @@ var mainState= {
       setTimeout(function(){shot2.kill()},100);
       if(sound){ this.shotSound.play(); }
 
-      this.goFrame.destroy();
-      this.mainMenu.destroy();
-      this.playAgain.destroy();
+      this.goFrame.x=5000;
+      this.mainMenu.x=5000;
+      this.playAgain.x=5000;
+
+      // this.goFrame.kill();
+      // this.mainMenu.kill();
+      // this.playAgain.kill();
+
       this.score1 = [];
       this.score2 = [];
       this.renderScore();
@@ -907,7 +923,7 @@ var mainState= {
       shot2.anchor.setTo( 0.5, 0.5);
       setTimeout(function(){shot2.kill()},100);
       if(sound){ this.shotSound.play(); }
-      location.reload();
+      this.game.state.start('menu');
     }
 
     if (this.p1shoot.isDown && this.p1.canShoot && this.fireBullets(1)){
@@ -1055,12 +1071,9 @@ var mainState= {
 
   gameOver: function(){
     if(sound){ this.gameOverMusic.play(); }
-    this.goFrame = game.add.sprite(game.world.centerX, game.world.centerY*0.3, 'gameOver');
-    this.goFrame.anchor.setTo(.5,0);
-    this.mainMenu = game.add.sprite(game.world.centerX, game.world.centerY*0.65, 'mainMenu');
-    this.mainMenu.anchor.setTo(.5,.5);
-    this.playAgain = game.add.sprite(game.world.centerX, game.world.centerY*0.75, 'playAgain');
-    this.playAgain.anchor.setTo(.5,.5);
+    this.goFrame.x = game.world.centerX;
+    this.mainMenu.x = game.world.centerX;
+    this.playAgain.x = game.world.centerX;
     this.p1.bringToTop();
     this.p2.bringToTop();
   },
