@@ -322,6 +322,7 @@ var menuState= {
       this.p2.bringToTop();
       this.p2.canShoot = true;
     } else {
+      this.p2info.alpha = 0;
       p2speed = 0;
       p2skill = "none"
       this.setFrame();
@@ -865,9 +866,9 @@ var mainState= {
       setTimeout(function(){shot1.kill()},100);
       if(sound){ this.shotSound.play(); }
 
-      this.goFrame.kill();
-      this.mainMenu.kill();
-      this.playAgain.kill();
+      this.goFrame.destroy();
+      this.mainMenu.destroy();
+      this.playAgain.destroy();
       this.score1 = [];
       this.score2 = [];
       this.renderScore();
@@ -882,9 +883,9 @@ var mainState= {
       setTimeout(function(){shot2.kill()},100);
       if(sound){ this.shotSound.play(); }
 
-      this.goFrame.kill();
-      this.mainMenu.kill();
-      this.playAgain.kill();
+      this.goFrame.destroy();
+      this.mainMenu.destroy();
+      this.playAgain.destroy();
       this.score1 = [];
       this.score2 = [];
       this.renderScore();
@@ -892,7 +893,6 @@ var mainState= {
     }
     if(this.p1shoot.isDown && this.checkOverlap(this.inner1, this.mainMenu)){
       this.p1.canShoot = false;
-      // var that = this;
       setTimeout(function(){that.p1.canShoot = true}, 1000)
       shot1 = game.add.sprite(this.p1.x, this.p1.y, 'shot');
       shot1.anchor.setTo( 0.5, 0.5);
@@ -902,18 +902,16 @@ var mainState= {
     }
     if(this.p2shoot.isDown && this.checkOverlap(this.inner2, this.mainMenu)){
       this.p2.canShoot = false;
-      // var that = this;
       setTimeout(function(){that.p2.canShoot = true}, 1000)
       shot2 = game.add.sprite(this.p2.x, this.p2.y, 'shot');
       shot2.anchor.setTo( 0.5, 0.5);
       setTimeout(function(){shot2.kill()},100);
       if(sound){ this.shotSound.play(); }
-      this.game.state.start('menu');
+      location.reload();
     }
 
     if (this.p1shoot.isDown && this.p1.canShoot && this.fireBullets(1)){
       this.p1.canShoot = false;
-      // var that = this;
       setTimeout(function(){that.p1.canShoot = true}, 1000)
       shot1 = game.add.sprite(this.p1.x, this.p1.y, 'shot');
       shot1.anchor.setTo( 0.5, 0.5);
